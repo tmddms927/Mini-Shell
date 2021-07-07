@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/07 05:37:51 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/07 07:17:23 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ int			main(int argc, char **argv)
 {
 	// char	*s;
 	// char	prompt[100];
-	t_list	list;
+	t_list	*list;
 
-	list = parsing_start(argv[1], list);
+	list = init_list();
+	if (!parsing_start(argv[1], list))
+		printf("parsing error!\n");
 
 	// while (1)
 	// {
@@ -35,28 +37,13 @@ int			main(int argc, char **argv)
 ** parsing main function
 */
 
-t_list		parsing_start(char *s, t_list list)
+int			parsing_start(char *s, t_list *list)
 {
 	char	**words;
-
-	words = ft_split(s);
-	int i = 0;
-	set_command(words, list);
-}
-
-/*
-** find command & set list
-*/
-
-void		set_command(char **words, t_list list)
-{
 	int		i;
 
 	i = 0;
-	while (words[i])
-	{
-		if (!oadd(list))
-			return ;
-		
-	}
+	words = ft_split(s);
+	if (!set_list(list, words))
+		return (0);
 }
