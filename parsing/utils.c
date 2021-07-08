@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:43:48 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/08 01:00:02 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/08 04:43:58 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void			print_list(t_list *list)
 		re = temp->re_head;
 		while (re)
 		{
-			printf("redirection : %s\n", re->file);
+			printf("redirection : %d, filename : %s\n", re->type, re->file);
 			re = re->next;
 		}
 		temp = temp->next;

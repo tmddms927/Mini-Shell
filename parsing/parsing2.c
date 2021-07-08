@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:40:28 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/08 04:30:08 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/08 04:42:01 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,45 @@ int			set_command(t_list *list, char **words, int idx, int flag)
 	
 	i = 0;
 	com = 0;
-	while (words[idx][i])
+	while (words[idx])
 	{
-		temp = olast(list);
-		if (words[idx][i] == '|')
+		while (words[idx][i])
 		{
-			if (!input_list(list, com))
-				return (0);
-			com = 0;
-			if (!oadd(list))
+			temp = olast(list);
+			if (words[idx][i] == '|')
+			{
+				if (com && !input_list(list, com))
+					return (0);
+				com = 0;
+				if (!oadd(list))
+					return (0);
+				temp = olast(list);
+				temp->type = COM;
+				i++;
+				continue ;
+			}
+			if ((temp->type != RE || com) && (words[idx][i] == '<' || words[idx][i] == '>'))
+			{
+				if (com && !input_list(list, com))
+					return (0);
+				com = 0;
+				if (!re_odd(list))
+					return (0);
+				i += check_redi(list, words[idx] + i);
+				continue ;
+			}
+			if (words[idx][i] == '\'' || words[idx][i] == '"')
+				;
+			if (!ft_strcat_c(&com, words[idx][i]))
 				return (0);
 			i++;
-			continue ;
 		}
-		if (temp->type != RE && words[idx][i] == '<' || words[idx][i] == '>')
-		{
-			if (!input_list(list, com))
-				return (0);
-			com = 0;
-			if (!re_odd(list))
-				return (0);
-			i += check_redi(list, words[idx] + i);
-			continue ;
-		}
-		if (words[idx][i] == '\'' || words[idx][i] == '"')
-			;
-		if (!ft_strcat_c(&com, words[idx][i]))
+		if (com && !input_list(list, com))
 			return (0);
-		i++;
+		com = 0;
+		idx++;
+		i = 0;
 	}
-	if (!input_list(list, com))
-		return (0);
 	if (com)
 		free(com);
 	return (1);
