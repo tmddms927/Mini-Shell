@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/07 07:17:23 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/07 22:06:40 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int			main(int argc, char **argv)
 	// 	if (!head.head)
 	// 		continue ;
 	// }
+	print_list(list);
+	error_free("", list);
 	// return (0);
 }
 
@@ -46,4 +48,6 @@ int			parsing_start(char *s, t_list *list)
 	words = ft_split(s);
 	if (!set_list(list, words))
 		return (0);
+	free_split_words(words);
+	return (1);
 }

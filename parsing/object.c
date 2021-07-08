@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 07:14:12 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/07 07:19:51 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/07 21:54:33 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int					oadd(t_list *list)
 	if (!com)
 		return (error_free("Error : failed malloc\n", list));
 	com->c = 0;
-	com->argv = 0;
+	com->argv = (char **)malloc(sizeof(char *));
+	if (!com->argv)
+		return (error_free("Error : failed malloc\n", list));
+	*com->argv = 0;
 	com->next = 0;
 	com->path = 0;
 	com->re_head = 0;
@@ -31,9 +34,14 @@ int					oadd(t_list *list)
 		return (1);
 	}
 	temp = list->head;
-	while (temp)
-		temp = temp->next;
-	temp = com;
+	if (!temp)
+		temp = com;
+	else
+	{
+		while (temp->next)
+			temp = temp->next;
+		temp->next = com;
+	}
 	return (1);
 }
 
@@ -44,10 +52,8 @@ t_com			*olast(t_list *list)
 	temp = list->head;
 	if (!temp)
 		return (temp);
-	printf("hi1\n");
 	while (temp->next)
 		temp = temp->next;
-	printf("hi2\n");
 	return (temp);
 }
 
