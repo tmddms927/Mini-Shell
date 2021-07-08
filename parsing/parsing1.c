@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/08 00:43:02 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/08 05:34:26 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int			main(int argc, char **argv)
 	t_list	*list;
 
 	list = init_list();
+	//save history
 	if (!parsing_start(argv[1], list))
 		return (printf("parsing error!\n"));
 	// while (1)
