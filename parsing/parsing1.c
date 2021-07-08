@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/07 22:06:40 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/08 00:43:02 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int			main(int argc, char **argv)
 
 	list = init_list();
 	if (!parsing_start(argv[1], list))
-		printf("parsing error!\n");
-
+		return (printf("parsing error!\n"));
 	// while (1)
 	// {
 	// 	s = readline(prompt);
@@ -32,6 +31,7 @@ int			main(int argc, char **argv)
 	// }
 	print_list(list);
 	error_free("", list);
+	free(list);
 	// return (0);
 }
 

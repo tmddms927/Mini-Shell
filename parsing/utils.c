@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:43:48 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/07 22:08:42 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/08 01:00:02 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,20 @@ int					error_free(char *s, t_list *list)
 {
 	t_com			*temp;
 	t_com			*next;
+	t_re			*re_temp;
+	t_re			*re_next;
 	int				i;
 
 	temp = list->head;
-	next = temp;
 	while (temp)
 	{
 		i = 0;
 		if (temp->c)
 			free(temp->c);
-		if (temp->re_head)
-			free(temp->re_head);
 		if (temp->argv)
 		{
 			while (temp->argv[i])
-			{
-				free(temp->argv[i]);
-				i++;
-			}
+				free(temp->argv[i++]);
 			free(temp->argv);
 			i = 0;
 		}
@@ -42,6 +38,17 @@ int					error_free(char *s, t_list *list)
 			while (temp->path[i])
 				free(temp->path[i++]);
 			free(temp->path);
+		}
+		if (temp->re_head)
+		{
+			re_temp = temp->re_head;
+			while (re_temp)
+			{
+				re_next = re_temp->next;
+				free(re_temp->file);
+				free(re_temp);
+				re_temp = re_next;
+			}
 		}
 		next = temp->next;
 		free(temp);
@@ -88,6 +95,7 @@ int				ft_strcat_s(char **s1, char **s2)
 		free(*s1);
 	if (*s2)
 		free(*s2);
+	*s2 = 0;
 	*s1 = temp;
 	return (1);
 }

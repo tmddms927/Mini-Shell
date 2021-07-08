@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 07:14:12 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/07 21:54:33 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/08 04:20:17 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int					oadd(t_list *list)
 	com->next = 0;
 	com->path = 0;
 	com->re_head = 0;
+	com->type = COM;
 	if (!list->head)
 	{
 		list->head = com;
@@ -45,6 +46,31 @@ int					oadd(t_list *list)
 	return (1);
 }
 
+int				re_odd(t_list *list)
+{
+	t_com		*com;
+	t_re		*temp;
+	t_re		*re;
+
+	re = (t_re *)malloc(sizeof(t_re));
+	if (!re)
+		return (error_free("Error : failed malloc\n", list));
+	re->next = 0;
+	re->type = NOT;
+	re->file = 0;
+	com = olast(list);
+	temp = com->re_head;
+	if (!temp)
+		com->re_head = re;
+	else
+	{
+		while (temp->next)
+			temp = temp->next;
+		temp->next = re;
+	}
+	return (1);
+}
+
 t_com			*olast(t_list *list)
 {
 	t_com		*temp;
@@ -52,6 +78,18 @@ t_com			*olast(t_list *list)
 	temp = list->head;
 	if (!temp)
 		return (temp);
+	while (temp->next)
+		temp = temp->next;
+	return (temp);
+}
+
+t_re			*re_olast(t_list *list)
+{
+	t_com		*com;
+	t_re		*temp;
+
+	com = olast(list);
+	temp = com->re_head;
 	while (temp->next)
 		temp = temp->next;
 	return (temp);

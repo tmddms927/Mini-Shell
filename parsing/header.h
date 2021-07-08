@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/07 21:27:26 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/08 04:23:17 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 # define RE_OUT 3
 # define H_DOC 4
 # define APPEND 5
-# define PIPE 6
+# define ARGV 6
+# define NOT 7
+# define RE 8
 
 typedef struct	s_com t_com;
 typedef struct	s_re t_re;
@@ -46,6 +48,7 @@ struct			s_com
 	char		**path;
 	char		**argv;
 	t_re		*re_head;
+	int			type;
 	t_com		*next;
 };
 
@@ -57,9 +60,12 @@ int				parsing_start(char *s, t_list *list);
 char			**ft_split(char const *s);
 int				ft_strcmp(const char *s1, const char *s2);
 int				set_list(t_list *list, char **word);
-int				set_command(t_list *list, char *word);
+int				set_command(t_list *list, char **words, int idx, int flag);
 int				input_list(t_list *list, char *s);
 int				put_argument(t_list *list, char *s);
+int				check_redi(t_list *list, char *s);
+int				put_re(t_list *list, char *s);
+
 
 /*
 ** object.c
@@ -68,6 +74,9 @@ int				put_argument(t_list *list, char *s);
 int				oadd(t_list *list);
 t_com			*olast(t_list *list);
 t_list			*init_list(void);
+int				re_odd(t_list *list);
+t_re			*re_olast(t_list *list);
+
 
 /*
 ** utils.c
