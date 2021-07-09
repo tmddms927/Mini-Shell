@@ -6,7 +6,7 @@
 #    By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-#    Updated: 2021/07/08 20:15:40 by seungoh          ###   ########.fr        #
+#    Updated: 2021/07/08 20:22:33 by seungoh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,20 +28,21 @@ OBJS	=	${SRCS:.c=.o}
 
 all		: $(OUT)
 
+clean	:
+	@rm -rf ${OBJS}
+
 test	:	re
 			./${OUT} "cat >a|'$abc'"
+			@make clean
 
 .c.o	:
-	${CC} ${CFLAGS} -I ${INCDIR} -c ${<} -o ${<:.c=.o}
+	@${CC} ${CFLAGS} -I ${INCDIR} -c ${<} -o ${<:.c=.o}
 
 ${OUT}: ${OBJS}
-	${CC} ${CFLAGS} ${CLIB} -o ${OUT} ${OBJS}
-
-clean	:
-	rm -rf ${OBJS}
+	@${CC} ${CFLAGS} ${CLIB} -o ${OUT} ${OBJS}
 
 fclean	: clean
-	rm -rf	${OUT}
+	@rm -rf	${OUT}
 
 re		: fclean all
 
