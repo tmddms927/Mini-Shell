@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 07:14:12 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/08 04:20:17 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/09 01:21:39 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int					oadd(t_list *list)
 	
 	com = (t_com *)malloc(sizeof(t_com));
 	if (!com)
-		return (error_free("Error : failed malloc\n", list));
+		return (error_list_free("Error : failed malloc\n", list));
 	com->c = 0;
 	com->argv = (char **)malloc(sizeof(char *));
 	if (!com->argv)
-		return (error_free("Error : failed malloc\n", list));
+		return (error_list_free("Error : failed malloc\n", list));
 	*com->argv = 0;
 	com->next = 0;
 	com->path = 0;
@@ -54,7 +54,7 @@ int				re_odd(t_list *list)
 
 	re = (t_re *)malloc(sizeof(t_re));
 	if (!re)
-		return (error_free("Error : failed malloc\n", list));
+		return (error_list_free("Error : failed malloc\n", list));
 	re->next = 0;
 	re->type = NOT;
 	re->file = 0;
@@ -90,6 +90,8 @@ t_re			*re_olast(t_list *list)
 
 	com = olast(list);
 	temp = com->re_head;
+	if (!temp)
+		return (temp);
 	while (temp->next)
 		temp = temp->next;
 	return (temp);

@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/08 20:14:16 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/09 01:33:18 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 typedef struct	s_com t_com;
 typedef struct	s_re t_re;
-
+typedef struct	s_word t_word;
 
 typedef struct	s_list
 {
@@ -53,17 +53,33 @@ struct			s_com
 };
 
 /*
+** parsing struct
+*/
+
+struct			s_word
+{
+	int			type;
+	char		*s;
+	t_word		*next;
+};
+
+typedef struct	s_words
+{
+	t_word		*head;
+}				t_words;
+
+/*
 ** parsing
 */
 
+int				ft_split(t_words *words, char *s);
 int				parsing_start(char *s, t_list *list);
-char			**ft_split(char const *s);
 int				ft_strcmp(const char *s1, const char *s2);
-int				set_list(t_list *list, char **word);
-int				set_command(t_list *list, char **words, int idx);
+int				set_list(t_list *list, t_words *words);
+int				set_command(t_list *list, char *s);
 int				input_list(t_list *list, char *s);
 int				put_argument(t_list *list, char *s);
-int				check_redi(t_list *list, char *s);
+void			check_redi(t_list *list, char *s);
 int				put_re(t_list *list, char *s);
 
 
@@ -82,11 +98,13 @@ t_re			*re_olast(t_list *list);
 ** utils.c
 */
 
-int				error_free(char *s, t_list *list);
+int				error_list_free(char *s, t_list *list);
+void			error_list_free2(t_com *temp);
 size_t			ft_strlen(char *s);
-int				ft_strcat_c(char **s1, char s2);
 int				ft_strcat_s(char **s1, char **s2);
-void			free_split_words(char **words);
+int				free_words(t_words *words, char *s);
+//void			free_split_words(char **words);
+int				error_print(char *s);
 void			print_list(t_list *list);
 
 #endif
