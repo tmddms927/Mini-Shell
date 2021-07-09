@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 03:23:21 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/08 04:29:09 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/08 20:14:49 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int				check_redi(t_list *list, char *s)
 {
-	int			i;
 	t_com		*temp;
 	t_re		*re;
 
-	i = 0;
 	temp = olast(list);
 	re = re_olast(list);
 	if (s[0] == '<' && s[1] == '<')

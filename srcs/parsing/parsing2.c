@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:40:28 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/08 04:42:01 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/08 20:14:36 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int			set_list(t_list *list, char **words)
 {
 	if (!oadd(list))
 		return (0);
-	if (!set_command(list, words, 0, COM))
+	if (!set_command(list, words, 0))
 		return (0);
 	return (1);
 }
 
-int			set_command(t_list *list, char **words, int idx, int flag)
+int			set_command(t_list *list, char **words, int idx)
 {
 	int		i;
 	char	*com;
@@ -57,7 +57,9 @@ int			set_command(t_list *list, char **words, int idx, int flag)
 				continue ;
 			}
 			if (words[idx][i] == '\'' || words[idx][i] == '"')
-				;
+			{
+				
+			}
 			if (!ft_strcat_c(&com, words[idx][i]))
 				return (0);
 			i++;
@@ -121,6 +123,7 @@ int				put_argument(t_list *list, char *s)
 	argv[j++] = 0;
 	free(temp->argv);
 	temp->argv = argv;
+	return (1);
 }
 
 int				put_re(t_list *list, char *s)

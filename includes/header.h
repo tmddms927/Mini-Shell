@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/08 04:23:17 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/08 20:14:16 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				parsing_start(char *s, t_list *list);
 char			**ft_split(char const *s);
 int				ft_strcmp(const char *s1, const char *s2);
 int				set_list(t_list *list, char **word);
-int				set_command(t_list *list, char **words, int idx, int flag);
+int				set_command(t_list *list, char **words, int idx);
 int				input_list(t_list *list, char *s);
 int				put_argument(t_list *list, char *s);
 int				check_redi(t_list *list, char *s);

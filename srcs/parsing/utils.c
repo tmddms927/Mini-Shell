@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:43:48 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/08 04:43:58 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/08 20:15:13 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int					error_free(char *s, t_list *list)
 	t_re			*re_next;
 	int				i;
 
+	printf("%s", s);
 	temp = list->head;
 	while (temp)
 	{

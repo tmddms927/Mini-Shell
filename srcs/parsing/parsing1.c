@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/08 05:34:26 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/08 20:13:29 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int			main(int argc, char **argv)
 	// char	prompt[100];
 	t_list	*list;
 
+	(void)argc;
 	list = init_list();
 	//save history
 	if (!parsing_start(argv[1], list))
@@ -43,9 +44,7 @@ int			main(int argc, char **argv)
 int			parsing_start(char *s, t_list *list)
 {
 	char	**words;
-	int		i;
 
-	i = 0;
 	words = ft_split(s);
 	if (!set_list(list, words))
 		return (0);
