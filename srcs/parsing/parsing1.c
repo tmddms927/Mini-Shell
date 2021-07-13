@@ -6,32 +6,31 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/13 00:00:28 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/13 07:57:23 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int			main(int argc, char **argv)
+int			main(int argc, char **argv, char **envp)
 {
 	char	*s;
 	char	prompt[100] = "prompt > ";
 	t_list	*list;
 
-	(void)argc;
-	(void)argv;
-	list = init_list();
+	list = init_list(argc, argv, envp);
+	if (!list)
+		return (free_list(list, "list malloc failed\n"));
 	while (1)
 	{
 		s = readline(prompt);
 		add_history(s);
 		if (!parsing_start(s, list))
-			return (0);
+			return (free_list(list, ""));
 		print_list(list);
 		error_list_free("", list);
 	}
-	free(list);
-	return (0);
+	return (free_list(list, ""));
 }
 
 /*
@@ -48,9 +47,10 @@ int			parsing_start(char *s, t_list *list)
 	words->head = 0;
 	if (!ft_split(words, s))
 		return (0);
-	/////////////set path & set $
+	/////////////set $
 	if (!set_list(list, words))
 		return (0);
+	set_path_in_com(list);
 	free_words(words, "");
 	return (1);
 }
@@ -67,6 +67,22 @@ int			set_list(t_list *list, t_words *words)
 		if (!set_command(list, word->s))
 			return (0);
 		word = word->next;
+	}
+	return (1);
+}
+
+int			set_path(t_list *list, char **envp)
+{
+	int		i;
+
+	i = -1;
+	if (!envp)
+		return (0);
+	while (envp[++i])
+	{
+		if (envp[i][0] == 'P' && envp[i][1] == 'A' &&
+			envp[i][2] == 'T' && envp[i][3] == 'H')
+			list->path = ft_split_envp(envp[i]);
 	}
 	return (1);
 }

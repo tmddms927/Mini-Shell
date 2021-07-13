@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 22:45:10 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/09 02:03:58 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/13 05:15:52 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,19 @@ t_word			*words_olast(t_words *words)
 	return (temp);
 }
 
-t_list			*init_list(void)
+t_list			*init_list(int argc, char **argv, char **envp)
 {
 	t_list		*temp;
 
+	(void)argc;
+	(void)argv;
 	temp = (t_list *)malloc(sizeof(t_list) * 1);
 	if (!temp)
 		return (temp);
 	temp->head = 0;
+	temp->envp = envp;
+	temp->path = 0;
+	if (!set_path(temp, envp))
+		return (0);
 	return (temp);
 }

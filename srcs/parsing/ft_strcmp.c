@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:37:18 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/09 01:20:25 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/13 08:05:05 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int				ft_strcat_s(char **s1, char **s2)
 		return (0);
 	while (++i < len1)
 		temp[i] = (*s1)[i];
-	while (*s2 && (*s2)[i])
+	while (*s2 && (*s2)[i - len1])
 	{
-		temp[i] = (*s2)[i];
+		temp[i] = (*s2)[i - len1];
 		i++;
 	}
 	temp[i] = 0;

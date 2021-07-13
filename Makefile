@@ -6,7 +6,7 @@
 #    By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-#    Updated: 2021/07/12 23:39:26 by seungoh          ###   ########.fr        #
+#    Updated: 2021/07/13 05:12:24 by seungoh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,14 @@ CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
 SRCDIR  =	./srcs/
 SRCNAME	=	parsing/ft_split1.c\
 			parsing/ft_split2.c\
+			parsing/ft_split3.c\
 			parsing/t_words.c\
 			parsing/ft_strcmp.c\
 			parsing/object.c\
 			parsing/parsing1.c\
 			parsing/parsing2.c\
-			parsing/utils.c
+			parsing/utils.c\
+			parsing/utils2.c
 SRCS	=	${addprefix ${SRCDIR}, ${SRCNAME}}
 INCDIR	=	./includes/
 OBJS	=	${SRCS:.c=.o}
