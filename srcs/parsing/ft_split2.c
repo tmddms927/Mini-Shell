@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:47:06 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/09 01:06:25 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/09 02:16:21 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ int				input_words(t_words *words, char *s, int len, int type)
 	j = 0;
 	while (++i < len)
 	{
-		if (!s[i])
-			continue;
-		temp->s[j++] = s[i];
+		if (s[i])
+			temp->s[j++] = s[i];
 	}
-	temp->s[i] = 0;
+	temp->s[j] = 0;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:40:28 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/09 01:53:15 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/09 02:01:16 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 int				set_command(t_list *list, char *s)
 {
-	t_com	*temp;
+	t_com		*temp;
 
 	temp = olast(list);
-
 	if (!ft_strcmp(s, "|"))
 	{
 		if (!oadd(list))
@@ -29,7 +28,17 @@ int				set_command(t_list *list, char *s)
 		re_odd(list);
 		temp->type = RE;
 	}
-	else if (temp->type == COM)
+	else
+	{
+		if (!set_command2(list, s, temp))
+			return (0);
+	}
+	return (1);
+}
+
+int				set_command2(t_list *list, char *s, t_com *temp)
+{
+	if (temp->type == COM)
 	{
 		if (!ft_strcat_s(&temp->c, &s))
 			return (error_list_free("Error : failed malloc\n", list));
@@ -45,13 +54,6 @@ int				set_command(t_list *list, char *s)
 		if (!put_re(list, s))
 			return (0);
 	}
-	return (1);
-}
-
-int				set_command2(t_list *list, char *s)
-{
-	(void)list;
-	(void)s;
 	return (1);
 }
 
@@ -94,7 +96,7 @@ int				put_re(t_list *list, char *s)
 	return (1);
 }
 
-void				check_redi(t_list *list, char *s)
+void			check_redi(t_list *list, char *s)
 {
 	t_com		*temp;
 	t_re		*re;

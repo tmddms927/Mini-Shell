@@ -6,7 +6,7 @@
 #    By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-#    Updated: 2021/07/09 01:18:09 by seungoh          ###   ########.fr        #
+#    Updated: 2021/07/12 23:39:26 by seungoh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ test	:	re
 	@${CC} ${CFLAGS} -I ${INCDIR} -c ${<} -o ${<:.c=.o}
 
 ${OUT}: ${OBJS}
-	@${CC} ${CFLAGS} ${CLIB} -o ${OUT} ${OBJS}
+	@${CC} ${CFLAGS} ${CLIB} -o ${OUT} ${OBJS} -lreadline
 
 fclean	: clean
 	@rm -rf	${OUT}

@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:04:25 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/09 01:28:49 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/09 02:16:40 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ static int		put_words(t_words *words, char *s)
 		{
 			if (i > 0)
 			{
-				if (!input_words(words, (char *)s - i, i, type))
+				if (!input_words(words, s - i, i, type))
 					return (free_words(words, ""));
 			}
-			if (!input_words(words, (char *)s, 1, type))
+			if (!input_words(words, s, 1, type))
 				return (free_words(words, ""));
 			i = 0;
 			type = 0;
@@ -51,18 +51,18 @@ static int		put_words(t_words *words, char *s)
 		{
 			if (i > 0)
 			{
-				if (!input_words(words, (char *)s - i, i, type))
+				if (!input_words(words, s - i, i, type))
 					return (free_words(words, ""));
 			}
 			if ((s + 1) && *(s + 1) == '>')
 			{
-				if (!input_words(words, (char *)s, 2, type))
+				if (!input_words(words, s, 2, type))
 					return (free_words(words, ""));		
 				s++;
 			}
 			else
 			{
-				if (!input_words(words, (char *)s, 1, type))
+				if (!input_words(words, s, 1, type))
 					return (free_words(words, ""));
 			}
 			i = 0;
@@ -72,18 +72,18 @@ static int		put_words(t_words *words, char *s)
 		{
 			if (i > 0)
 			{
-				if (!input_words(words, (char *)s - i, i, type))
+				if (!input_words(words, s - i, i, type))
 					return (free_words(words, ""));
 			}
 			if ((s + 1) && *(s + 1) == '<')
 			{
-				if (!input_words(words, (char *)s, 2, type))
+				if (!input_words(words, s, 2, type))
 					return (free_words(words, ""));
 				s++;
 			}
 			else
 			{
-				if (!input_words(words, (char *)s, 1, type))
+				if (!input_words(words, s, 1, type))
 					return (free_words(words, ""));
 			}
 			i = 0;
@@ -103,7 +103,7 @@ static int		put_words(t_words *words, char *s)
 		}
 		else if (type != 1 && type != 2 && i > 0 && ((*s > 8 && *s < 14) || *s == 32))
 		{
-			if (!input_words(words, (char *)s - i, i, type))
+			if (!input_words(words, s - i, i, type))
 				return (free_words(words, ""));
 			i = 0;
 			type = 0;
@@ -132,7 +132,7 @@ static int		put_words(t_words *words, char *s)
 		return (free_words(words, "Error : unclosed quotes\n"));
 	if (i > 0)
 	{
-		if (!input_words(words, (char *)s - i, i, type))
+		if (!input_words(words, s - i, i, type))
 			return (free_words(words, ""));
 	}
 	return (1);
