@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/13 23:45:03 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/14 21:49:23 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int			main(int argc, char **argv, char **envp)
 		s = readline(prompt);
 		add_history(s);
 		if (!parsing_start(s, list))
-			return (free_list(list, ""));
-		print_list(list);
+			continue ;
+		//print_list(list);
 		exec(list);
 		error_list_free("", list);
 	}
@@ -53,7 +53,10 @@ int			parsing_start(char *s, t_list *list)
 		return (0);
 	/////////////set $
 	if (!set_list(list, words))
+	{
+		free_list(list, "");
 		return (0);
+	}
 	set_path_in_com(list);
 	free_words(words, "");
 	return (1);
