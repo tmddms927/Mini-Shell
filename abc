@@ -61,8 +61,7 @@ int			lst_len(t_com *command);
 void		handle_error(char *str);
 void		handle_message(char *str);
 //exec
-//
-int		exec(t_list *command_info);
+void		exec(t_list *command_info);
 void		exec_multy_command(t_com *command_info, char **envp);
 void		command(t_com *command_node, char **envp);
 void		command_exit(t_com *command_node, char **envp);

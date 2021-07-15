@@ -7,10 +7,11 @@ void		redirect(t_re *redir_list)
 {
 	while (redir_list)
 	{
+		// dprintf(2, "%d", redir_list->type);
 		if (redir_list->type == RE_OUT)
-			re_in(redir_list->file);
-		else if (redir_list->type == RE_IN)
 			re_out(redir_list->file);
+		else if (redir_list->type == RE_IN)
+			re_in(redir_list->file);
 		else if (redir_list->type == H_DOC)
 			h_doc(redir_list->file);
 		else if (redir_list->type == APPEND)
