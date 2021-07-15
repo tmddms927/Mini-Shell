@@ -33,17 +33,17 @@ void		command(t_com *command_node, char **envp)
     int i;
 
     i = 0;
-	dprintf(2,"%s\n", envp[1]);
+	// dprintf(2,"%s\n", envp[1]);
 	//ret = 1;
-	// redirect(command_node->re_head);
+	redirect(command_node->re_head);
 	// dprintf(2 ,"message : <command> \npath : %s\nargv[1] : %s\n", command_node->path[i], command_node->argv[1]);
 	while ((command_node->path)[i] != 0)
 	{
-		dprintf(2,"%s\n", command_node->path[i]);
+		// dprintf(2,"%s\n", command_node->path[i]);
 		execve(command_node->path[i], command_node->argv, envp);
 		//ret = execve(command_node->path[i], command_node->argv, envp);
 		i++;
-		write(2, "hi", 2);
+		// write(2, "hi", 2);
 	}
 	handle_error("excusion doesn't exist");
 }

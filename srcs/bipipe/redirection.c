@@ -5,12 +5,14 @@
 
 void		redirect(t_re *redir_list)
 {
+	write(2, "A", 1); 
 	while (redir_list)
 	{
+		dprintf(2, "%d", redir_list->type);
 		if (redir_list->type == RE_OUT)
-			re_in(redir_list->file);
-		else if (redir_list->type == RE_IN)
 			re_out(redir_list->file);
+		else if (redir_list->type == RE_IN)
+			re_in(redir_list->file);
 		else if (redir_list->type == H_DOC)
 			h_doc(redir_list->file);
 		else if (redir_list->type == APPEND)
@@ -24,6 +26,7 @@ int		re_out(char *file)
 	int fd;
 	int ret;
 	
+	write(2, "B", 1);
 	fd = open(file, O_WRONLY| O_TRUNC | O_CREAT, 0755);
 	if ((ret = dup2(fd, STDOUT_FILENO)) < 0)
 		return (-1);

@@ -30,7 +30,7 @@ int			main(int argc, char **argv, char **envp)
 		add_history(s);
 		if (!parsing_start(s, list))
 			return (free_list(list, ""));
-		print_list(list);
+		// print_list(list);
 		exec(list);
 		error_list_free("", list);
 	}
