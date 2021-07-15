@@ -62,6 +62,7 @@ void		command_exit(t_com *command_node, char **envp)
 {
 	int		pid;
 
+	dprintf(2, "\n\n\n\n\nhihihi");
 	pid = fork();
 	if (pid < 0)
 		handle_error("command_exit");
