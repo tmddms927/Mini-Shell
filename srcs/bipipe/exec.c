@@ -29,18 +29,19 @@ void		exec_multy_command(t_com *command_info, char **envp)
 
 void		command(t_com *command_node, char **envp)
 {
-	int ret;
+	//int ret;
     int i;
 
     i = 0;
 	dprintf(2,"%s\n", envp[1]);
-
+	//ret = 1;
 	// redirect(command_node->re_head);
 	// dprintf(2 ,"message : <command> \npath : %s\nargv[1] : %s\n", command_node->path[i], command_node->argv[1]);
 	while ((command_node->path)[i] != 0)
 	{
 		dprintf(2,"%s\n", command_node->path[i]);
-		ret = execve(command_node->path[i], command_node->argv, envp);
+		execve(command_node->path[i], command_node->argv, envp);
+		//ret = execve(command_node->path[i], command_node->argv, envp);
 		i++;
 		write(2, "hi", 2);
 	}

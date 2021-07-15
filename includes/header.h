@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/13 07:55:15 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/14 21:16:23 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ int				put_re(t_list *list, char *s);
 
 char			**ft_split_envp(char *s);
 int				set_path_in_com(t_list *list);
+
+
+int			set_path(t_list *list, char **envp);
 /*
 ** object.c
 */
