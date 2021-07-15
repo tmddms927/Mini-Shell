@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+// #include "header.h"
+#include "bipipe.h"
 
 int			main(int argc, char **argv, char **envp)
 {
@@ -18,6 +19,8 @@ int			main(int argc, char **argv, char **envp)
 	char	prompt[100] = "prompt > ";
 	t_list	*list;
 
+	(void)argc;
+	(void)argv;
 	list = init_list(argc, argv, envp);
 	if (!list)
 		return (free_list(list, "list malloc failed\n"));
@@ -28,6 +31,7 @@ int			main(int argc, char **argv, char **envp)
 		if (!parsing_start(s, list))
 			return (free_list(list, ""));
 		print_list(list);
+		exec(list);
 		error_list_free("", list);
 	}
 	return (free_list(list, ""));

@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+// # include "bipipe.h"
 
 # define COM 1
 # define RE_IN 2

@@ -23,7 +23,15 @@ SRCNAME	=	parsing/ft_split1.c\
 			parsing/parsing1.c\
 			parsing/parsing2.c\
 			parsing/utils.c\
-			parsing/utils2.c
+			parsing/utils2.c\
+			\
+			bipipe/bipipe.c\
+			bipipe/error.c\
+			bipipe/exec.c\
+			bipipe/lst_utils.c\
+			bipipe/redirection.c\
+			bipipe/str_utils.c
+			
 SRCS	=	${addprefix ${SRCDIR}, ${SRCNAME}}
 INCDIR	=	./includes/
 OBJS	=	${SRCS:.c=.o}
