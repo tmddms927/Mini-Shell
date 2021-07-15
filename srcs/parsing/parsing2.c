@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:40:28 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/14 21:14:50 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/14 21:34:35 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int				set_command(t_list *list, char *s)
 			!ft_strcmp(s, "<<"))
 	{
 		re_odd(list);
+		check_redi(list, s);
 		temp->type = RE;
 	}
 	else
@@ -110,6 +111,7 @@ void			check_redi(t_list *list, char *s)
 
 	temp = olast(list);
 	re = re_olast(list);
+	printf("===============> %s\n", s);
 	if (s[0] == '<' && s[1] == '<')
 		re->type = H_DOC;
 	else if (s[0] == '>' && s[1] == '>')
