@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/13 07:57:23 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/13 23:45:03 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,6 @@ int			set_list(t_list *list, t_words *words)
 		if (!set_command(list, word->s))
 			return (0);
 		word = word->next;
-	}
-	return (1);
-}
-
-int			set_path(t_list *list, char **envp)
-{
-	int		i;
-
-	i = -1;
-	if (!envp)
-		return (0);
-	while (envp[++i])
-	{
-		if (envp[i][0] == 'P' && envp[i][1] == 'A' &&
-			envp[i][2] == 'T' && envp[i][3] == 'H')
-			list->path = ft_split_envp(envp[i]);
 	}
 	return (1);
 }

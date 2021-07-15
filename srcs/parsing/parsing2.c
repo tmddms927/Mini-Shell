@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:40:28 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/13 08:06:36 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/14 21:14:50 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int				set_command2(t_list *list, char *s, t_com *temp)
 			return (error_list_free("Error : failed malloc\n", list));
 		if (!ft_strcat_s(&temp->c, &s))
 			return (error_list_free("Error : failed malloc\n", list));
+		if (!put_argument(list, s))
+			return (0);
 		temp->type = ARGV;
 	}
 	else if (temp->type == ARGV)

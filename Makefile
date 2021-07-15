@@ -6,7 +6,7 @@
 #    By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-#    Updated: 2021/07/13 05:12:24 by seungoh          ###   ########.fr        #
+#    Updated: 2021/07/14 21:17:08 by seungoh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCNAME	=	parsing/ft_split1.c\
 			parsing/parsing1.c\
 			parsing/parsing2.c\
 			parsing/utils.c\
-			parsing/utils2.c
+			parsing/utils2.c\
+			parsing/environment.c
 SRCS	=	${addprefix ${SRCDIR}, ${SRCNAME}}
 INCDIR	=	./includes/
 OBJS	=	${SRCS:.c=.o}
