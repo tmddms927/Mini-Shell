@@ -6,7 +6,7 @@
 /*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/13 23:45:03 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/14 22:33:07 by seungoh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,9 @@ int			main(int argc, char **argv, char **envp)
 	{
 		s = readline(prompt);
 		add_history(s);
-		printf("======> %s\n", s);
 		if (!parsing_start(s, list))
-		{
-			printf("hihi1\n");
-			return (0);
-			//continue ;
-		}
-		print_list(list);
+			continue ;
+		exec(list);
 		error_list_free("", list);
 	}
 	return (free_list(list, ""));
@@ -53,19 +48,17 @@ int			parsing_start(char *s, t_list *list)
 	if (!words)
 		return (error_print("Error : failed malloc\n"));
 	words->head = 0;
-
-			printf("hihi2\n");
 	if (!ft_split(words, s))
 		return (0);
-
-			printf("hihi3\n");
 	/////////////set $
 	if (!set_list(list, words))
+	{
+		free_list(list, "");
 		return (0);
+	}
 
 	set_path_in_com(list);
 	free_words(words, "");
-	printf("hihi4\n");
 	
 	return (1);
 }
