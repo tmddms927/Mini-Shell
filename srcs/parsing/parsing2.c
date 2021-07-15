@@ -111,7 +111,6 @@ void			check_redi(t_list *list, char *s)
 
 	temp = olast(list);
 	re = re_olast(list);
-	printf("===============> %s\n", s);
 	if (s[0] == '<' && s[1] == '<')
 		re->type = H_DOC;
 	else if (s[0] == '>' && s[1] == '>')

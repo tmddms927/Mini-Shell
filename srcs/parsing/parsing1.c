@@ -28,10 +28,14 @@ int			main(int argc, char **argv, char **envp)
 	{
 		s = readline(prompt);
 		add_history(s);
+		printf("======> %s\n", s);
 		if (!parsing_start(s, list))
-			return (free_list(list, ""));
-		// print_list(list);
-		exec(list);
+		{
+			printf("hihi1\n");
+			return (0);
+			//continue ;
+		}
+		print_list(list);
 		error_list_free("", list);
 	}
 	return (free_list(list, ""));
@@ -49,13 +53,20 @@ int			parsing_start(char *s, t_list *list)
 	if (!words)
 		return (error_print("Error : failed malloc\n"));
 	words->head = 0;
+
+			printf("hihi2\n");
 	if (!ft_split(words, s))
 		return (0);
+
+			printf("hihi3\n");
 	/////////////set $
 	if (!set_list(list, words))
 		return (0);
+
 	set_path_in_com(list);
 	free_words(words, "");
+	printf("hihi4\n");
+	
 	return (1);
 }
 
@@ -69,7 +80,10 @@ int			set_list(t_list *list, t_words *words)
 	while (word)
 	{
 		if (!set_command(list, word->s))
+		{
+			free_list(list, "");
 			return (0);
+		}
 		word = word->next;
 	}
 	return (1);
