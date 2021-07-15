@@ -47,9 +47,13 @@ int		append(char *file)
 	int fd;
 	int ret;
 	
-	fd = open(file, O_APPEND);
+	fd = open(file, O_WRONLY | O_APPEND | O_CREAT, 0755);
+
 	if ((ret = dup2(fd, STDOUT_FILENO)) < 0)
+	{
+		handle_error("append");
 		return (-1);
+	}
 	return (ret);
 }
 
@@ -58,10 +62,10 @@ void		h_doc(char *code)
 	int		fd;
 	char	*s;
 	char	*cont;
-	char	prompt[2] = "> ";
+	char	prompt[3] = "> \0";
 
 	cont = 0;
-	fd = open("tmp", O_WRONLY| O_TRUNC | O_CREAT, 0755);
+	fd = open("tmp", O_RDWR| O_TRUNC | O_CREAT, 0755);
 	while (1)
 	{
 		s = readline(prompt);
@@ -70,10 +74,14 @@ void		h_doc(char *code)
 			free(s);
 			break ;
 		}
-		ft_strjoin(cont, s);
+		write(fd, s, ft_strlen(s));
+		write(fd, "\n", 1);
 	}
-	write(fd, cont, ft_strlen(cont));
-	dup2(fd, STDIN_FILENO);
+	//write(fd, cont, ft_strlen(cont));
+	close(fd);
+	fd = open("tmp",	O_RDONLY);
+	if (dup2(fd, STDIN_FILENO) < 0)
+		handle_error("h_doc");
+	close(fd);
 	unlink("tmp");
 }
-

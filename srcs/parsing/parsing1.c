@@ -16,7 +16,7 @@
 int			main(int argc, char **argv, char **envp)
 {
 	char	*s;
-	char	prompt[100] = "prompt > ";
+	char	prompt[100] = "prompt > \0";
 	t_list	*list;
 
 	(void)argc;
