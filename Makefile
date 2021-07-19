@@ -12,7 +12,8 @@
 
 OUT		=	minishell
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS	=	-Wall -Werror -Wextra
+# -fsanitize=address -g
 SRCDIR  =	./srcs/
 SRCNAME	=	parsing/ft_split1.c\
 			parsing/ft_split2.c\
