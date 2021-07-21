@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/14 22:33:07 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/21 15:59:55 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "header.h"
 #include "bipipe.h"
+#include "object.h"
 
 int			main(int argc, char **argv, char **envp)
 {
@@ -19,17 +20,30 @@ int			main(int argc, char **argv, char **envp)
 	char	prompt[100] = "prompt > \0";
 	t_list	*list;
 
-	(void)argc;
-	(void)argv;
 	list = init_list(argc, argv, envp);
 	if (!list)
 		return (free_list(list, "list malloc failed\n"));
+
+	// int i = 0;
+	// while (list->envp[i])
+	// {
+	// 	printf("%s\n", envp[i]);
+	// 	i++;
+	// }
+	
+
+
 	while (1)
 	{
 		s = readline(prompt);
 		add_history(s);
 		if (!parsing_start(s, list))
+		{
+			free(s);
 			continue ;
+		}
+		// print_list(list);
+		free(s);
 		exec(list);
 		error_list_free("", list);
 	}
@@ -67,7 +81,7 @@ int			set_list(t_list *list, t_words *words)
 {
 	t_word	*word;
 	
-	if (!oadd(list))
+	if (!com_oadd(list))
 		return (0);
 	word = words->head;
 	while (word)

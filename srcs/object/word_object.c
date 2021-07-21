@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_words.c                                          :+:      :+:    :+:   */
+/*   word_object.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/08 22:45:10 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/13 23:44:16 by seungoh          ###   ########.fr       */
+/*   Created: 2021/07/21 15:50:27 by seung-eun         #+#    #+#             */
+/*   Updated: 2021/07/21 16:02:08 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
-#include "split.h"
+#include "object.h"
+
+/*
+** word 생성 후 마지막 원소 뒤에 붙여주기
+*/
 
 int				words_oadd(t_words *words)
 {
@@ -30,6 +33,10 @@ int				words_oadd(t_words *words)
 	return (1);
 }
 
+/*
+** word의 마지막 원소 찾기
+*/
+
 t_word			*words_olast(t_words *words)
 {
 	t_word		*temp;
@@ -39,22 +46,5 @@ t_word			*words_olast(t_words *words)
 		return (temp);
 	while (temp->next)
 		temp = temp->next;
-	return (temp);
-}
-
-t_list			*init_list(int argc, char **argv, char **envp)
-{
-	t_list		*temp;
-
-	(void)argc;
-	(void)argv;
-	temp = (t_list *)malloc(sizeof(t_list) * 1);
-	if (!temp)
-		return (temp);
-	temp->head = 0;
-	temp->envp = envp;
-	temp->path = 0;
-	if (!set_path(temp, envp))
-		return (0);
 	return (temp);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_str.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:37:18 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/13 08:05:05 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/21 16:05:58 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int				ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
+/*
+** 문자열 길이 반환 함수
+*/
+
 size_t			ft_strlen(char *s)
 {
 	int			i;
@@ -39,6 +43,10 @@ size_t			ft_strlen(char *s)
 		i++;
 	return (i);
 }
+
+/*
+** 문자열 복사
+*/
 
 int				ft_strcat_s(char **s1, char **s2)
 {

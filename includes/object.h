@@ -1,31 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/13 00:27:19 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/21 16:09:21 by seung-eun        ###   ########.fr       */
+/*   Created: 2021/07/21 15:45:06 by seung-eun         #+#    #+#             */
+/*   Updated: 2021/07/21 16:03:08 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef OBJECT_H
+# define OBJECT_H
+
 #include "header.h"
 
-int			free_list(t_list *list, char *s)
-{
-	int		i;
+/*
+** set object 
+*/
 
-	i = 0;
-	printf("%s", s);
-	if (list->path)
-	{
-		while (list->path[i])
-		{
-			free(list->path[i]);
-			i++;
-		}
-		free(list->path);
-	}
-	return (0);
-}
+int				set_odd(t_list *list);
+t_set			*set_olast(t_list *list);
+
+/*
+** word object
+*/
+
+int				words_oadd(t_words *words);
+t_word			*words_olast(t_words *words);
+
+/*
+** com object
+*/
+
+int				com_oadd(t_list *list);
+t_com			*com_oadd2(void);
+t_com			*com_olast(t_list *list);
+
+/*
+** list object
+*/
+
+t_list			*init_list(int argc, char **argv, char **envp);
+
+#endif

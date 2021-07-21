@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:04:25 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/09 02:16:40 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/21 16:03:52 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,5 @@ int			ft_split(t_words *words, char *s)
 		return (free_words(words, ""));
 	if (!put_words(words, s))
 		return (0);
-	//print_word(words);
 	return (1);
 }

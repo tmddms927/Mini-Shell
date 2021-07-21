@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 23:44:48 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/14 01:38:28 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/21 16:09:09 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,37 @@ int			set_path(t_list *list, char **envp)
 	return (1);
 }
 
-// int			set_environment(t_list *list, t_words *words)
-// {
-// 	int		i;
-// 	t_word	*temp;
 
-// 	temp = words->head;
-// 	while (temp)
-// 	{
-// 		if ((temp->type == 1 || temp->type == 10) &&
-// 			temp->s[0] == '$')
-// 		temp = temp->next;
-// 	}
-// }
+/*
+** command에 path 붙여주기
+*/
+
+int			set_path_in_com(t_list *list)
+{
+	int		count;
+	t_com	*temp;
+	int		i;
+
+	count = 0;
+	while (list->path[count])
+		count++;
+	temp = list->head;
+	while (temp)
+	{
+		i = -1;
+		temp->path = (char **)malloc(sizeof(char *) * (count + 1));
+		if (!temp->path)
+			return (0);
+		while (++i < count)
+		{
+			temp->path[i] = 0;
+			if (!ft_strcat_s(&temp->path[i], &list->path[i]))
+				return (error_list_free("Error : failed malloc\n", list));
+			if (!ft_strcat_s(&temp->path[i], &temp->c))
+				return (error_list_free("Error : failed malloc\n", list));
+		}
+		temp->path[i] = 0;
+		temp = temp->next;
+	}
+	return (1);
+}

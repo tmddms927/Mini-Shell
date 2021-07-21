@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object.c                                           :+:      :+:    :+:   */
+/*   com_object.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 07:14:12 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/09 02:06:18 by seungoh          ###   ########.fr       */
+/*   Created: 2021/07/21 15:48:51 by seung-eun         #+#    #+#             */
+/*   Updated: 2021/07/21 15:56:16 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "object.h"
 
-int					oadd(t_list *list)
+/*
+** com 생성 후 마지막 원소 뒤에 붙여주기
+*/
+
+int					com_oadd(t_list *list)
 {
 	t_com			*temp;
 	t_com			*com;
 
-	com = oadd2();
+	com = com_oadd2();
 	if (!com)
 		return (error_list_free("Error : failed malloc\n", list));
 	if (!list->head)
@@ -37,7 +41,7 @@ int					oadd(t_list *list)
 	return (1);
 }
 
-t_com				*oadd2(void)
+t_com				*com_oadd2(void)
 {
 	t_com			*com;
 
@@ -56,50 +60,15 @@ t_com				*oadd2(void)
 	return (com);
 }
 
-int					re_odd(t_list *list)
-{
-	t_com			*com;
-	t_re			*temp;
-	t_re			*re;
+/*
+** com의 마지막 원소 찾기
+*/
 
-	re = (t_re *)malloc(sizeof(t_re));
-	if (!re)
-		return (error_list_free("Error : failed malloc\n", list));
-	re->next = 0;
-	re->type = NOT;
-	re->file = 0;
-	com = olast(list);
-	temp = com->re_head;
-	if (!temp)
-		com->re_head = re;
-	else
-	{
-		while (temp->next)
-			temp = temp->next;
-		temp->next = re;
-	}
-	return (1);
-}
-
-t_com				*olast(t_list *list)
+t_com				*com_olast(t_list *list)
 {
 	t_com			*temp;
 
 	temp = list->head;
-	if (!temp)
-		return (temp);
-	while (temp->next)
-		temp = temp->next;
-	return (temp);
-}
-
-t_re				*re_olast(t_list *list)
-{
-	t_com			*com;
-	t_re			*temp;
-
-	com = olast(list);
-	temp = com->re_head;
 	if (!temp)
 		return (temp);
 	while (temp->next)

@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:40:28 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/14 21:37:51 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/21 15:59:33 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include "object.h"
 
 int				set_command(t_list *list, char *s)
 {
 	t_com		*temp;
 
-	temp = olast(list);
+	temp = com_olast(list);
 	if (!ft_strcmp(s, "|"))
 	{
-		if (!oadd(list))
+		if (!com_oadd(list))
 			return (0);
 	}
 	else if (!ft_strcmp(s, ">") || !ft_strcmp(s, "<") || !ft_strcmp(s, ">>") ||
@@ -72,7 +73,7 @@ int				put_argument(t_list *list, char *s)
 	int			i;
 	int			j;
 
-	temp = olast(list);
+	temp = com_olast(list);
 	i = 0;
 	while (temp->argv[i])
 		i++;
@@ -97,7 +98,7 @@ int				put_re(t_list *list, char *s)
 	t_com		*com;
 
 	temp = re_olast(list);
-	com = olast(list);
+	com = com_olast(list);
 	if (!ft_strcat_s(&temp->file, &s))
 		return (error_list_free("Error : failed malloc\n", list));
 	com->type = ARGV;
@@ -109,7 +110,7 @@ void			check_redi(t_list *list, char *s)
 	t_com		*temp;
 	t_re		*re;
 
-	temp = olast(list);
+	temp = com_olast(list);
 	re = re_olast(list);
 	if (s[0] == '<' && s[1] == '<')
 		re->type = H_DOC;
