@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/21 16:10:04 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/21 16:59:57 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,15 @@ int				put_argument(t_list *list, char *s);
 void			check_redi(t_list *list, char *s);
 int				put_re(t_list *list, char *s);
 
-char			**ft_split_envp(char *s);
 
 /*
 ** environment.c
 */
 
 int				set_path(t_list *list, char **envp);
+char			**ft_split_envp(char *s);
 int				set_path_in_com(t_list *list);
+int				set_path_in_com2(t_com *temp, int i, t_list *list);
 
 /*
 ** utils.c

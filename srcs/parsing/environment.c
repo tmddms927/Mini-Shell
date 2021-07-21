@@ -6,13 +6,13 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 23:44:48 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/21 16:09:09 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/21 17:30:05 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int			set_path(t_list *list, char **envp)
+int	set_path(t_list *list, char **envp)
 {
 	int		i;
 
@@ -28,12 +28,11 @@ int			set_path(t_list *list, char **envp)
 	return (1);
 }
 
-
 /*
 ** command에 path 붙여주기
 */
 
-int			set_path_in_com(t_list *list)
+int	set_path_in_com(t_list *list)
 {
 	int		count;
 	t_com	*temp;
@@ -50,15 +49,19 @@ int			set_path_in_com(t_list *list)
 		if (!temp->path)
 			return (0);
 		while (++i < count)
-		{
-			temp->path[i] = 0;
-			if (!ft_strcat_s(&temp->path[i], &list->path[i]))
-				return (error_list_free("Error : failed malloc\n", list));
-			if (!ft_strcat_s(&temp->path[i], &temp->c))
-				return (error_list_free("Error : failed malloc\n", list));
-		}
+			set_path_in_com2(temp, i, list);
 		temp->path[i] = 0;
 		temp = temp->next;
 	}
+	return (1);
+}
+
+int	set_path_in_com2(t_com *temp, int i, t_list *list)
+{
+	temp->path[i] = 0;
+	if (!ft_strcat_s(&temp->path[i], &list->path[i]))
+		return (error_list_free("Error : failed malloc\n", list));
+	if (!ft_strcat_s(&temp->path[i], &temp->c))
+		return (error_list_free("Error : failed malloc\n", list));
 	return (1);
 }

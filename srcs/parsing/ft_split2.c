@@ -3,41 +3,187 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:47:06 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/09 02:16:21 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/21 18:23:29 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include "split.h"
 
-int				input_words(t_words *words, char *s, int len, int type)
+int	put_words2(t_words *words, char *s, int *type, int *i)
 {
-	t_word		*temp;
-	int			i;
-	int			j;
+	int			val;
 
-	if (!words_oadd(words))
-		return (free_words(words, "Error : failed malloc\n"));
-	temp = words_olast(words);
-	if (type == 10)
-		temp->type = 1;
-	else if (type == 20)
-		temp->type = 2;
-	else
-		temp->type = type;
-	temp->s = (char *)malloc(sizeof(char) * (len + 1));
-	if (!temp->s)
-		return (free_words(words, "Error : failed malloc\n"));
-	i = -1;
-	j = 0;
-	while (++i < len)
+	val = put_words3(s, type, i);
+	if (val == 2)
 	{
-		if (s[i])
-			temp->s[j++] = s[i];
+		val = put_words4(words, s, type, i);
+		if (val == 2)
+		{
+			val = put_words5(words, s, type, i);
+			if (val == 2)
+			{
+				val = put_words6(words, s, type, i);
+				if (val == 2)
+				{
+					val = put_words6(words, s, type, i);
+					if (val == 2)
+						put_words8(s, type, i);
+				}
+				else if (!val)
+					return (0);
+			}
+			else if (!val)
+				return (0);
+		}
+		else if (!val)
+			return (0);
 	}
-	temp->s[j] = 0;
+	else if (!val)
+		return (0);
 	return (1);
+}
+
+int	put_words3(char *s, int *type, int *i)
+{
+	if (*type % 10 == 0 && *s == '"')
+	{
+		(*i)++;
+		*type = 1;
+		*s = 0;
+		return (1);
+	}
+	else if (*type % 10 == 0 && *s == '\'')
+	{
+		(*i)++;
+		*type = 2;
+		*s = 0;
+		return (1);
+	}
+	return (2);
+}
+
+int	put_words4(t_words *words, char *s, int *type, int *i)
+{
+	if (*type != 1 && *type != 2 && *s == '|')
+	{
+		if (*i > 0)
+		{
+			if (!input_words(words, s - *i, *i, *type))
+				return (free_words(words, ""));
+		}
+		if (!input_words(words, s, 1, *type))
+			return (free_words(words, ""));
+		*i = 0;
+		*type = 0;
+		return (1);
+	}
+	return (2);
+}
+
+int	put_words5(t_words *words, char *s, int *type, int *i)
+{
+	if (*type != 1 && *type != 2 && *s == '>')
+	{
+		if (*i > 0)
+		{
+			if (!input_words(words, s - *i, *i, *type))
+				return (free_words(words, ""));
+		}
+		if ((s + 1) && *(s + 1) == '>')
+		{
+			if (!input_words(words, s, 2, *type))
+				return (free_words(words, ""));
+			s++;
+		}
+		else
+		{
+			if (!input_words(words, s, 1, *type))
+				return (free_words(words, ""));
+		}
+		*i = 0;
+		*type = 0;
+		return (1);
+	}
+	return (2);
+}
+
+int	put_words6(t_words *words, char *s, int *type, int *i)
+{
+	if (*type != 1 && *type != 2 && *s == '<')
+	{
+		if (*i > 0)
+		{
+			if (!input_words(words, s - *i, *i, *type))
+				return (free_words(words, ""));
+		}
+		if ((s + 1) && *(s + 1) == '<')
+		{
+			if (!input_words(words, s, 2, *type))
+				return (free_words(words, ""));
+			s++;
+		}
+		else
+		{
+			if (!input_words(words, s, 1, *type))
+				return (free_words(words, ""));
+		}
+		*i = 0;
+		*type = 0;
+		return (1);
+	}
+	return (2);
+}
+
+int	put_words7(t_words *words, char *s, int *type, int *i)
+{
+	if (*type != 1 && *type != 2 && *s == '\\')
+	{
+		(*i)++;
+		*s = 0;
+		return (1);
+	}
+	else if (*s == '\\' && ((*type == 1 && (s + 1) && *(s + 1) == '"')
+			|| (*type == 2 && (s + 1) && *(s + 1) == '\'')))
+	{
+		*s = 0;
+		*i += 2;
+		s += 2;
+		return (1);
+	}
+	else if (*type != 1 && *type != 2 && *i > 0
+		&& ((*s > 8 && *s < 14) || *s == 32))
+	{
+		if (!input_words(words, s - *i, *i, *type))
+			return (free_words(words, ""));
+		*i = 0;
+		*type = 0;
+		return (1);
+	}
+	return (2);
+}
+
+void	put_words8(char *s, int *type, int *i)
+{
+	if (*type == 0 && !((*s > 8 && *s < 14) || *s == 32))
+		(*i)++;
+	if (*type == 1 && *s == '"')
+	{
+		(*i)++;
+		*type = 10;
+		*s = 0;
+	}
+	else if (*type == 2 && *s == '\'')
+	{
+		(*i)++;
+		*type = 20;
+		*s = 0;
+	}
+	else if (*type == 1 && *s != '"')
+		(*i)++;
+	else if (*type == 2 && *s != '\'')
+		(*i)++;
 }

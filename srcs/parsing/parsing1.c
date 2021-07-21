@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/21 15:59:55 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/21 18:28:28 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			main(int argc, char **argv, char **envp)
 			free(s);
 			continue ;
 		}
-		// print_list(list);
+		print_list(list);
 		free(s);
 		exec(list);
 		error_list_free("", list);
