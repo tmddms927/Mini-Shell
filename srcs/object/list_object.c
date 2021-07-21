@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 16:00:23 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/21 16:02:42 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/21 16:29:25 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** 프로그램 시작 시 list 세팅해주는 함수
 */
 
-t_list			*init_list(int argc, char **argv, char **envp)
+t_list	*init_list(int argc, char **argv, char **envp)
 {
 	t_list		*temp;
 

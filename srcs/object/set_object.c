@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:38:27 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/21 15:49:13 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/21 16:30:16 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 ** set 생성 후 마지막 원소 뒤에 붙여주기
 */
 
-int				set_odd(t_list *list)
+int	set_odd(t_list *list)
 {
 	t_set		*set;
 	t_set		*temp;
-	
+
 	set = (t_set *)malloc(sizeof(t_set));
 	if (!set)
 		return (error_list_free("Error : failed malloc\n", list));
@@ -36,7 +36,7 @@ int				set_odd(t_list *list)
 ** set의 마지막 원소 찾기
 */
 
-t_set			*set_olast(t_list *list)
+t_set	*set_olast(t_list *list)
 {
 	t_set		*temp;
 

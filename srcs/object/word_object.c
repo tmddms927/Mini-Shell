@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:50:27 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/21 16:02:08 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/21 16:29:54 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** word 생성 후 마지막 원소 뒤에 붙여주기
 */
 
-int				words_oadd(t_words *words)
+int	words_oadd(t_words *words)
 {
 	t_word		*temp;
 	t_word		*word;
@@ -37,7 +37,7 @@ int				words_oadd(t_words *words)
 ** word의 마지막 원소 찾기
 */
 
-t_word			*words_olast(t_words *words)
+t_word	*words_olast(t_words *words)
 {
 	t_word		*temp;
 
