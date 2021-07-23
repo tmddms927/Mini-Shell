@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/23 14:44:54 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/23 14:46:37 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	parsing_start(char *s, t_list *list)
 int	set_list(t_list *list, t_words *words)
 {
 	t_word	*word;
-	
+
 	if (!com_oadd(list))
 		return (0);
 	word = words->head;

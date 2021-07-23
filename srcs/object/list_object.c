@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 16:00:23 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/21 16:29:25 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/23 15:06:38 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ t_list	*init_list(int argc, char **argv, char **envp)
 	temp->set = 0;
 	if (!set_path(temp, envp))
 		return (0);
+	//set_set(temp);
 	return (temp);
 }
