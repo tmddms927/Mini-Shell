@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/21 18:28:28 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/23 14:44:54 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "bipipe.h"
 #include "object.h"
 
-int			main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	char	*s;
 	char	prompt[100] = "prompt > \0";
@@ -23,16 +23,6 @@ int			main(int argc, char **argv, char **envp)
 	list = init_list(argc, argv, envp);
 	if (!list)
 		return (free_list(list, "list malloc failed\n"));
-
-	// int i = 0;
-	// while (list->envp[i])
-	// {
-	// 	printf("%s\n", envp[i]);
-	// 	i++;
-	// }
-	
-
-
 	while (1)
 	{
 		s = readline(prompt);
@@ -42,7 +32,6 @@ int			main(int argc, char **argv, char **envp)
 			free(s);
 			continue ;
 		}
-		print_list(list);
 		free(s);
 		exec(list);
 		error_list_free("", list);
@@ -54,7 +43,7 @@ int			main(int argc, char **argv, char **envp)
 ** parsing main function
 */
 
-int			parsing_start(char *s, t_list *list)
+int	parsing_start(char *s, t_list *list)
 {
 	t_words	*words;
 
@@ -70,14 +59,12 @@ int			parsing_start(char *s, t_list *list)
 		free_list(list, "");
 		return (0);
 	}
-
 	set_path_in_com(list);
 	free_words(words, "");
-	
 	return (1);
 }
 
-int			set_list(t_list *list, t_words *words)
+int	set_list(t_list *list, t_words *words)
 {
 	t_word	*word;
 	

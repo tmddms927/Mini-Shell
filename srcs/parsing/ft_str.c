@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:37:18 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/21 16:05:58 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/23 14:40:53 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** 문자열 비교 함수
 */
 
-int				ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	while (*s1 || *s2)
 	{
@@ -32,7 +32,7 @@ int				ft_strcmp(const char *s1, const char *s2)
 ** 문자열 길이 반환 함수
 */
 
-size_t			ft_strlen(char *s)
+size_t	ft_strlen(char *s)
 {
 	int			i;
 
@@ -48,7 +48,7 @@ size_t			ft_strlen(char *s)
 ** 문자열 복사
 */
 
-int				ft_strcat_s(char **s1, char **s2)
+int	ft_strcat_s(char **s1, char **s2)
 {
 	size_t		len1;
 	size_t		len2;

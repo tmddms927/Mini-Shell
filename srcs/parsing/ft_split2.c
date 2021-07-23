@@ -6,65 +6,12 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:47:06 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/21 18:23:29 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/23 14:39:03 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include "split.h"
-
-int	put_words2(t_words *words, char *s, int *type, int *i)
-{
-	int			val;
-
-	val = put_words3(s, type, i);
-	if (val == 2)
-	{
-		val = put_words4(words, s, type, i);
-		if (val == 2)
-		{
-			val = put_words5(words, s, type, i);
-			if (val == 2)
-			{
-				val = put_words6(words, s, type, i);
-				if (val == 2)
-				{
-					val = put_words6(words, s, type, i);
-					if (val == 2)
-						put_words8(s, type, i);
-				}
-				else if (!val)
-					return (0);
-			}
-			else if (!val)
-				return (0);
-		}
-		else if (!val)
-			return (0);
-	}
-	else if (!val)
-		return (0);
-	return (1);
-}
-
-int	put_words3(char *s, int *type, int *i)
-{
-	if (*type % 10 == 0 && *s == '"')
-	{
-		(*i)++;
-		*type = 1;
-		*s = 0;
-		return (1);
-	}
-	else if (*type % 10 == 0 && *s == '\'')
-	{
-		(*i)++;
-		*type = 2;
-		*s = 0;
-		return (1);
-	}
-	return (2);
-}
 
 int	put_words4(t_words *words, char *s, int *type, int *i)
 {

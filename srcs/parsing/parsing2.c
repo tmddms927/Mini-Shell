@@ -6,14 +6,14 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:40:28 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/21 15:59:33 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/23 14:42:28 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include "object.h"
 
-int				set_command(t_list *list, char *s)
+int	set_command(t_list *list, char *s)
 {
 	t_com		*temp;
 
@@ -23,8 +23,8 @@ int				set_command(t_list *list, char *s)
 		if (!com_oadd(list))
 			return (0);
 	}
-	else if (!ft_strcmp(s, ">") || !ft_strcmp(s, "<") || !ft_strcmp(s, ">>") ||
-			!ft_strcmp(s, "<<"))
+	else if (!ft_strcmp(s, ">") || !ft_strcmp(s, "<") || !ft_strcmp(s, ">>")
+		|| !ft_strcmp(s, "<<"))
 	{
 		re_odd(list);
 		check_redi(list, s);
@@ -38,10 +38,10 @@ int				set_command(t_list *list, char *s)
 	return (1);
 }
 
-int				set_command2(t_list *list, char *s, t_com *temp)
+int	set_command2(t_list *list, char *s, t_com *temp)
 {
 	char		*c;
-	
+
 	c = "/\0";
 	if (temp->type == COM)
 	{
@@ -66,7 +66,7 @@ int				set_command2(t_list *list, char *s, t_com *temp)
 	return (1);
 }
 
-int				put_argument(t_list *list, char *s)
+int	put_argument(t_list *list, char *s)
 {
 	t_com		*temp;
 	char		**argv;
@@ -92,7 +92,7 @@ int				put_argument(t_list *list, char *s)
 	return (1);
 }
 
-int				put_re(t_list *list, char *s)
+int	put_re(t_list *list, char *s)
 {
 	t_re		*temp;
 	t_com		*com;
@@ -105,7 +105,7 @@ int				put_re(t_list *list, char *s)
 	return (1);
 }
 
-void			check_redi(t_list *list, char *s)
+void	check_redi(t_list *list, char *s)
 {
 	t_com		*temp;
 	t_re		*re;
