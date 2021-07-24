@@ -56,12 +56,14 @@ int	ft_memmove(char *dest, char *src)
 	return (i);
 }
 
-
 void	read_endl(int fd, char *code)
 {
 	char	*s;
-	char	prompt[3] = "> \0";
+	char	prompt[3];
 
+	prompt[0] = '>';
+	prompt[1] = ' ';
+	prompt[2] = 0;
 	while (1)
 	{
 		s = readline(prompt);

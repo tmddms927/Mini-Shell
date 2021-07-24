@@ -77,5 +77,3 @@ void	h_doc(char *code)
 	close(fd);
 	unlink(tempfile);
 }
-
-
