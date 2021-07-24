@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parsing1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/14 22:33:07 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/25 00:05:18 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "header.h"
-#include "bipipe.h"
+#include "exec.h"
 
 int			main(int argc, char **argv, char **envp)
 {
@@ -30,7 +30,7 @@ int			main(int argc, char **argv, char **envp)
 		add_history(s);
 		if (!parsing_start(s, list))
 			continue ;
-		exec(list);
+		separate_stream(exec, list);
 		error_list_free("", list);
 	}
 	return (free_list(list, ""));

@@ -1,6 +1,6 @@
-#include "bipipe.h"
+#include "exec.h"
 
-char		*ft_strjoin(char *cont, char *s)
+char	*ft_strjoin(char *cont, char *s)
 {
 	char	*tmp;
 	int		dest_len;
@@ -14,8 +14,9 @@ char		*ft_strjoin(char *cont, char *s)
 		if (!s)
 			return (0);
 		dest_len = ft_strlen(cont);
-		src_len	= ft_strlen(s);
-		if (!(tmp = (char *)malloc(dest_len + src_len + 1)))
+		src_len = ft_strlen(s);
+		tmp = (char *)malloc(dest_len + src_len + 1);
+		if (!tmp)
 			return (0);
 		ft_memset(tmp, dest_len + src_len + 1);
 		ft_memmove(tmp, cont);
@@ -28,7 +29,7 @@ char		*ft_strjoin(char *cont, char *s)
 
 void	ft_memset(char *p, unsigned int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!p)
@@ -40,9 +41,9 @@ void	ft_memset(char *p, unsigned int size)
 	}
 }
 
-int		ft_memmove(char *dest, char *src)
+int	ft_memmove(char *dest, char *src)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!dest || !src)
@@ -55,28 +56,21 @@ int		ft_memmove(char *dest, char *src)
 	return (i);
 }
 
-// int		ft_strlen(char *s)
-// {
-// 	int i;
-// 	i = 0;
 
-// 	if (!s || !*s)
-// 		return (0);
-// 	while (s[i])
-// 		i++;
-// 	return (i);
-// }
+void	read_endl(int fd, char *code)
+{
+	char	*s;
+	char	prompt[3] = "> \0";
 
-// int		ft_strcmp(char *s1, char *s2)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (s1[i] && s2[i])
-// 	{
-// 		if (s1[i] != s2[i])
-// 			return(s1[i] - s2[i]);
-// 		i++;
-// 	}
-// 	return (s1[i] - s2[i]);
-// }
+	while (1)
+	{
+		s = readline(prompt);
+		if (!ft_strcmp(s, code))
+		{
+			free(s);
+			break ;
+		}
+		write(fd, s, ft_strlen(s));
+		write(fd, "\n", 1);
+	}
+}
