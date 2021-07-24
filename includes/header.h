@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/24 22:01:47 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 23:37:43 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef struct	s_pars
 	int			type;
 	int			i;
 	char		*orig_s;
+	int			orig_len;
+	int			pos;
 	t_words		*words;
 }
 				t_pars;
