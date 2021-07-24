@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/24 17:23:34 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 21:25:49 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ typedef struct	s_com t_com;
 typedef struct	s_re t_re;
 typedef struct	s_word t_word;
 typedef struct	s_set t_set;
+
+typedef struct	s_pars
+{
+	int			type;
+	int			i;
+	char		*orig_s;
+	char		*s;
+}				t_pars;
 
 struct			s_set
 {
@@ -99,6 +107,10 @@ int				put_argument(t_list *list, char *s);
 void			check_redi(t_list *list, char *s);
 int				put_re(t_list *list, char *s);
 
+/*
+** set parsing
+*/
+int	variable_in_set(char **s, t_list *list);
 
 /*
 ** environment.c

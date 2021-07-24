@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:25:45 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/24 17:37:20 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 18:04:39 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ int	set_set(t_list *list)
 	{
 		if (check_variable(list->envp[i]))
 		{
+			if (!set_oadd(list))
+				return (0);
 			if (!save_set(list, list->envp[i]))
 				return (0);
 		}
 	}
-	print_set(list);
 	return (1);
 }
 
@@ -63,9 +64,6 @@ int	save_set(t_list *list, char *s)
 	t_set	*temp;
 
 	i = 0;
-	printf("%s\n", s);
-	if (!set_oadd(list))
-		return (0);
 	temp = set_olast(list);
 	while (s[i] != '=')
 		i++;
@@ -88,6 +86,10 @@ int	save_set(t_list *list, char *s)
 	return (1);
 }
 
+/*
+** set print
+*/
+
 void	print_set(t_list *list)
 {
 	t_set *temp;
@@ -95,7 +97,8 @@ void	print_set(t_list *list)
 	temp = list->set;
 	while (temp)
 	{
-		printf("===> name : %s\n===> value : %s\n", temp->name, temp->value);
+		printf("===> name : %s\n===> value : %s\n",
+			temp->name, temp->value);
 		temp = temp->next;
 	}
 }

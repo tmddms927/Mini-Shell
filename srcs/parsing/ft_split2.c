@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:47:06 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/23 15:39:36 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 20:42:23 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int	put_words7(t_words *words, char *s, int *type, int *i)
 	else if (*type != 1 && *type != 2 && *i > 0
 		&& ((*s > 8 && *s < 14) || *s == 32))
 	{
+		printf("============> %c, %d\n", *s, *i);
 		if (!input_words(words, s - *i, *i, *type))
 			return (free_words(words, ""));
 		*i = 0;
@@ -115,7 +116,7 @@ int	put_words7(t_words *words, char *s, int *type, int *i)
 
 void	put_words8(char *s, int *type, int *i)
 {
-	if (*type == 0 && !((*s > 8 && *s < 14) || *s == 32))
+	if (*type % 10 == 0 && !((*s > 8 && *s < 14) || *s == 32))
 		(*i)++;
 	if (*type == 1 && *s == '"')
 	{
