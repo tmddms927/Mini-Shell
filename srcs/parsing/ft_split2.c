@@ -3,41 +3,136 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:47:06 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/09 02:16:21 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/24 23:43:03 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include "split.h"
 
-int				input_words(t_words *words, char *s, int len, int type)
+int	put_words4(t_pars *pars, char *s)
 {
-	t_word		*temp;
-	int			i;
-	int			j;
-
-	if (!words_oadd(words))
-		return (free_words(words, "Error : failed malloc\n"));
-	temp = words_olast(words);
-	if (type == 10)
-		temp->type = 1;
-	else if (type == 20)
-		temp->type = 2;
-	else
-		temp->type = type;
-	temp->s = (char *)malloc(sizeof(char) * (len + 1));
-	if (!temp->s)
-		return (free_words(words, "Error : failed malloc\n"));
-	i = -1;
-	j = 0;
-	while (++i < len)
+	if (pars->type != 1 && pars->type != 2 && *s == '|')
 	{
-		if (s[i])
-			temp->s[j++] = s[i];
+		if (pars->i > 0)
+		{
+			if (!input_words(pars->words, s - pars->i, pars->i, pars->type))
+				return (free_words(pars->words, ""));
+		}
+		if (!input_words(pars->words, s, 1, pars->type))
+			return (free_words(pars->words, ""));
+		pars->i = 0;
+		pars->type = 0;
+		return (1);
 	}
-	temp->s[j] = 0;
-	return (1);
+	return (2);
+}
+
+int	put_words5(t_pars *pars, char **s)
+{
+	if (pars->type != 1 && pars->type != 2 && **s == '>')
+	{
+		if (pars->i > 0)
+		{
+			if (!input_words(pars->words, *(s - pars->i), pars->i, pars->type))
+				return (free_words(pars->words, ""));
+		}
+		if (*s + 1 && *((*s) + 1) == '>')
+		{
+			if (!input_words(pars->words, *s, 2, pars->type))
+				return (free_words(pars->words, ""));
+			(*s)++;
+			pars->pos++;
+		}
+		else
+		{
+			if (!input_words(pars->words, *s, 1, pars->type))
+				return (free_words(pars->words, ""));
+		}
+		pars->i = 0;
+		pars->type = 0;
+		return (1);
+	}
+	return (2);
+}
+
+int	put_words6(t_pars *pars, char **s)
+{
+	if (pars->type != 1 && pars->type != 2 && **s == '<')
+	{
+		if (pars->i > 0)
+		{
+			if (!input_words(pars->words, *(s - pars->i), pars->i, pars->type))
+				return (free_words(pars->words, ""));
+		}
+		if (*s + 1 && *((*s) + 1) == '<')
+		{
+			if (!input_words(pars->words, *s, 2, pars->type))
+				return (free_words(pars->words, ""));
+			(*s)++;
+			pars->pos++;
+		}
+		else
+		{
+			if (!input_words(pars->words, *s, 1, pars->type))
+				return (free_words(pars->words, ""));
+		}
+		pars->i = 0;
+		pars->type = 0;
+		return (1);
+	}
+	return (2);
+}
+
+int	put_words7(t_pars *pars, char *s)
+{
+	if (pars->type != 1 && pars->type != 2 && *s == '\\')
+	{
+		(pars->i)++;
+		*s = 0;
+		return (1);
+	}
+	else if (*s == '\\' && ((pars->type == 1 && (s + 1) && *(s + 1) == '"')
+			|| (pars->type == 2 && (s + 1) && *(s + 1) == '\'')))
+	{
+		*s = 0;
+		pars->i += 2;
+		s += 2;
+		return (1);
+	}
+	else if (pars->type != 1 && pars->type != 2 && pars->i > 0
+		&& ((*s > 8 && *s < 14) || *s == 32))
+	{
+		if (!input_words(pars->words, s - pars->i, pars->i, pars->type))
+			return (free_words(pars->words, ""));
+		pars->i = 0;
+		pars->type = 0;
+		return (1);
+	}
+	return (2);
+}
+
+void	put_words8(t_pars *pars, char *s)
+{
+	if (pars->type % 10 == 0 && !((*s > 8 && *s < 14) || *s == 32))
+		(pars->i)++;
+	if (pars->type == 1 && *s == '"')
+	{
+		(pars->i)++;
+		pars->type = 10;
+		*s = 0;
+	}
+	else if (pars->type == 2 && *s == '\'')
+	{
+		(pars->i)++;
+		pars->type = 20;
+		*s = 0;
+	}
+	else if (pars->type == 1 && *s != '"')
+		(pars->i)++;
+	else if (pars->type == 2 && *s != '\'')
+		(pars->i)++;
 }

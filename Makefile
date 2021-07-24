@@ -6,7 +6,7 @@
 #    By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-#    Updated: 2021/07/25 00:03:40 by hwan             ###   ########.fr        #
+#    Updated: 2021/07/25 00:13:31 by hwan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,25 @@ OUT		=	minishell
 CC		=	gcc
 CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
 SRCDIR  =	./srcs/
-SRCNAME	=	parsing/ft_split1.c\
+SRCNAME	=	object/set_object.c\
+			object/re_object.c\
+			object/com_object.c\
+			object/word_object.c\
+			object/list_object.c\
+			\
+			parsing/ft_split1.c\
 			parsing/ft_split2.c\
 			parsing/ft_split3.c\
-			parsing/t_words.c\
-			parsing/ft_strcmp.c\
-			parsing/object.c\
+			\
+			parsing/ft_str.c\
+			parsing/set.c\
 			parsing/parsing1.c\
 			parsing/parsing2.c\
+			parsing/parsing_set.c\
 			parsing/utils.c\
 			parsing/utils2.c\
 			parsing/environment.c\
+			parsing/environment2.c\
 			\
 			exec/error.c\
 			exec/exec.c\
@@ -43,8 +51,7 @@ clean	:
 	@rm -rf ${OBJS}
 
 test	:	re
-			./${OUT} "cat >a|'$abc'"
-			@make clean
+			./${OUT}
 
 .c.o	:
 	@${CC} ${CFLAGS} -I ${INCDIR} -c ${<} -o ${<:.c=.o}

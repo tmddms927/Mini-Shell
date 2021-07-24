@@ -3,100 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 04:39:43 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/13 05:02:35 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/24 23:50:05 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include "object.h"
 
-static int		count_word(char *s)
+int	input_words(t_words *words, char *s, int len, int type)
 {
-	int         i;
-	int         count;
+	t_word		*temp;
+	int			i;
+	int			j;
 
-	i = 0;
-	count = 0;
-	while (*s)
-	{
-		if (i > 0 && (*s == '=' || *s == ':'))
-		{
-			i = 0;
-			count++;
-		}
-		else if (!(*s == '=' || *s == ':'))
-			i++;
-		s++;
-	}
-	if (i > 0)
-		count++;
-	return (count);
-}
-
-static char	    **free_all(char **words, int j)
-{
-	while (--j > 0)
-		free(words[j]);
-	free(words);
-	return (0);
-}
-
-static void 	put_char(char *s, char *c, int i)
-{
-	int	        j;
-
+	if (!words_oadd(words))
+		return (free_words(words, "Error : failed malloc\n"));
+	temp = words_olast(words);
+	if (type == 10)
+		temp->type = 1;
+	else if (type == 20)
+		temp->type = 2;
+	else
+		temp->type = type;
+	temp->s = (char *)malloc(sizeof(char) * (len + 1));
+	if (!temp->s)
+		return (free_words(words, "Error : failed malloc\n"));
+	i = -1;
 	j = 0;
-	while (j < i)
+	while (++i < len)
 	{
-		s[j] = c[j];
-		j++;
+		if (s[i])
+			temp->s[j++] = s[i];
 	}
-	s[j] = 0;
-}
-
-static char	    **put_words(char **words, char *s)
-{
-	int         i;
-	int	        j;
-
-	i = 0;
-	j = 0;
-	while (*s)
-	{
-		if (i > 0 && (*s == '=' || *s == ':'))
-		{
-			if (!(words[j] = (char *)malloc(sizeof(char) * (i + 1))))
-				return (free_all(words, j));
-			put_char(words[j++], (char *)s - i, i);
-			i = 0;
-		}
-		else if (!(*s == '=' || *s == ':'))
-			i++;
-		s++;
-	}
-	if (i > 0)
-	{
-		if (!(words[j] = (char *)malloc(sizeof(char) * (i + 1))))
-			return (free_all(words, j));
-		put_char(words[j], (char *)s - i, i);
-	}
-	return (words);
-}
-
-char	**ft_split_envp(char *s)
-{
-	int		words_c;
-	char	**words;
-
-	if (!s)
-		return (0);
-	words_c = count_word(s);
-	if (!(words = (char **)malloc(sizeof(char *) * (words_c + 1))))
-		return (0);
-	if (!put_words(words, s))
-		return (0);
-	words[words_c] = 0;
-	return (words);
+	temp->s[j] = 0;
+	return (1);
 }

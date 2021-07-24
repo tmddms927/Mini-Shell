@@ -1,5 +1,26 @@
 {
     "files.associations": {
+<<<<<<< HEAD
         "errno.h": "c"
+=======
+        "__bit_reference": "c",
+        "algorithm": "c",
+        "bitset": "c",
+        "chrono": "c",
+        "unordered_map": "c",
+        "__functional_base": "c",
+        "__functional_base_03": "c",
+        "__hash_table": "c",
+        "__tuple": "c",
+        "array": "c",
+        "type_traits": "c",
+        "functional": "c",
+        "iterator": "c",
+        "limits": "c",
+        "memory": "c",
+        "ratio": "c",
+        "tuple": "c",
+        "utility": "c"
+>>>>>>> a3573850ee1ac8581befa0a24f29ee5212b3e654
     }
 }

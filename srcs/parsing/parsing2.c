@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:40:28 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/14 21:37:51 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/24 17:25:34 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include "object.h"
 
-int				set_command(t_list *list, char *s)
+int	set_command(t_list *list, char *s)
 {
 	t_com		*temp;
 
-	temp = olast(list);
+	temp = com_olast(list);
 	if (!ft_strcmp(s, "|"))
 	{
-		if (!oadd(list))
+		if (!com_oadd(list))
 			return (0);
 	}
-	else if (!ft_strcmp(s, ">") || !ft_strcmp(s, "<") || !ft_strcmp(s, ">>") ||
-			!ft_strcmp(s, "<<"))
+	else if (!ft_strcmp(s, ">") || !ft_strcmp(s, "<") || !ft_strcmp(s, ">>")
+		|| !ft_strcmp(s, "<<"))
 	{
-		re_odd(list);
+		re_oadd(list);
 		check_redi(list, s);
 		temp->type = RE;
 	}
@@ -37,10 +38,10 @@ int				set_command(t_list *list, char *s)
 	return (1);
 }
 
-int				set_command2(t_list *list, char *s, t_com *temp)
+int	set_command2(t_list *list, char *s, t_com *temp)
 {
 	char		*c;
-	
+
 	c = "/\0";
 	if (temp->type == COM)
 	{
@@ -65,14 +66,14 @@ int				set_command2(t_list *list, char *s, t_com *temp)
 	return (1);
 }
 
-int				put_argument(t_list *list, char *s)
+int	put_argument(t_list *list, char *s)
 {
 	t_com		*temp;
 	char		**argv;
 	int			i;
 	int			j;
 
-	temp = olast(list);
+	temp = com_olast(list);
 	i = 0;
 	while (temp->argv[i])
 		i++;
@@ -91,25 +92,25 @@ int				put_argument(t_list *list, char *s)
 	return (1);
 }
 
-int				put_re(t_list *list, char *s)
+int	put_re(t_list *list, char *s)
 {
 	t_re		*temp;
 	t_com		*com;
 
 	temp = re_olast(list);
-	com = olast(list);
+	com = com_olast(list);
 	if (!ft_strcat_s(&temp->file, &s))
 		return (error_list_free("Error : failed malloc\n", list));
 	com->type = ARGV;
 	return (1);
 }
 
-void			check_redi(t_list *list, char *s)
+void	check_redi(t_list *list, char *s)
 {
 	t_com		*temp;
 	t_re		*re;
 
-	temp = olast(list);
+	temp = com_olast(list);
 	re = re_olast(list);
 	if (s[0] == '<' && s[1] == '<')
 		re->type = H_DOC;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungoh <seungoh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:43:48 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/09 01:35:00 by seungoh          ###   ########.fr       */
+/*   Updated: 2021/07/24 17:41:37 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int					error_list_free(char *s, t_list *list)
+int	error_list_free(char *s, t_list *list)
 {
 	t_com			*temp;
 	t_com			*next;
@@ -40,7 +40,7 @@ int					error_list_free(char *s, t_list *list)
 	return (0);
 }
 
-void				error_list_free2(t_com *temp)
+void	error_list_free2(t_com *temp)
 {
 	int				i;
 	t_re			*re_temp;
@@ -66,7 +66,7 @@ void				error_list_free2(t_com *temp)
 	}
 }
 
-int					free_words(t_words *words, char *s)
+int	free_words(t_words *words, char *s)
 {
 	t_word			*temp;
 	t_word			*next;
@@ -84,13 +84,13 @@ int					free_words(t_words *words, char *s)
 	return (0);
 }
 
-int					error_print(char *s)
+int	error_print(char *s)
 {
 	printf("%s", s);
 	return (0);
 }
 
-void				print_list(t_list *list)
+void	print_list(t_list *list)
 {
 	t_com			*temp;
 	t_re			*re;

@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   list_object.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/13 00:27:19 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/23 14:32:12 by seung-eun        ###   ########.fr       */
+/*   Created: 2021/07/21 16:00:23 by seung-eun         #+#    #+#             */
+/*   Updated: 2021/07/24 17:23:57 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	free_list(t_list *list, char *s)
-{
-	int		i;
+/*
+** 프로그램 시작 시 list 세팅해주는 함수
+*/
 
-	i = 0;
-	printf("%s", s);
-	if (list->path)
-	{
-		while (list->path[i])
-		{
-			free(list->path[i]);
-			i++;
-		}
-		free(list->path);
-	}
-	return (0);
+t_list	*init_list(int argc, char **argv, char **envp)
+{
+	t_list		*temp;
+
+	(void)argc;
+	(void)argv;
+	temp = (t_list *)malloc(sizeof(t_list) * 1);
+	if (!temp)
+		return (temp);
+	temp->head = 0;
+	temp->envp = envp;
+	temp->path = 0;
+	temp->set = 0;
+	if (!set_path(temp, envp))
+		return (0);
+	set_set(temp);
+	return (temp);
 }
