@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:04:25 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/23 14:39:15 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/23 15:40:25 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	put_words3(char *s, int *type, int *i)
 	return (2);
 }
 
-static int	put_words2_2(t_words *words, char *s, int *type, int *i)
+static int	put_words2_2(t_words *words, char **s, int *type, int *i)
 {
 	int			val;
 
@@ -42,9 +42,9 @@ static int	put_words2_2(t_words *words, char *s, int *type, int *i)
 		val = put_words6(words, s, type, i);
 		if (val == 2)
 		{
-			val = put_words7(words, s, type, i);
+			val = put_words7(words, *s, type, i);
 			if (val == 2)
-				put_words8(s, type, i);
+				put_words8(*s, type, i);
 		}
 		else if (!val)
 			return (0);
@@ -54,14 +54,14 @@ static int	put_words2_2(t_words *words, char *s, int *type, int *i)
 	return (1);
 }
 
-static int	put_words2_1(t_words *words, char *s, int *type, int *i)
+static int	put_words2_1(t_words *words, char **s, int *type, int *i)
 {
 	int			val;
 
-	val = put_words3(s, type, i);
+	val = put_words3(*s, type, i);
 	if (val == 2)
 	{
-		val = put_words4(words, s, type, i);
+		val = put_words4(words, *s, type, i);
 		if (val == 2)
 		{
 			if (!put_words2_2(words, s, type, i))
@@ -88,7 +88,7 @@ static int	put_words(t_words *words, char *s)
 	i = 0;
 	while (*s)
 	{
-		if (!put_words2_1(words, s, &type, &i))
+		if (!put_words2_1(words, &s, &type, &i))
 			return (0);
 		s++;
 	}

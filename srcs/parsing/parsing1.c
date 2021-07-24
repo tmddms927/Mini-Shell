@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/23 14:46:37 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 17:37:26 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv, char **envp)
 	char	prompt[100] = "prompt > \0";
 	t_list	*list;
 
-	list = init_list(argc, argv, envp);
+	list = init_list(argc, argv, envp);	
 	if (!list)
 		return (free_list(list, "list malloc failed\n"));
 	while (1)
@@ -34,6 +34,7 @@ int	main(int argc, char **argv, char **envp)
 		}
 		free(s);
 		exec(list);
+		//print_list(list);
 		error_list_free("", list);
 	}
 	return (free_list(list, ""));

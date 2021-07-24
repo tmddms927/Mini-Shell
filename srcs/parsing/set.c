@@ -6,11 +6,16 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:25:45 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/23 15:05:20 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 17:37:20 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include "object.h"
+
+/*
+** 프로그램 시작시 set 저장
+*/
 
 int	set_set(t_list *list)
 {
@@ -21,10 +26,11 @@ int	set_set(t_list *list)
 	{
 		if (check_variable(list->envp[i]))
 		{
-			if (save_set(list, list->envp[i]))
+			if (!save_set(list, list->envp[i]))
 				return (0);
 		}
 	}
+	print_set(list);
 	return (1);
 }
 
@@ -52,5 +58,44 @@ int	check_variable(char *s)
 
 int	save_set(t_list *list, char *s)
 {
+	int 	i;
+	int		j;
+	t_set	*temp;
+
+	i = 0;
+	printf("%s\n", s);
+	if (!set_oadd(list))
+		return (0);
+	temp = set_olast(list);
+	while (s[i] != '=')
+		i++;
+	j = -1;
+	temp->name = (char *)malloc(sizeof(char) * (i + 1));
+	if (!temp->name)
+		return (error_print("Error : failed malloc\n"));
+	while (++j < i)
+		temp->name[j] = s[j];
+	temp->name[j] = 0;
+	while (s[i])
+		i++;
+	temp->value = (char *)malloc(sizeof(char) * (i - j + 1));
+	if (!temp->value)
+		return (error_print("Error : failed malloc\n"));
+	i = 0;
+	while (s[++j])
+		temp->value[i++] = s[j];
+	temp->value[i] = 0;
 	return (1);
+}
+
+void	print_set(t_list *list)
+{
+	t_set *temp;
+
+	temp = list->set;
+	while (temp)
+	{
+		printf("===> name : %s\n===> value : %s\n", temp->name, temp->value);
+		temp = temp->next;
+	}
 }

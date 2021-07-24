@@ -6,7 +6,7 @@
 #    By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-#    Updated: 2021/07/21 17:13:37 by seung-eun        ###   ########.fr        #
+#    Updated: 2021/07/24 17:24:21 by seung-eun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCNAME	=	object/set_object.c\
 			parsing/ft_split3.c\
 			\
 			parsing/ft_str.c\
+			parsing/set.c\
 			parsing/parsing1.c\
 			parsing/parsing2.c\
 			parsing/utils.c\

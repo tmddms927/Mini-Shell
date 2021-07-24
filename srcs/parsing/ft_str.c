@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:37:18 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/23 14:40:53 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/23 15:42:59 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
+	if (!s1)
+		printf("hi1\n");
+	if (!s2)
+		printf("hi2\n");
 	while (*s1 || *s2)
 	{
 		if (*s1 != *s2)

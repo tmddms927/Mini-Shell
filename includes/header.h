@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/21 16:59:57 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 17:23:34 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct	s_set t_set;
 
 struct			s_set
 {
-	//$A
 	char		*name;
 	char		*value;
 	t_set		*next;
@@ -133,6 +132,9 @@ int				ft_strcat_s(char **s1, char **s2);
 ** set.c
 */
 
+int	set_set(t_list *list);
 int				check_variable(char *s);
+int	save_set(t_list *list, char *s);
+void	print_set(t_list *list);
 
 #endif

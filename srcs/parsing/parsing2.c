@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:40:28 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/23 14:42:28 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 17:25:34 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	set_command(t_list *list, char *s)
 	else if (!ft_strcmp(s, ">") || !ft_strcmp(s, "<") || !ft_strcmp(s, ">>")
 		|| !ft_strcmp(s, "<<"))
 	{
-		re_odd(list);
+		re_oadd(list);
 		check_redi(list, s);
 		temp->type = RE;
 	}

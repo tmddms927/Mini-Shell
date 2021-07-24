@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:54:35 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/21 16:29:36 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 17:25:03 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** re 생성 후 마지막 원소 뒤에 붙여주기
 */
 
-int	re_odd(t_list *list)
+int	re_oadd(t_list *list)
 {
 	t_com			*com;
 	t_re			*temp;

@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:45:06 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/21 16:39:03 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 17:24:55 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** set object 
 */
 
-int				set_odd(t_list *list);
+int				set_oadd(t_list *list);
 t_set			*set_olast(t_list *list);
 
 /*
@@ -41,7 +41,7 @@ t_com			*com_olast(t_list *list);
 ** re object
 */
 
-int	re_odd(t_list *list);
+int	re_oadd(t_list *list);
 t_re	*re_olast(t_list *list);
 
 /*

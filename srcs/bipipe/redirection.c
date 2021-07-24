@@ -77,7 +77,6 @@ void		h_doc(char *code)
 		write(fd, s, ft_strlen(s));
 		write(fd, "\n", 1);
 	}
-	//write(fd, cont, ft_strlen(cont));
 	close(fd);
 	fd = open("tmp",	O_RDONLY);
 	if (dup2(fd, STDIN_FILENO) < 0)

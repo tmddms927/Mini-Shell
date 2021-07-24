@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:47:06 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/23 14:39:03 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/23 15:39:36 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,24 @@ int	put_words4(t_words *words, char *s, int *type, int *i)
 	return (2);
 }
 
-int	put_words5(t_words *words, char *s, int *type, int *i)
+int	put_words5(t_words *words, char **s, int *type, int *i)
 {
-	if (*type != 1 && *type != 2 && *s == '>')
+	if (*type != 1 && *type != 2 && **s == '>')
 	{
 		if (*i > 0)
 		{
-			if (!input_words(words, s - *i, *i, *type))
+			if (!input_words(words, *(s - *i), *i, *type))
 				return (free_words(words, ""));
 		}
-		if ((s + 1) && *(s + 1) == '>')
+		if (*s + 1 && *((*s) + 1) == '>')
 		{
-			if (!input_words(words, s, 2, *type))
+			if (!input_words(words, *s, 2, *type))
 				return (free_words(words, ""));
-			s++;
+			(*s)++;
 		}
 		else
 		{
-			if (!input_words(words, s, 1, *type))
+			if (!input_words(words, *s, 1, *type))
 				return (free_words(words, ""));
 		}
 		*i = 0;
@@ -58,24 +58,24 @@ int	put_words5(t_words *words, char *s, int *type, int *i)
 	return (2);
 }
 
-int	put_words6(t_words *words, char *s, int *type, int *i)
+int	put_words6(t_words *words, char **s, int *type, int *i)
 {
-	if (*type != 1 && *type != 2 && *s == '<')
+	if (*type != 1 && *type != 2 && **s == '<')
 	{
 		if (*i > 0)
 		{
-			if (!input_words(words, s - *i, *i, *type))
+			if (!input_words(words, *(s - *i), *i, *type))
 				return (free_words(words, ""));
 		}
-		if ((s + 1) && *(s + 1) == '<')
+		if (*s + 1 && *((*s) + 1) == '<')
 		{
-			if (!input_words(words, s, 2, *type))
+			if (!input_words(words, *s, 2, *type))
 				return (free_words(words, ""));
-			s++;
+			(*s)++;
 		}
 		else
 		{
-			if (!input_words(words, s, 1, *type))
+			if (!input_words(words, *s, 1, *type))
 				return (free_words(words, ""));
 		}
 		*i = 0;

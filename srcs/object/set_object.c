@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:38:27 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/21 16:30:16 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 17:28:41 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** set 생성 후 마지막 원소 뒤에 붙여주기
 */
 
-int	set_odd(t_list *list)
+int	set_oadd(t_list *list)
 {
 	t_set		*set;
 	t_set		*temp;
@@ -28,7 +28,10 @@ int	set_odd(t_list *list)
 	set->value = 0;
 	set->next = 0;
 	temp = set_olast(list);
-	temp->next = set;
+	if (!temp)
+		list->set = set;
+	else
+		temp->next = set;
 	return (1);
 }
 
