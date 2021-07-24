@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/24 21:25:49 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 21:35:24 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct	s_words
 ** parsing
 */
 
-int				ft_split(t_words *words, char *s);
+int				ft_split(t_words *words, char *s, t_list *list);
 int				parsing_start(char *s, t_list *list);
 int				set_list(t_list *list, t_words *words);
 int				set_path(t_list *list, char **envp);
@@ -110,7 +110,7 @@ int				put_re(t_list *list, char *s);
 /*
 ** set parsing
 */
-int	variable_in_set(char **s, t_list *list);
+int	variable_in_set(t_pars *pars, t_list *list);
 
 /*
 ** environment.c

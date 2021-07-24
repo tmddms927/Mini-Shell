@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/24 20:18:05 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 21:33:09 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	parsing_start(char *s, t_list *list)
 	if (!words)
 		return (error_print("Error : failed malloc\n"));
 	words->head = 0;
-	if (!ft_split(words, s))
+	if (!ft_split(words, s, list))
 		return (0);
 	/////////////set $
 	// if (!variable_in_set(s))

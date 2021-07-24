@@ -6,132 +6,131 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:47:06 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/24 20:42:23 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 21:43:44 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include "split.h"
 
-int	put_words4(t_words *words, char *s, int *type, int *i)
+int	put_words4(t_words *words, t_pars *pars)
 {
-	if (*type != 1 && *type != 2 && *s == '|')
+	if (pars->type != 1 && pars->type != 2 && *(pars->s) == '|')
 	{
-		if (*i > 0)
+		if (pars->i > 0)
 		{
-			if (!input_words(words, s - *i, *i, *type))
+			if (!input_words(words, pars->s - pars->i, pars->i, pars->type))
 				return (free_words(words, ""));
 		}
-		if (!input_words(words, s, 1, *type))
+		if (!input_words(words, pars->s, 1, pars->type))
 			return (free_words(words, ""));
-		*i = 0;
-		*type = 0;
+		pars->i = 0;
+		pars->type = 0;
 		return (1);
 	}
 	return (2);
 }
 
-int	put_words5(t_words *words, char **s, int *type, int *i)
+int	put_words5(t_words *words, t_pars *pars)
 {
-	if (*type != 1 && *type != 2 && **s == '>')
+	if (pars->type != 1 && pars->type != 2 && *(pars->s) == '>')
 	{
-		if (*i > 0)
+		if (pars->i > 0)
 		{
-			if (!input_words(words, *(s - *i), *i, *type))
+			if (!input_words(words, pars->s - pars->i, pars->i, pars->type))
 				return (free_words(words, ""));
 		}
-		if (*s + 1 && *((*s) + 1) == '>')
+		if (pars->s + 1 && *(pars->s + 1) == '>')
 		{
-			if (!input_words(words, *s, 2, *type))
+			if (!input_words(words, pars->s, 2, pars->type))
 				return (free_words(words, ""));
-			(*s)++;
+			pars->s++;
 		}
 		else
 		{
-			if (!input_words(words, *s, 1, *type))
+			if (!input_words(words, pars->s, 1, pars->type))
 				return (free_words(words, ""));
 		}
-		*i = 0;
-		*type = 0;
+		pars->i = 0;
+		pars->type = 0;
 		return (1);
 	}
 	return (2);
 }
 
-int	put_words6(t_words *words, char **s, int *type, int *i)
+int	put_words6(t_words *words, t_pars *pars)
 {
-	if (*type != 1 && *type != 2 && **s == '<')
+	if (pars->type != 1 && pars->type != 2 && *(pars->s) == '<')
 	{
-		if (*i > 0)
+		if (pars->i > 0)
 		{
-			if (!input_words(words, *(s - *i), *i, *type))
+			if (!input_words(words, pars->s - pars->i, pars->i, pars->type))
 				return (free_words(words, ""));
 		}
-		if (*s + 1 && *((*s) + 1) == '<')
+		if (pars->s + 1 && *(pars->s + 1) == '<')
 		{
-			if (!input_words(words, *s, 2, *type))
+			if (!input_words(words, pars->s, 2, pars->type))
 				return (free_words(words, ""));
-			(*s)++;
+			pars->s++;
 		}
 		else
 		{
-			if (!input_words(words, *s, 1, *type))
+			if (!input_words(words, pars->s, 1, pars->type))
 				return (free_words(words, ""));
 		}
-		*i = 0;
-		*type = 0;
+		pars->i = 0;
+		pars->type = 0;
 		return (1);
 	}
 	return (2);
 }
 
-int	put_words7(t_words *words, char *s, int *type, int *i)
+int	put_words7(t_words *words, t_pars *pars)
 {
-	if (*type != 1 && *type != 2 && *s == '\\')
+	if (pars->type != 1 && pars->type != 2 && *(pars->s) == '\\')
 	{
-		(*i)++;
-		*s = 0;
+		pars->i++;
+		*(pars->s) = 0;
 		return (1);
 	}
-	else if (*s == '\\' && ((*type == 1 && (s + 1) && *(s + 1) == '"')
-			|| (*type == 2 && (s + 1) && *(s + 1) == '\'')))
+	else if (*(pars->s) == '\\' && ((pars->type == 1 && pars->s + 1 && *(pars->s + 1) == '"')
+			|| (pars->type == 2 && (pars->s + 1) && *(pars->s + 1) == '\'')))
 	{
-		*s = 0;
-		*i += 2;
-		s += 2;
+		*(pars->s) = 0;
+		pars->i += 2;
+		pars->s += 2;
 		return (1);
 	}
-	else if (*type != 1 && *type != 2 && *i > 0
-		&& ((*s > 8 && *s < 14) || *s == 32))
+	else if (pars->type != 1 && pars->type != 2 && pars->i > 0
+		&& ((*(pars->s) > 8 && *(pars->s) < 14) || *(pars->s) == 32))
 	{
-		printf("============> %c, %d\n", *s, *i);
-		if (!input_words(words, s - *i, *i, *type))
+		if (!input_words(words, pars->s - pars->i, pars->i, pars->type))
 			return (free_words(words, ""));
-		*i = 0;
-		*type = 0;
+		pars->i = 0;
+		pars->type = 0;
 		return (1);
 	}
 	return (2);
 }
 
-void	put_words8(char *s, int *type, int *i)
+void	put_words8(t_pars *pars)
 {
-	if (*type % 10 == 0 && !((*s > 8 && *s < 14) || *s == 32))
-		(*i)++;
-	if (*type == 1 && *s == '"')
+	if (pars->type % 10 == 0 && !((*(pars->s) > 8 && *(pars->s) < 14) || *(pars->s) == 32))
+		pars->i++;
+	if (pars->type == 1 && *(pars->s) == '"')
 	{
-		(*i)++;
-		*type = 10;
-		*s = 0;
+		pars->i++;
+		pars->type = 10;
+		*(pars->s) = 0;
 	}
-	else if (*type == 2 && *s == '\'')
+	else if (pars->type == 2 && *(pars->s) == '\'')
 	{
-		(*i)++;
-		*type = 20;
-		*s = 0;
+		pars->i++;
+		pars->type = 20;
+		*(pars->s) = 0;
 	}
-	else if (*type == 1 && *s != '"')
-		(*i)++;
-	else if (*type == 2 && *s != '\'')
-		(*i)++;
+	else if (pars->type == 1 && *(pars->s) != '"')
+		pars->i++;
+	else if (pars->type == 2 && *(pars->s) != '\'')
+		pars->i++;
 }
