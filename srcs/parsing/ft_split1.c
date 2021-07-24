@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:04:25 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/24 22:01:34 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 22:03:19 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	put_words3(t_pars *pars, char *s, t_list *list)
 	if (*s == '$' && pars->type != 2)
 	{
 		variable_in_set(pars, list, &s);
-		*s = '!';
+		//*s = '!';
 	}
 	if (pars->type % 10 == 0 && *s == '"')
 	{
