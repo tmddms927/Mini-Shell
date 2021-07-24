@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 17:45:35 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/24 21:44:31 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/24 22:02:03 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,12 @@ static int	change_s(char **s, int j, t_list *list)
 	return (1);
 }
 
-int	variable_in_set(t_pars *pars, t_list *list)
+int	variable_in_set(t_pars *pars, t_list *list, char **s)
 {
 	int		j;
-	char	**s;
 	
+	(void)pars;
 	j = 0;
-	s = &(pars->s);
 	while ((*s)[j] && (*s)[j] != ' ' && (*s)[j] != '$')
 		j++;
 	if (j == 0)
