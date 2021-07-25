@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 23:00:22 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/25 23:19:42 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/25 23:43:59 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int	check_builtin(t_list *list, t_com *com)
 	else if (!ft_strcmp("/env\0", com->c))
 		return (env(list));
 	else if (!ft_strcmp("/exit\0", com->c))
-		;
+		return (ft_exit());
 	return (0);
 }

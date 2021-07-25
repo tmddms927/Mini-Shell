@@ -6,7 +6,7 @@
 #    By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-#    Updated: 2021/07/25 23:18:59 by seung-eun        ###   ########.fr        #
+#    Updated: 2021/07/25 23:44:30 by seung-eun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRCNAME	=	object/set_object.c\
 			builtin/builtin.c\
 			builtin/export.c\
 			builtin/env.c\
-			builtin/unset.c
+			builtin/unset.c\
+			builtin/exit.c
 SRCS	=	${addprefix ${SRCDIR}, ${SRCNAME}}
 INCDIR	=	./includes/
 OBJS	=	${SRCS:.c=.o}

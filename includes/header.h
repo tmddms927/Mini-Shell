@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/25 23:19:54 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/25 23:43:46 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,6 @@ int		check_builtin(t_list *list, t_com *com);
 int		export(t_list *list);
 int	unset(t_list *list, t_com *com);
 int	env(t_list *list);
-
+int	ft_exit(void);
 
 #endif
