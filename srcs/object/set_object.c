@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_object.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:38:27 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/25 21:42:30 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/25 23:11:37 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ t_set	*find_set(t_list *list, char *s)
 			return (temp);
 		temp = temp->next;
 	}
-	return (temp);
+	return (0);
 }
