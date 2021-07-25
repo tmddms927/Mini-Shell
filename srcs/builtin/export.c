@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 21:54:13 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/25 22:44:41 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/25 23:20:27 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	sort_env(t_list *list, int check)
 	}
 }
 
-void	export(t_list *list)
+int	export(t_list *list)
 {
 	t_set	*temp;
 	
@@ -63,4 +63,5 @@ void	export(t_list *list)
 			printf("\n");
 		temp = temp->next;
 	}
+	return (1);
 }

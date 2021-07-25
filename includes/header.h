@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/25 21:16:48 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/25 23:19:54 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,15 @@ int	add_set_error_code(t_list *list);
 int	check_variable(char *s);
 int	save_set(t_list *list, char *s);
 void	print_set(t_list *list);
+
+/*
+** builtin function
+*/
+
+int		check_builtin(t_list *list, t_com *com);
+int		export(t_list *list);
+int	unset(t_list *list, t_com *com);
+int	env(t_list *list);
+
 
 #endif
