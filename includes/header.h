@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/25 23:43:46 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/25 23:49:06 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void			print_list(t_list *list);
 */
 
 int				ft_strcmp(const char *s1, const char *s2);
+int ft_strncmp(const char *s1, const char *s2, unsigned int size);
 size_t			ft_strlen(char *s);
 int				ft_strcat_s(char **s1, char **s2);
 
