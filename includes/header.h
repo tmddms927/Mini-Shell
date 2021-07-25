@@ -6,7 +6,7 @@
 /*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/25 00:11:14 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/25 21:43:11 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void			print_list(t_list *list);
 */
 
 int				ft_strcmp(const char *s1, const char *s2);
+int ft_strncmp(const char *s1, const char *s2, unsigned int size);
 size_t			ft_strlen(char *s);
 int				ft_strcat_s(char **s1, char **s2);
 

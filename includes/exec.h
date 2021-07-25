@@ -7,9 +7,15 @@
 # define READ 0
 # define WRITE 1
 
+# define TRUE 1
+# define FALSE 0
+
 # ifndef BUFFERSIZE
 # define BUFFERSIZE 4096
 # endif
+
+typedef unsigned int	t_bool;
+
 
 //lst_utils
 int			lst_len(t_com *command);

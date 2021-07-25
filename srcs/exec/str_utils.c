@@ -41,19 +41,49 @@ void	ft_memset(char *p, unsigned int size)
 	}
 }
 
+// int	ft_memmove(char *dest, char *src)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	if (!dest || !src)
+// 		return (0);
+// 	while (src[i])
+// 	{
+// 		dest[i] = src[i];
+// 		i++;
+// 	}
+// 	return (i);
+// }
+
+
 int	ft_memmove(char *dest, char *src)
 {
 	int	i;
+	int size;
 
-	i = 0;
-	if (!dest || !src)
+	size = ft_strlen(src) + 1;
+	if (dest == src)
 		return (0);
-	while (src[i])
+	else if (dest < src)
 	{
-		dest[i] = src[i];
-		i++;
+		i = 0;
+		while (i < size)
+		{
+			dest[i] = src[i];
+			i++;
+		}
 	}
-	return (i);
+	else
+	{
+		i = size;
+		while (i > -1)
+		{
+			dest[i] = src[i];
+			i--;
+		}
+	}
+	return (size);
 }
 
 void	read_endl(int fd, char *code)
@@ -74,5 +104,6 @@ void	read_endl(int fd, char *code)
 		}
 		write(fd, s, ft_strlen(s));
 		write(fd, "\n", 1);
+		free(s);
 	}
 }
