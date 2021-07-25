@@ -22,7 +22,7 @@ int			lst_len(t_com *command);
 //error
 void		handle_error(char *str);
 void		handle_message(char *str);
-void	snatch_error(int error_num);
+void	snatch_error(int error_num, t_list *command_list);
 void	exit_safe(char *func_name, char *obj, int err_num, int exit_num);
 void	command_not_found(char *func_name, char *obj);
 //exec

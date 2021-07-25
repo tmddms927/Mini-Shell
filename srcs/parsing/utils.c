@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:43:48 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/24 17:41:37 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/25 20:48:26 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	error_list_free(char *s, t_list *list)
 {
 	t_com			*temp;
 	t_com			*next;
+	// t_set			*set;
+	// t_set			*s_next;
 	int				i;
 
 	printf("%s", s);
@@ -36,6 +38,15 @@ int	error_list_free(char *s, t_list *list)
 		free(temp);
 		temp = next;
 	}
+	// s_next = list->set;
+	// while (s_next)
+	// {
+	// 	set = s_next;
+	// 	s_next = s_next->next;
+	// 	free(set->name);
+	// 	free(set->value);
+	// 	free(set);
+	// }
 	list->head = 0;
 	return (0);
 }

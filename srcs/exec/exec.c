@@ -18,7 +18,7 @@ void	separate_stream(int (*fp)(t_com *, char **), t_list *command_list)
 		exit(ret);
 	}
 	waitpid(pid, &statloc, 0);
-	snatch_error(WEXITSTATUS(statloc));
+	snatch_error(WEXITSTATUS(statloc), command_list);
 }
 
 int	exec(t_com *command_info, char **envp)

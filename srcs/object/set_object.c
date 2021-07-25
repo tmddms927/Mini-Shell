@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:38:27 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/24 17:28:41 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/25 21:42:30 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,23 @@ t_set	*set_olast(t_list *list)
 		return (temp);
 	while (temp->next)
 		temp = temp->next;
+	return (temp);
+}
+
+/*
+** set의 $? 원소 찾기
+*/
+
+t_set	*find_set(t_list *list, char *s)
+{
+	t_set		*temp;
+
+	temp = list->set;
+	while (temp)
+	{
+		if (!ft_strcmp(temp->name, s))
+			return (temp);
+		temp = temp->next;
+	}
 	return (temp);
 }

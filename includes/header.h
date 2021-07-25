@@ -6,7 +6,7 @@
 /*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/25 21:43:11 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/25 22:30:46 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,8 @@ int				ft_strcat_s(char **s1, char **s2);
 */
 
 int	set_set(t_list *list);
-int				check_variable(char *s);
+int	add_set_error_code(t_list *list);
+int	check_variable(char *s);
 int	save_set(t_list *list, char *s);
 void	print_set(t_list *list);
 

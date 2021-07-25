@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:25:45 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/24 18:04:39 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/25 21:27:31 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,31 @@ int	set_set(t_list *list)
 				return (0);
 		}
 	}
+	if (!add_set_error_code(list))
+		return (0);
+	return (1);
+}
+
+/*
+** $? set에 넣어주기
+*/
+
+int	add_set_error_code(t_list *list)
+{
+	t_set	*temp;
+
+	if (!set_oadd(list))
+		return (error_print("Error : failed malloc\n"));
+	temp = set_olast(list);
+	temp->name = (char *)malloc(sizeof(char) * 2);
+	if (!temp->name)
+		return (error_print("Error : failed malloc\n"));
+	temp->name[0] = '?';
+	temp->name[1] = 0;
+	temp->value = (char *)malloc(sizeof(char) * 4);
+	temp->value[0] = '0';
+	temp->value[1] = 0;
+	temp->next = 0;
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/25 00:14:00 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/25 22:23:35 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ int	main(int argc, char **argv, char **envp)
 		add_history(s);
 		if (!parsing_start(s, list))
 		{
-			//free(s);
+			free(s);
 			continue ;
 		}
-		// free(s);
 		separate_stream(exec, list);
 		//print_list(list);
 		error_list_free("", list);
@@ -54,9 +53,6 @@ int	parsing_start(char *s, t_list *list)
 	words->head = 0;
 	if (!ft_split(words, s, list))
 		return (0);
-	/////////////set $
-	// if (!variable_in_set(s))
-	// 	return (0);
 	if (!set_list(list, words))
 	{
 		free_list(list, "");

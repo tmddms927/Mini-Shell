@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 17:45:35 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/24 23:58:20 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/25 21:05:39 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,6 @@ static char	*variable(t_list *list, char *s, int i)
 
 //static int	change_s2(t_pars *pars, char **s, int j)
 //{
-	// char *temp2;
-	// char	*orin;
-	
-	// orin = pars->orig_s;
-	// i = -1;
-	// len = pars->orig_len + ft_strlen(vari);
-	// temp2 = (char *)malloc(sizeof(char) * len);
-	// if (!temp2)
-	// 	return (error_print("Error : failed malloc\n"));
-	// while (++i < pars->pos)
-	// 	temp2[i] = *(orin + i);
-	// j = -1;
-	// char *tt;
-	// tt = &temp2[i];
-	// while (temp[++j])
-	// 	temp2[i++] = temp[j];
-	// temp2[i] = 0;
-	// *s = tt;
-	// pars->orig_s = temp2;
-	// pars->orig_len = len;
-	// free(vari);
-	// return (1);
 //}
 
 static int	change_s(t_pars *pars, char **s, int j, t_list *list)
@@ -121,11 +99,12 @@ static int	change_s(t_pars *pars, char **s, int j, t_list *list)
 		temp2[i++] = temp[j];
 	temp2[i] = 0;
 	*s = tt;
+	free(pars->orig_s);
 	pars->orig_s = temp2;
 	pars->orig_len = len;
 	free(vari);
+	free(temp);
 	return (1);
-	//if (change_s2(pars, s, j))
 }
 
 int	variable_in_set(t_pars *pars, t_list *list, char **s)
