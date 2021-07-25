@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:04:25 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/24 23:58:40 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/25 21:04:22 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,10 @@ int	ft_split(t_words *words, char *s, t_list *list)
 	pars->words = words;
 	pars->pos = 0;
 	if (!put_words(words, s, list, pars))
+	{
+		free(pars);
 		return (0);
+	}
+	free(pars);
 	return (1);
 }

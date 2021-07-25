@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/25 00:11:14 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/25 21:16:48 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,8 @@ int				ft_strcat_s(char **s1, char **s2);
 */
 
 int	set_set(t_list *list);
-int				check_variable(char *s);
+int	add_set_error_code(t_list *list);
+int	check_variable(char *s);
 int	save_set(t_list *list, char *s);
 void	print_set(t_list *list);
 
