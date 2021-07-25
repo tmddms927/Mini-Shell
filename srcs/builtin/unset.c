@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/25 22:07:52 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/25 23:20:18 by seung-eun        ###   ########.fr       */
+/*   Created: 2021/07/25 23:09:56 by seung-eun         #+#    #+#             */
+/*   Updated: 2021/07/25 23:27:22 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include "object.h"
 
-int	env(t_list *list)
+int	unset(t_list *list, t_com *com)
 {
-	int	i;
+	int i;
 
-	i = -1;
-	while (list->envp[++i])
-		printf("%s\n", list->envp[i]);
+	i = 0;
+	while (com->argv[++i])
+		remove_set(list, com->argv[i]);
 	return (1);
 }
