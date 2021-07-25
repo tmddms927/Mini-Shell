@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+         #
+#    By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-#    Updated: 2021/07/24 18:06:49 by seung-eun        ###   ########.fr        #
+#    Updated: 2021/07/25 00:13:31 by hwan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,13 @@ SRCNAME	=	object/set_object.c\
 			parsing/environment.c\
 			parsing/environment2.c\
 			\
-			bipipe/bipipe.c\
-			bipipe/error.c\
-			bipipe/exec.c\
-			bipipe/lst_utils.c\
-			bipipe/redirection.c\
-			bipipe/str_utils.c
+			exec/error.c\
+			exec/exec.c\
+			exec/lst_utils.c\
+			exec/pipe_utils.c\
+			exec/redirection.c\
+			exec/tty_utils.c\
+			exec/str_utils.c
 SRCS	=	${addprefix ${SRCDIR}, ${SRCNAME}}
 INCDIR	=	./includes/
 OBJS	=	${SRCS:.c=.o}

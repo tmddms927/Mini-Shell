@@ -1,11 +1,12 @@
-#include "bipipe.h"
+#include "exec.h"
 
-int			lst_len(t_com *command)
+int	lst_len(t_com *command)
 {
-    t_com	*tmp;
+	t_com	*tmp;
 	int		ret;
 
-	if (!(tmp = command))
+	tmp = command;
+	if (!tmp)
 		return (0);
 	else
 		ret = 1;

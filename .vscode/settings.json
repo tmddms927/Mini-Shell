@@ -1,5 +1,8 @@
 {
     "files.associations": {
+<<<<<<< HEAD
+        "errno.h": "c"
+=======
         "__bit_reference": "c",
         "algorithm": "c",
         "bitset": "c",
@@ -18,5 +21,6 @@
         "ratio": "c",
         "tuple": "c",
         "utility": "c"
+>>>>>>> a3573850ee1ac8581befa0a24f29ee5212b3e654
     }
 }
