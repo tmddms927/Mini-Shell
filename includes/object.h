@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:45:06 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/25 21:42:44 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/25 22:08:27 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,12 @@ t_re	*re_olast(t_list *list);
 */
 
 t_list			*init_list(int argc, char **argv, char **envp);
+
+/*
+** builtin function
+*/
+
+void	export(t_list *list);
+void	env(t_list *list);
 
 #endif
