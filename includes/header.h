@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/25 22:30:46 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/25 23:49:06 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,15 @@ int	add_set_error_code(t_list *list);
 int	check_variable(char *s);
 int	save_set(t_list *list, char *s);
 void	print_set(t_list *list);
+
+/*
+** builtin function
+*/
+
+int		check_builtin(t_list *list, t_com *com);
+int		export(t_list *list);
+int	unset(t_list *list, t_com *com);
+int	env(t_list *list);
+int	ft_exit(void);
 
 #endif

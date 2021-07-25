@@ -6,7 +6,7 @@
 /*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:38:27 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/25 23:11:37 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/25 23:50:39 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_set	*set_olast(t_list *list)
 }
 
 /*
-** set의 $? 원소 찾기
+** set의 원소 찾기
 */
 
 t_set	*find_set(t_list *list, char *s)
@@ -67,4 +67,50 @@ t_set	*find_set(t_list *list, char *s)
 		temp = temp->next;
 	}
 	return (0);
+}
+
+static t_set *remove_set_check_name(t_list *list, t_set **temp,
+	t_set **before, char *s)
+{
+	t_set	*temp2;
+	
+	if (!ft_strcmp(s, (*temp)->name))
+	{
+		temp2 = (*temp)->next;
+		if (*before)
+			(*before)->next = (*temp)->next;
+		else
+			list->set = (*temp)->next;
+		free((*temp)->name);
+		free((*temp)->value);
+		free(*temp);
+		return (temp2);
+	}
+	else
+		return (0);
+}
+
+/*
+** set의 원소 지우기
+*/
+
+void	remove_set(t_list *list, char *s)
+{
+	t_set	*temp;
+	t_set	*temp2;
+	t_set	*before;
+
+	temp = list->set;
+	before = 0;
+	while (temp)
+	{
+		temp2 = remove_set_check_name(list, &temp, &before, s);	
+		if (!temp2)
+		{
+			before = temp;
+			temp = temp->next;
+		}
+		else
+			temp = temp2;
+	}
 }
