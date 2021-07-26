@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 14:49:36 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/26 17:51:46 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/26 18:03:24 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ static t_set	*set2(char *s, t_set **temp, int i)
 	int		j;
 
 	j = -1;
-	(*temp)->name = (char *)malloc(sizeof(char) * (i + 1));
-	if (!(*temp)->name)
-		return (error("Error : failed malloc\n"));
 	while (++j < i)
 		(*temp)->name[j] = s[j];
 	(*temp)->name[j] = 0;
@@ -37,10 +34,14 @@ static t_set	*set2(char *s, t_set **temp, int i)
 	if (!(*temp)->value)
 		return (error("Error : failed malloc\n"));
 	i = 0;
+	if (!s[j])
+	{
+		(*temp)->value[i] = 0;
+		return (*temp);
+	}
 	while (s[++j])
 		(*temp)->value[i++] = s[j];
 	(*temp)->value[i] = 0;
-	(*temp)->next = 0;
 	return (*temp);
 }
 
@@ -55,8 +56,12 @@ static t_set	*set(char *s)
 		return (error("Error : failed malloc\n"));
 	while (s[i] && s[i] != '=')
 		i++;
+	temp->name = (char *)malloc(sizeof(char) * (i + 1));
+	if (!temp->name)
+		return (error("Error : failed malloc\n"));
 	if (!set2(s, &temp, i))
 		return (0);
+	temp->next = 0;
 	return (temp);
 }
 
