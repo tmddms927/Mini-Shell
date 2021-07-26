@@ -6,74 +6,84 @@
 #include <string.h>
 #include <fcntl.h>
 
-void	redirect(t_re *redir_list)
+int	redirect(char *tty, t_re *redir_list)
 {
+	int	ret;
+
 	while (redir_list)
 	{
 		if (redir_list->type == RE_OUT)
-			re_out(redir_list->file);
+			ret = re_out(redir_list->file);
 		else if (redir_list->type == RE_IN)
-			re_in(redir_list->file);
+			ret = re_in(redir_list->file);
 		else if (redir_list->type == H_DOC)
-			h_doc(redir_list->file);
+			ret = h_doc(tty, redir_list->file);
 		else if (redir_list->type == APPEND)
-			append(redir_list->file);
+			ret = append(redir_list->file);
+		if (ret)
+			return (ret);
 		redir_list = redir_list->next;
 	}
+	return (0);
 }
 
-void	re_out(char *file)
+int	re_out(char *file)
 {
 	int	fd;
 
 	fd = open(file, O_WRONLY | O_TRUNC | O_CREAT, 0755);
 	if (fd < 0)
-		exit_safe("minishell", file, errno, 1);
+		return (return_error("minishell", file, errno, 1));
 	if (dup2(fd, STDOUT_FILENO) < 0)
-		exit_safe("minishell", file, errno, 1);
+		return (return_error("minishell", file, errno, 1));
+	return (0);
 }
 
-void	re_in(char *file)
+int	re_in(char *file)
 {
 	int	fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		exit_safe("minishell", file, errno, 1);
+		return (return_error("minishell", file, errno, 1));
 	if (dup2(fd, STDIN_FILENO) < 0)
-		exit_safe("minishell", file, errno, 1);
+		return (return_error("minishell", file, errno, 1));
+	return (0);
 }
 
-void	append(char *file)
+int	append(char *file)
 {
 	int	fd;
 
 	fd = open(file, O_WRONLY | O_APPEND | O_CREAT, 0755);
 	if (fd < 0)
-		exit_safe("minishell", file, errno, 1);
+		return (return_error("minishell", file, errno, 1));
 	if (dup2(fd, STDOUT_FILENO) < 0)
-		exit_safe("minishell", file, errno, 1);
+		return (return_error("minishell", file, errno, 1));
+	return (0);
 }
 
-void	h_doc(char *code)
+int	h_doc(char *tty, char *code)
 {
 	int		fd;
 	char	*tempfile;
 
 	if (!code)
-		exit_safe("minishell", code, errno, 258);
+		return (return_error("minishell", code, errno, 258));
 	tempfile = "/tmp/TTT";
-	find_tty();
+	stdin_init(tty);
 	fd = open(tempfile, O_RDWR | O_TRUNC | O_CREAT, 0755);
 	if (fd < 0)
-		exit_safe("minishell", tempfile, errno, 1);
+		return (return_error("minishell", tempfile, errno, 1));
 	read_endl(fd, code);
 	close(fd);
 	fd = open(tempfile, O_RDONLY);
 	if (fd < 0)
-		exit_safe("minishell", tempfile, errno, 1);
+		return (return_error("minishell", tempfile, errno, 1));
 	if (dup2(fd, STDIN_FILENO) < 0)
-		exit_safe("minishell", "stdin", errno, 1);
+		return (return_error("minishell", "dup2", errno, 1));
 	close(fd);
-	unlink(tempfile);
+	if (unlink(tempfile) < 0)
+		return (return_error("minishell", "unlink", errno, 1));
+	return (0);
 }

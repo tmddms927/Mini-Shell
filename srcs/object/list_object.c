@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_object.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 16:00:23 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/25 20:47:53 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/26 14:44:31 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_list	*init_list(int argc, char **argv, char **envp)
 	temp->envp = envp;
 	temp->path = 0;
 	temp->set = 0;
+	temp->tty = ttyname(1);
 	if (!set_path(temp, envp))
 		return (0);
 	if (!set_set(temp))

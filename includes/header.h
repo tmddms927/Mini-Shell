@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/25 23:49:06 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/27 01:18:00 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_com t_com;
 typedef struct	s_re t_re;
 typedef struct	s_word t_word;
 typedef struct	s_set t_set;
-
+typedef unsigned int	t_bool;
 
 struct			s_set
 {
@@ -48,6 +48,7 @@ typedef struct	s_list
 	char		**envp;
 	char		**path;
 	t_set		*set;
+	char		*tty;
 }				t_list;
 
 struct			s_re
@@ -158,10 +159,14 @@ void	print_set(t_list *list);
 ** builtin function
 */
 
-int		check_builtin(t_list *list, t_com *com);
+int		do_builtin(t_list *list, t_com *com);
 int		export(t_list *list);
 int	unset(t_list *list, t_com *com);
 int	env(t_list *list);
 int	ft_exit(void);
+int echo(char **argv);
+t_bool	check_flag(char *argv, char c);
+int	putstr(char *str, int fd);
+int pwd(void);
 
 #endif

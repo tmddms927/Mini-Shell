@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 23:00:22 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/25 23:43:59 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/27 01:18:04 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include <readline/readline.h>
 
-int	check_builtin(t_list *list, t_com *com)
+int	do_builtin(t_list *list, t_com *com)
 {
 	if (!ft_strcmp("/echo\0", com->c))
-		;
+		return (echo(com->argv));
 	else if (!ft_strcmp("/cd\0", com->c))
 		;
 	else if (!ft_strcmp("/pwd\0", com->c))
-		;
+		return (pwd());
 	else if (!ft_strcmp("/export\0", com->c))
 		return (export(list));
 	else if (!ft_strcmp("/unset\0", com->c))
@@ -28,5 +29,5 @@ int	check_builtin(t_list *list, t_com *com)
 		return (env(list));
 	else if (!ft_strcmp("/exit\0", com->c))
 		return (ft_exit());
-	return (0);
+	return (-1);
 }

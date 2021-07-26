@@ -2,7 +2,7 @@
 #include "object.h"
 #include <limits.h>
 
-int	cd(t_list *list, char *argv)
+int	cd(t_list *list, char **argv)
 {
 	char *dir;
 	char curpath[PATH_MAX];

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+         #
+#    By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-#    Updated: 2021/07/25 23:44:30 by seung-eun        ###   ########.fr        #
+#    Updated: 2021/07/27 01:17:31 by hwan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCNAME	=	object/set_object.c\
 			parsing/environment2.c\
 			\
 			exec/error.c\
+			exec/std_init.c\
 			exec/exec.c\
 			exec/lst_utils.c\
 			exec/pipe_utils.c\
@@ -43,6 +44,8 @@ SRCNAME	=	object/set_object.c\
 			exec/str_utils.c\
 			\
 			builtin/builtin.c\
+			builtin/echo.c\
+			builtin/pwd.c\
 			builtin/export.c\
 			builtin/env.c\
 			builtin/unset.c\
