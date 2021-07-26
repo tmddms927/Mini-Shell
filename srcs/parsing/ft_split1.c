@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:04:25 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/25 21:04:22 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/26 00:01:42 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static int	put_words(t_words *words, char *s, t_list *list, t_pars	*pars)
 int	ft_split(t_words *words, char *s, t_list *list)
 {	
 	t_pars	*pars;
-	
+
 	if (!s)
 		return (free_words(words, ""));
 	pars = (t_pars *)malloc(sizeof(t_pars));

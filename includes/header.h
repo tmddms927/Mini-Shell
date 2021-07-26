@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/25 23:43:46 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/26 17:47:34 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_com t_com;
 typedef struct	s_re t_re;
 typedef struct	s_word t_word;
 typedef struct	s_set t_set;
-
+typedef struct	s_addenv t_addenv;
 
 struct			s_set
 {
@@ -42,12 +42,20 @@ struct			s_set
 	t_set		*next;
 };
 
+struct			s_addenv
+{
+	char		*name;
+	char		*s;
+	t_addenv	*next;
+};
+
 typedef struct	s_list
 {
 	t_com		*head;
 	char		**envp;
 	char		**path;
 	t_set		*set;
+	t_addenv	*addenv;
 }				t_list;
 
 struct			s_re
@@ -158,7 +166,10 @@ void	print_set(t_list *list);
 */
 
 int		check_builtin(t_list *list, t_com *com);
-int		export(t_list *list);
+int		export(t_list *list, t_com *com);
+int	export_argv(t_list *list, t_com *com);
+int	input_addenv(t_list *list, char *s, char *name);
+int	update_addenv(t_list *list, char *s, char *name);
 int	unset(t_list *list, t_com *com);
 int	env(t_list *list);
 int	ft_exit(void);

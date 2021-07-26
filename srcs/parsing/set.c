@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:25:45 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/25 21:27:31 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/26 00:02:28 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	check_variable(char *s)
 
 int	save_set(t_list *list, char *s)
 {
-	int 	i;
+	int		i;
 	int		j;
 	t_set	*temp;
 
@@ -117,7 +117,7 @@ int	save_set(t_list *list, char *s)
 
 void	print_set(t_list *list)
 {
-	t_set *temp;
+	t_set	*temp;
 
 	temp = list->set;
 	while (temp)
