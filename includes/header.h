@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/26 17:47:34 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/26 21:32:38 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,5 +173,9 @@ int	update_addenv(t_list *list, char *s, char *name);
 int	unset(t_list *list, t_com *com);
 int	env(t_list *list);
 int	ft_exit(void);
+
+
+int		init_signal(void);
+void	ctrl_c(int signo);
 
 #endif
