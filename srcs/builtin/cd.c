@@ -21,7 +21,6 @@ int	cd(t_list *list, char **argv)
 		;
 	while (dot_dot_handler(&curpath))
 		;
-	
 }
 
 void	mv_home(t_list *list)
