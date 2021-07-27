@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/27 01:18:00 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/27 11:44:47 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,20 @@ typedef struct	s_re t_re;
 typedef struct	s_word t_word;
 typedef struct	s_set t_set;
 typedef unsigned int	t_bool;
+typedef struct	s_addenv t_addenv;
 
 struct			s_set
 {
 	char		*name;
 	char		*value;
 	t_set		*next;
+};
+
+struct			s_addenv
+{
+	char		*name;
+	char		*s;
+	t_addenv	*next;
 };
 
 typedef struct	s_list
@@ -49,6 +57,7 @@ typedef struct	s_list
 	char		**path;
 	t_set		*set;
 	char		*tty;
+	t_addenv	*addenv;
 }				t_list;
 
 struct			s_re
@@ -160,7 +169,10 @@ void	print_set(t_list *list);
 */
 
 int		do_builtin(t_list *list, t_com *com);
-int		export(t_list *list);
+int		export(t_list *list, t_com *com);
+int	export_argv(t_list *list, t_com *com);
+int	input_addenv(t_list *list, char *s, char *name);
+int	update_addenv(t_list *list, char *s, char *name);
 int	unset(t_list *list, t_com *com);
 int	env(t_list *list);
 int	ft_exit(void);
@@ -168,5 +180,9 @@ int echo(char **argv);
 t_bool	check_flag(char *argv, char c);
 int	putstr(char *str, int fd);
 int pwd(void);
+
+
+int		init_signal(void);
+void	ctrl_c(int signo);
 
 #endif

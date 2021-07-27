@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/26 23:59:59 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/27 11:41:38 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,46 @@
 #include "exec.h"
 #include "object.h"
 
+static int g_sign = 0;
+
+void	ctrl_c(int signo)
+{
+	(void)signo;
+
+	g_sign = 1;
+	// printf("\n");
+	// rl_on_new_line();
+	// write(0, "\r", 1);
+
+	//rl_replace_line("", 0);
+	//rl_redisplay();
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*s;
 	char	prompt[100] = "prompt > \0";
 	t_list	*list;
 
+	init_signal();
 	list = init_list(argc, argv, envp);	
 	if (!list)
 		return (free_list(list, "list malloc failed\n"));
 	while (1)
 	{
 		s = readline(prompt);
+		if (g_sign)
+		{
+			g_sign = 0;
+			free(s);
+			continue ;
+		}
+		if (!s)
+		{
+			write(0, "\b \b\b \b", 6);
+			printf("exit\n");
+			exit(0);
+		}
 		add_history(s);
 		if (!parsing_start(s, list))
 		{
