@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-#    Updated: 2021/07/27 11:45:51 by hwan             ###   ########.fr        #
+#    Created: 2021/07/27 11:48:13 by hwan              #+#    #+#              #
+#    Updated: 2021/07/27 11:48:28 by hwan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCNAME	=	object/set_object.c\
 			object/com_object.c\
 			object/word_object.c\
 			object/list_object.c\
+			object/addenv_object.c\
 			\
 			parsing/ft_split1.c\
 			parsing/ft_split2.c\
@@ -48,9 +49,13 @@ SRCNAME	=	object/set_object.c\
 			builtin/pwd.c\
 			builtin/cd.c\
 			builtin/export.c\
+			builtin/export2.c\
 			builtin/env.c\
 			builtin/unset.c\
-			builtin/exit.c
+			builtin/exit.c\
+			\
+			signal/signal.c
+			
 SRCS	=	${addprefix ${SRCDIR}, ${SRCNAME}}
 INCDIR	=	./includes/
 OBJS	=	${SRCS:.c=.o}

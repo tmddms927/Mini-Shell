@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_object.c                                       :+:      :+:    :+:   */
+/*   addenv_object.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/21 15:38:27 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/27 11:42:09 by seung-eun        ###   ########.fr       */
+/*   Created: 2021/07/26 14:52:10 by seung-eun         #+#    #+#             */
+/*   Updated: 2021/07/26 17:41:05 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "object.h"
-#include "header.h"
 
 /*
 ** set 생성 후 마지막 원소 뒤에 붙여주기
 */
 
-int	set_oadd(t_list *list)
+int	addenv_oadd(t_list *list)
 {
-	t_set		*set;
-	t_set		*temp;
+	t_addenv	*addenv;
+	t_addenv	*temp;
 
-	set = (t_set *)malloc(sizeof(t_set));
-	if (!set)
+	addenv = (t_addenv *)malloc(sizeof(t_addenv));
+	if (!addenv)
 		return (error_list_free("Error : failed malloc\n", list));
-	set->name = 0;
-	set->value = 0;
-	set->next = 0;
-	temp = set_olast(list);
+	addenv->name = 0;
+	addenv->s = 0;
+	addenv->next = 0;
+	temp = addenv_olast(list);
 	if (!temp)
-		list->set = set;
+		list->addenv = addenv;
 	else
-		temp->next = set;
+		temp->next = addenv;
 	return (1);
 }
 
@@ -40,11 +39,11 @@ int	set_oadd(t_list *list)
 ** set의 마지막 원소 찾기
 */
 
-t_set	*set_olast(t_list *list)
+t_addenv	*addenv_olast(t_list *list)
 {
-	t_set		*temp;
+	t_addenv		*temp;
 
-	temp = list->set;
+	temp = list->addenv;
 	if (!temp)
 		return (temp);
 	while (temp->next)
@@ -56,11 +55,11 @@ t_set	*set_olast(t_list *list)
 ** set의 원소 찾기
 */
 
-t_set	*find_set(t_list *list, char *s)
+t_addenv	*find_addenv(t_list *list, char *s)
 {
-	t_set		*temp;
+	t_addenv	*temp;
 
-	temp = list->set;
+	temp = list->addenv;
 	while (temp)
 	{
 		if (!ft_strcmp(temp->name, s))
@@ -70,10 +69,10 @@ t_set	*find_set(t_list *list, char *s)
 	return (0);
 }
 
-static t_set	*remove_set_check_name(t_list *list, t_set **temp,
-			t_set **before, char *s)
+static t_addenv	*remove_addenv_check_name(t_list *list, t_addenv **temp,
+			t_addenv **before, char *s)
 {
-	t_set	*temp2;
+	t_addenv	*temp2;
 
 	if (!ft_strcmp(s, (*temp)->name))
 	{
@@ -81,9 +80,9 @@ static t_set	*remove_set_check_name(t_list *list, t_set **temp,
 		if (*before)
 			(*before)->next = (*temp)->next;
 		else
-			list->set = (*temp)->next;
+			list->addenv = (*temp)->next;
 		free((*temp)->name);
-		free((*temp)->value);
+		free((*temp)->s);
 		free(*temp);
 		return (temp2);
 	}
@@ -95,17 +94,17 @@ static t_set	*remove_set_check_name(t_list *list, t_set **temp,
 ** set의 원소 지우기
 */
 
-void	remove_set(t_list *list, char *s)
+void	remove_addenv(t_list *list, char *s)
 {
-	t_set	*temp;
-	t_set	*temp2;
-	t_set	*before;
+	t_addenv	*temp;
+	t_addenv	*temp2;
+	t_addenv	*before;
 
-	temp = list->set;
+	temp = list->addenv;
 	before = 0;
 	while (temp)
 	{
-		temp2 = remove_set_check_name(list, &temp, &before, s);
+		temp2 = remove_addenv_check_name(list, &temp, &before, s);
 		if (!temp2)
 		{
 			before = temp;

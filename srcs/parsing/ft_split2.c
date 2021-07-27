@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:47:06 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/24 23:43:03 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/27 11:38:54 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	put_words5(t_pars *pars, char **s)
 	{
 		if (pars->i > 0)
 		{
-			if (!input_words(pars->words, *(s - pars->i), pars->i, pars->type))
+			if (!input_words(pars->words, *s - pars->i, pars->i, pars->type))
 				return (free_words(pars->words, ""));
 		}
 		if (*s + 1 && *((*s) + 1) == '>')
@@ -65,7 +65,7 @@ int	put_words6(t_pars *pars, char **s)
 	{
 		if (pars->i > 0)
 		{
-			if (!input_words(pars->words, *(s - pars->i), pars->i, pars->type))
+			if (!input_words(pars->words, *s - pars->i, pars->i, pars->type))
 				return (free_words(pars->words, ""));
 		}
 		if (*s + 1 && *((*s) + 1) == '<')

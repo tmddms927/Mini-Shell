@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/25 23:09:56 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/26 17:27:57 by seung-eun        ###   ########.fr       */
+/*   Created: 2021/07/26 19:21:10 by seung-eun         #+#    #+#             */
+/*   Updated: 2021/07/26 21:30:50 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-#include "object.h"
+#include <termcap.h>
 
-int	unset(t_list *list, t_com *com)
+void	ctrl_backslash(int signo)
 {
-	int	i;
+	(void)signo;
+	//write(0, "\b \b\b \b", 6);
+}
 
-	i = 0;
-	while (com->argv[++i])
-	{
-		remove_set(list, com->argv[i]);
-		remove_addenv(list, com->argv[i]);
-	}
+int		init_signal(void)
+{
+	void (*old_fun)(int);
+	
+	old_fun = signal(SIGINT, ctrl_c);
+	old_fun = signal(SIGQUIT, ctrl_backslash);
 	return (1);
 }
