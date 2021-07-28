@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 21:54:13 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/27 16:50:26 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/28 22:58:48 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	export(t_list *list, t_com *com)
 		}
 		printf("declare -x ");
 		printf("%s=", temp->name);
-		if (temp->value[0])
+		if (temp->value)
 			printf("\"%s\"\n", temp->value);
 		else
 			printf("\n");

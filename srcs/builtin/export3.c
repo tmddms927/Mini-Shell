@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:57:34 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 17:08:46 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 23:01:44 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@ static t_set	*error(char *s)
 	return (0);
 }
 
-static t_set	*set2(char *s, t_set **temp, int i)
+static t_set	*set2(char *s, t_set **temp, int i, int j)
 {
-	int		j;
-
-	j = -1;
-	while (++j < i)
-		(*temp)->name[j] = s[j];
-	(*temp)->name[j] = 0;
+	if (!s[i])
+	{
+		(*temp)->value = 0;
+		return (*temp);
+	}
 	while (s[i])
 		i++;
 	(*temp)->value = (char *)malloc(sizeof(char) * (i - j + 1));
@@ -51,6 +50,8 @@ static t_set	*set(char *s)
 {
 	int		i;
 	t_set	*temp;
+	int		j;
+
 
 	i = 0;
 	temp = (t_set *)malloc(sizeof(t_set));
@@ -61,7 +62,11 @@ static t_set	*set(char *s)
 	temp->name = (char *)malloc(sizeof(char) * (i + 1));
 	if (!temp->name)
 		return (error("Error : failed malloc\n"));
-	if (!set2(s, &temp, i))
+	j = -1;
+	while (++j < i)
+		temp->name[j] = s[j];
+	temp->name[j] = 0;
+	if (!set2(s, &temp, i, j))
 		return (0);
 	temp->next = 0;
 	return (temp);
