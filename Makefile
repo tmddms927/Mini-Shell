@@ -5,19 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-<<<<<<< HEAD
 #    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-#    Updated: 2021/07/28 16:26:12 by seung-eun        ###   ########.fr        #
-=======
-#    Created: 2021/07/27 11:48:13 by hwan              #+#    #+#              #
-#    Updated: 2021/07/27 16:59:31 by hwan             ###   ########.fr        #
->>>>>>> 1007fb8ddd893a2592a545edb2a1c7641b8cc4cd
+#    Updated: 2021/07/28 16:44:25 by seung-eun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 OUT		=	minishell
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra #-fsanitize=address -g
+CFLAGS	=	-Wall -Werror -Wextra
+#-fsanitize=address -g
 SRCDIR  =	./srcs/
 SRCNAME	=	gnl/get_next_line.c\
 			gnl/get_next_line_utils.c\
@@ -79,19 +75,10 @@ test	:	re
 			./${OUT}
 
 .c.o	:
-<<<<<<< HEAD
 	@${CC} ${CFLAGS} -I ${INCDIR} -c ${<} -o ${<:.c=.o} -I/usr/local/opt/readline/include
 
 ${OUT}: ${OBJS}
 	@${CC} ${CFLAGS} ${CLIB} -o ${OUT} ${OBJS} -lncurses -lreadline -L/usr/local/opt/readline/lib -I/usr/local/opt/readline/include
-=======
-	@${CC} ${CFLAGS} -I ${INCDIR} -c ${<} -o ${<:.c=.o} 
-# -I/usr/local/opt/readline/include
-
-${OUT}: ${OBJS}
-	@${CC} ${CFLAGS} ${CLIB} -o ${OUT} ${OBJS} -lreadline 
-# -L/usr/local/opt/readline/lib -I/usr/local/opt/readline/include
->>>>>>> 1007fb8ddd893a2592a545edb2a1c7641b8cc4cd
 
 fclean	: clean
 	@rm -rf	${OUT}

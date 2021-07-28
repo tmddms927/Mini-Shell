@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 16:03:43 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 16:38:45 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 16:45:58 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int				get_next_line(int fd, char **line, t_list *list)
 	if (fd < 0 || !line || BUFFER_SIZE < 1)
 		return (-1);
 	idx = 0;
+	c = 0;
 	while ((read_size = read(fd, &c, BUFFER_SIZE)) > 0)
 	{
-		printf("\n=========++>%d\n", c);
 		if (!buf_check(c, &idx, &g_backup[fd], list))
 			continue ;
 		buf[0] = c;
@@ -45,6 +45,7 @@ int				get_next_line(int fd, char **line, t_list *list)
 		g_backup[fd] = gnl_ft_strjoin(g_backup[fd], buf);
 		if ((end_index = check_line(g_backup[fd])) > -1)
 			return (split_line(&g_backup[fd], line, end_index));
+		c = 0;
 	}
 	return (check_return(&g_backup[fd], line, read_size));
 }
