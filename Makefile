@@ -6,13 +6,14 @@
 #    By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 11:48:13 by hwan              #+#    #+#              #
-#    Updated: 2021/07/28 16:42:14 by seung-eun        ###   ########.fr        #
+#    Updated: 2021/07/28 16:48:31 by seung-eun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 OUT		=	minishell
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra #-fsanitize=address -g
+CFLAGS	=	-Wall -Werror -Wextra
+#-fsanitize=address -g
 SRCDIR  =	./srcs/
 SRCNAME	=	gnl/get_next_line.c\
 			gnl/get_next_line_utils.c\
@@ -74,19 +75,10 @@ test	:	re
 			./${OUT}
 
 .c.o	:
-<<<<<<< HEAD
 	@${CC} ${CFLAGS} -I ${INCDIR} -c ${<} -o ${<:.c=.o} 
-# -I/usr/local/opt/readline/include
 
 ${OUT}: ${OBJS}
 	@${CC} ${CFLAGS} ${CLIB} -o ${OUT} ${OBJS} -lreadline 
-# -L/usr/local/opt/readline/lib -I/usr/local/opt/readline/include
-=======
-	@${CC} ${CFLAGS} -I ${INCDIR} -c ${<} -o ${<:.c=.o} -I/usr/local/opt/readline/include
-
-${OUT}: ${OBJS}
-	@${CC} ${CFLAGS} ${CLIB} -o ${OUT} ${OBJS} -lncurses -lreadline -L/usr/local/opt/readline/lib -I/usr/local/opt/readline/include
->>>>>>> seungoh
 
 fclean	: clean
 	@rm -rf	${OUT}
