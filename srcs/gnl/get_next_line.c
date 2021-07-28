@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 16:03:43 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 17:42:34 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 20:12:38 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ctrl_c(int signo)
 	return ;
 }
 
-int	get_next_line(int fd, char **line, t_list *list)
+int	get_next_line(int fd, char **line, t_list *list, int check)
 {
 	char		buf[BUFFER_SIZE + 1];
 	int			end_index;
@@ -36,8 +36,11 @@ int	get_next_line(int fd, char **line, t_list *list)
 	c = 0;
 	while (read(fd, &c, BUFFER_SIZE))
 	{
-		if (!buf_check(c, &idx, &g_backup[fd], list))
+		check = buf_check(c, &idx, &g_backup[fd], list);
+		if (check == 2)
 			continue ;
+		else if (check == 0)
+			return (0);
 		buf[0] = c;
 		buf[1] = 0;
 		g_backup[fd] = gnl_ft_strjoin(g_backup[fd], buf);

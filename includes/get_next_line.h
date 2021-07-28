@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:54:42 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 17:40:26 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 20:10:30 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdio.h>
 # include "header.h"
 
-int		get_next_line(int fd, char **line, t_list *list);
+int		get_next_line(int fd, char **line, t_list *list, int check);
 int		check_line(char *backup, int *end_index);
 int		split_line(char **backup, char **line, int end_index);
 int		check_return(char **backup, char **line, int read_size);

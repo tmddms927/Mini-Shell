@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 17:46:00 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 20:12:12 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(int argc, char **argv, char **envp)
 	char	*s;
 	t_list	*list;
 
-	init_signal();
 	list = init_list(argc, argv, envp);
 	if (!list)
 		return (free_list(list, "list malloc failed\n"));
@@ -28,8 +27,8 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		set_input_mode(list);
-		if (!get_next_line(0, &s, list))
-			 continue ;
+		if (!get_next_line(0, &s, list, 0))
+			return (0);
 		reset_input_mode(list);
 		his_oadd(list, s);
 		if (!parsing_start(s, list))
