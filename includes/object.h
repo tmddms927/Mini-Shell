@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:45:06 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/26 17:40:16 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 14:04:17 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,13 @@ int	addenv_oadd(t_list *list);
 t_addenv	*addenv_olast(t_list *list);
 t_addenv	*find_addenv(t_list *list, char *s);
 void	remove_addenv(t_list *list, char *s);
+
+/*
+** his object
+*/
+
+int	his_stack_oadd(t_list *list);
+int	his_oadd(t_list *list, char *s);
+t_his	*his_olast(t_list *list);
 
 #endif

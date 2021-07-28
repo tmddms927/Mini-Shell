@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/27 17:02:22 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/28 16:41:52 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <termios.h>
 // # include "bipipe.h"
 
 # define COM 1
@@ -37,6 +38,7 @@ typedef struct	s_word t_word;
 typedef struct	s_set t_set;
 typedef unsigned int	t_bool;
 typedef struct	s_addenv t_addenv;
+typedef struct	s_his t_his;
 
 struct			s_set
 {
@@ -52,6 +54,18 @@ struct			s_addenv
 	t_addenv	*next;
 };
 
+typedef struct	s_his_stack
+{
+	t_his		*head;
+}				t_his_stack;
+
+struct			s_his
+{
+	t_his	*before;
+	char		*s;
+	t_his	*next;
+};
+
 typedef struct	s_list
 {
 	t_com		*head;
@@ -60,6 +74,11 @@ typedef struct	s_list
 	t_set		*set;
 	char		*tty;
 	t_addenv	*addenv;
+	t_his_stack	*his;
+	t_his		*his_here;
+	int			his_check;
+	struct termios	org_term;
+	struct termios	new_term;
 }				t_list;
 
 struct			s_re
@@ -103,8 +122,8 @@ typedef struct	s_pars
 	int			orig_len;
 	int			pos;
 	t_words		*words;
-}
-				t_pars;
+}				t_pars;
+
 /*
 ** parsing
 */
@@ -193,5 +212,4 @@ void	ft_bzero(char *s, unsigned int size);
 
 int		init_signal(void);
 void	ctrl_c(int signo);
-
 #endif
