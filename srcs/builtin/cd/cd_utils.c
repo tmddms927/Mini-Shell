@@ -43,7 +43,8 @@ t_bool	not_need_sl(char *curpath)
 		if (!ft_strncmp(&curpath[i], "//", 2)
 			|| !ft_strncmp(&curpath[i], "/\0", 2))
 		{
-			ft_memmove(&curpath[i], &curpath[i + 1], 1);
+			ft_memmove(&curpath[i], &curpath[i + 1],
+				ft_strlen(&curpath[i + 1]) + 1);
 			return (TRUE);
 		}
 		i++;
@@ -61,8 +62,8 @@ t_bool	dot_handler(char *curpath)
 		if (!ft_strncmp(&curpath[i], "/./", 3)
 			|| !ft_strncmp(&curpath[i], "/.\0", 3))
 		{
-			ft_memmove(&curpath[i + 1], &curpath[i + 3],
-				ft_strlen(&curpath[i + 3]));
+			ft_memmove(&curpath[i + 1], &curpath[i + 2],
+				ft_strlen(&curpath[i + 2]) + 1);
 			return (TRUE);
 		}
 		i++;
@@ -79,15 +80,17 @@ t_bool	dot_dot_handler(char *curpath)
 	pre = 0;
 	while (curpath[i])
 	{
-		if (curpath[i] == '/')
-			pre = i;
 		if (!ft_strncmp(&curpath[i], "/../", 4)
 			|| !ft_strncmp(&curpath[i], "/..\0", 4))
 		{
 			ft_memmove(&curpath[pre + 1], &curpath[i + 4],
-				ft_strlen(&curpath[i + 4]));
+				ft_strlen(&curpath[i + 4]) + 1);
+			ft_bzero(curpath + ft_strlen(curpath) + 1,
+				PATH_MAX - ft_strlen(curpath) - 1);
 			return (TRUE);
 		}
+		if (curpath[i] == '/')
+			pre = i;
 		i++;
 	}
 	return (FALSE);

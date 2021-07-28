@@ -14,9 +14,9 @@ int	cd(t_list *list, char **argv)
 	if (!dir)
 		return (mv_home(list));
 	set_curpath(curpath, dir);
-	while (not_need_sl(curpath))
-		;
 	while (dot_handler(curpath))
+		;
+	while (not_need_sl(curpath))
 		;
 	while (dot_dot_handler(curpath))
 		;
