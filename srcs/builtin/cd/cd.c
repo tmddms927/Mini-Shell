@@ -15,11 +15,11 @@ int	cd(t_list *list, char **argv)
 		return (mv_home(list));
 	set_curpath(curpath, dir);
 	while (not_need_sl(curpath))
-		;
+		write(2, "A", 1);
 	while (dot_handler(curpath))
-		;
+		write(2, "B", 1);
 	while (dot_dot_handler(curpath))
-		;
+		write(2, "C", 1);
 	ret = chdir(curpath);
 	if (ret)
 		return (return_error("minishell", "cd", errno, 1));

@@ -54,6 +54,7 @@ t_bool	not_need_sl(char *curpath)
 t_bool	dot_handler(char *curpath)
 {
 	int	i;
+	int	len;
 
 	i = 0;
 	while (curpath[i])
@@ -61,6 +62,9 @@ t_bool	dot_handler(char *curpath)
 		if (!ft_strncmp(&curpath[i], "/./", 3)
 			|| !ft_strncmp(&curpath[i], "/.\0", 3))
 		{
+			len = ft_strlen(&curpath[i + 4]);
+			if (!len)
+				len = 1;
 			ft_memmove(&curpath[i + 1], &curpath[i + 3],
 				ft_strlen(&curpath[i + 3]));
 			return (TRUE);
@@ -74,20 +78,24 @@ t_bool	dot_dot_handler(char *curpath)
 {
 	int	i;
 	int	pre;
+	int	len;
 
 	i = 0;
 	pre = 0;
 	while (curpath[i])
 	{
-		if (curpath[i] == '/')
-			pre = i;
 		if (!ft_strncmp(&curpath[i], "/../", 4)
 			|| !ft_strncmp(&curpath[i], "/..\0", 4))
 		{
+			len = ft_strlen(&curpath[i + 4]);
+			if (!len)
+				len = 1;
 			ft_memmove(&curpath[pre + 1], &curpath[i + 4],
-				ft_strlen(&curpath[i + 4]));
+				len);
 			return (TRUE);
 		}
+		if (curpath[i] == '/')
+			pre = i;
 		i++;
 	}
 	return (FALSE);
