@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:38:27 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 13:36:13 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 23:25:02 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ static t_set	*remove_set_check_name(t_list *list, t_set **temp,
 {
 	t_set	*temp2;
 
+	temp2 = (*temp)->next;
 	if (!ft_strcmp(s, (*temp)->name))
 	{
-		temp2 = (*temp)->next;
 		if (*before)
 			(*before)->next = (*temp)->next;
 		else
@@ -84,10 +84,9 @@ static t_set	*remove_set_check_name(t_list *list, t_set **temp,
 		free((*temp)->name);
 		free((*temp)->value);
 		free(*temp);
-		return (temp2);
+		*temp = 0;
 	}
-	else
-		return (0);
+	return (temp2);
 }
 
 /*
@@ -105,12 +104,15 @@ void	remove_set(t_list *list, char *s)
 	while (temp)
 	{
 		temp2 = remove_set_check_name(list, &temp, &before, s);
-		if (!temp2)
+		if (!temp)
 		{
-			before = temp;
-			temp = temp->next;
+			if (before)
+				before->next = temp2;
+			else
+				list->set = temp;
+			return ;
 		}
-		else
-			temp = temp2;
+		before = temp;
+		temp = temp->next;
 	}
 }

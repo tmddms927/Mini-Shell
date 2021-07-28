@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 14:52:10 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 17:32:06 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 23:25:23 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ static t_addenv	*remove_addenv_check_name(t_list *list, t_addenv **temp,
 		free((*temp)->name);
 		free((*temp)->s);
 		free(*temp);
+		*temp = 0;
 		return (temp2);
 	}
 	else
@@ -105,12 +106,15 @@ void	remove_addenv(t_list *list, char *s)
 	while (temp)
 	{
 		temp2 = remove_addenv_check_name(list, &temp, &before, s);
-		if (!temp2)
+		if (!temp)
 		{
-			before = temp;
-			temp = temp->next;
+			if (before)
+				before->next = temp2;
+			else
+				list->addenv = temp;
+			return ;
 		}
-		else
-			temp = temp2;
+		before = temp;
+		temp = temp->next;
 	}
 }
