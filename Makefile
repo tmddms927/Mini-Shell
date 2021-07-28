@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+         #
+#    By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2021/07/27 01:17:31 by hwan             ###   ########.fr        #
-=======
-#    Updated: 2021/07/26 21:24:24 by seung-eun        ###   ########.fr        #
->>>>>>> seungoh
+#    Updated: 2021/07/28 14:17:41 by seung-eun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +14,15 @@ OUT		=	minishell
 CC		=	gcc
 CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
 SRCDIR  =	./srcs/
-SRCNAME	=	object/set_object.c\
+SRCNAME	=	gnl/get_next_line.c\
+			gnl/get_next_line_utils.c\
+			object/set_object.c\
 			object/re_object.c\
 			object/com_object.c\
 			object/word_object.c\
 			object/list_object.c\
 			object/addenv_object.c\
+			object/his_object.c\
 			\
 			parsing/ft_split1.c\
 			parsing/ft_split2.c\
@@ -38,6 +37,7 @@ SRCNAME	=	object/set_object.c\
 			parsing/utils2.c\
 			parsing/environment.c\
 			parsing/environment2.c\
+			parsing/terminal_set.c\
 			\
 			exec/error.c\
 			exec/std_init.c\
@@ -72,10 +72,10 @@ test	:	re
 			./${OUT}
 
 .c.o	:
-	@${CC} ${CFLAGS} -I ${INCDIR} -c ${<} -o ${<:.c=.o}
+	@${CC} ${CFLAGS} -I ${INCDIR} -c ${<} -o ${<:.c=.o} -I/usr/local/opt/readline/include
 
 ${OUT}: ${OBJS}
-	@${CC} ${CFLAGS} ${CLIB} -o ${OUT} ${OBJS} -lreadline
+	@${CC} ${CFLAGS} ${CLIB} -o ${OUT} ${OBJS} -lncurses -lreadline -L/usr/local/opt/readline/lib -I/usr/local/opt/readline/include
 
 fclean	: clean
 	@rm -rf	${OUT}

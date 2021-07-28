@@ -6,63 +6,42 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/27 11:41:38 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 14:24:43 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "header.h"
 #include "exec.h"
 #include "object.h"
-
-static int g_sign = 0;
-
-void	ctrl_c(int signo)
-{
-	(void)signo;
-
-	g_sign = 1;
-	// printf("\n");
-	// rl_on_new_line();
-	// write(0, "\r", 1);
-
-	//rl_replace_line("", 0);
-	//rl_redisplay();
-}
+#include <fcntl.h>
+#include "get_next_line.h"
 
 int	main(int argc, char **argv, char **envp)
 {
 	char	*s;
-	char	prompt[100] = "prompt > \0";
 	t_list	*list;
 
 	init_signal();
 	list = init_list(argc, argv, envp);	
 	if (!list)
 		return (free_list(list, "list malloc failed\n"));
+	write(1, "prompt > ", 9);
 	while (1)
 	{
-		s = readline(prompt);
-		if (g_sign)
-		{
-			g_sign = 0;
-			free(s);
-			continue ;
-		}
-		if (!s)
-		{
-			write(0, "\b \b\b \b", 6);
-			printf("exit\n");
-			exit(0);
-		}
-		add_history(s);
+		set_input_mode(list);
+		if (!get_next_line(0, &s, list))
+			 continue ;
+		write(0, "\n", 1);
+		reset_input_mode(list);
+		his_oadd(list, s);
 		if (!parsing_start(s, list))
 		{
 			free(s);
 			continue ;
 		}
 		snatch_error(exec(list), list);
-		//print_list(list);
 		error_list_free("", list);
+		write(1, "\nprompt > ", 10);
 	}
 	return (free_list(list, ""));
 }

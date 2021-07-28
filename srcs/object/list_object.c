@@ -6,11 +6,13 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 16:00:23 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/27 11:43:05 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 14:05:37 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include "get_next_line.h"
+#include "object.h"
 
 /*
 ** 프로그램 시작 시 list 세팅해주는 함수
@@ -31,6 +33,9 @@ t_list	*init_list(int argc, char **argv, char **envp)
 	temp->set = 0;
 	temp->tty = ttyname(1);
 	temp->addenv = 0;
+	if (!his_stack_oadd(temp))
+		return (0);
+	save_input_mode(temp);
 	if (!set_path(temp, envp))
 		return (0);
 	if (!set_set(temp))
