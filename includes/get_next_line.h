@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:54:42 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 20:10:30 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 21:58:22 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*gnl_ft_strjoin(char *s1, char *s2);
 char	*single_str(char *s);
 char	*single_str2(char *s);
 
-int		buf_check(int c, int *idx, char **s, t_list *list);
+int		buf_check(int *c, int *idx, char **s, t_list *list);
 void	save_input_mode(t_list *list);
 void	set_input_mode(t_list *list);
 void	reset_input_mode(t_list *list);

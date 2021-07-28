@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 17:58:15 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 21:53:00 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 21:59:14 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,28 +80,29 @@ static int	buf_check2(int c, int *idx, char **s, t_list *list)
 	return (0);
 }
 
-int	buf_check(int c, int *idx, char **s, t_list *list)
+int	buf_check(int *c, int *idx, char **s, t_list *list)
 {
-	if (c == 4 && !*idx)
+	if (*c == 4 && !*idx)
 	{
 		printf("exit\n");
 		reset_input_mode(list);
 		return (0);
 	}
-	else if (c == 127)
+	else if (*c == 127)
 	{
 		if (*idx > 0)
 		{
 			write(0, "\b \b", 3);
 			(*s)[--(*idx)] = 0;
+			*c = 0;
 			return (2);
 		}
 	}
-	else if (buf_check2(c, idx, s, list))
+	else if (buf_check2(*c, idx, s, list))
 		return (2);
 	else
 	{
-		write(0, &c, 1);
+		write(0, c, 1);
 		(*idx)++;
 	}
 	return (1);
