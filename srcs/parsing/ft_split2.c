@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:47:06 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/27 11:38:54 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 22:52:30 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,26 +87,26 @@ int	put_words6(t_pars *pars, char **s)
 	return (2);
 }
 
-int	put_words7(t_pars *pars, char *s)
+int	put_words7(t_pars *pars, char **s)
 {
-	if (pars->type != 1 && pars->type != 2 && *s == '\\')
+	if (pars->type != 2 && **s == '\\' && (*s + 1)
+		&& (*(*s + 1) == '\\' || *(*s + 1) == '"' || *(*s + 1) == '\''))
 	{
-		(pars->i)++;
-		*s = 0;
+		pars->i += 2;
+		**s = 0;
+		(*s)++;
 		return (1);
 	}
-	else if (*s == '\\' && ((pars->type == 1 && (s + 1) && *(s + 1) == '"')
-			|| (pars->type == 2 && (s + 1) && *(s + 1) == '\'')))
+	else if (pars->type != 2 && **s == '\\')
 	{
-		*s = 0;
-		pars->i += 2;
-		s += 2;
+		pars->i += 1;
+		**s = 0;
 		return (1);
 	}
 	else if (pars->type != 1 && pars->type != 2 && pars->i > 0
-		&& ((*s > 8 && *s < 14) || *s == 32))
+		&& ((**s > 8 && **s < 14) || **s == 32))
 	{
-		if (!input_words(pars->words, s - pars->i, pars->i, pars->type))
+		if (!input_words(pars->words, *s - pars->i, pars->i, pars->type))
 			return (free_words(pars->words, ""));
 		pars->i = 0;
 		pars->type = 0;

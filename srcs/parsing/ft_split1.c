@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:04:25 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/26 00:01:42 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 22:48:05 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	put_words2_2(t_pars *pars, char **s)
 		val = put_words6(pars, s);
 		if (val == 2)
 		{
-			val = put_words7(pars, *s);
+			val = put_words7(pars, s);
 			if (val == 2)
 				put_words8(pars, *s);
 		}

@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 22:07:21 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 22:14:30 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 22:27:02 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ int	main(int argc, char **argv, char **envp)
 			return (0);
 		reset_input_mode(list);
 		if (!parsing_start(s, list))
+		{
+			write(1, "prompt > ", 10);
 			continue ;
+		}
 		exec(list);
 		error_list_free("", list);
 		write(1, "prompt > ", 10);
