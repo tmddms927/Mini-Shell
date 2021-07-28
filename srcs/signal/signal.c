@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 19:21:10 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 16:17:10 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 16:24:20 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static int	down(int *idx, char **s, t_list *list)
 		list->his_here = list->his->head;
 	if (list->his_here && list->his_here->next)
 	{
-		list->his_here = list->his_here->next;
+		if (list->his_check != 2)
+			list->his_here = list->his_here->next;
 		write(1, list->his_here->s, ft_strlen(list->his_here->s));
 		*idx = ft_strlen(list->his_here->s);
 		ft_strcat_s(s, &(list->his_here->s));
