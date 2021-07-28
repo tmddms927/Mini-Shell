@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 19:21:10 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 16:24:20 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 16:38:16 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static int	down(int *idx, char **s, t_list *list)
 
 static int	up_down(int c, int *idx, char **s, t_list *list)
 {
-	if (c == 4479771 || c == 4414235)
+	if (c == 4479771 || c == 4414235 || c == -314287333 || c == -314352869)
 		return (1);
-	if (c == 4283163)
+	if (c == 4283163 || c == -314483941)
 	{
 		while (--*idx >= 0)
 			write(0, "\b \b", 3);
@@ -68,19 +68,20 @@ static int	up_down(int c, int *idx, char **s, t_list *list)
 
 static int	buf_check2(int c, int *idx, char **s, t_list *list)
 {
-	if (c == 4283163 || c == 4348699 || c == 4479771 || c == 4414235)
+	if (c == 4283163 || c == 4348699 || c == 4479771 || c == 4414235
+		|| c == -314483941 || c == -314418405 || c == -314287333 || c == -314352869)
 		return (up_down(c, idx, s, list));
 	return (0);
 }
 
 int	buf_check(int c, int *idx, char **s, t_list *list)
 {
-	if (c == 4 && !*idx)
+	if ((c == 4 || c == -488912636) && !*idx)
 	{
 		write(1, "exit\n", 5);
 		exit(0);
 	}
-	else if (c == 127)
+	else if (c == 127 || c == -312743553)
 	{
 		if (*idx > 0)
 		{

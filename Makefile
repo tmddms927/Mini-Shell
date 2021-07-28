@@ -6,13 +6,13 @@
 #    By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 20:07:16 by seungoh           #+#    #+#              #
-#    Updated: 2021/07/28 16:22:37 by seung-eun        ###   ########.fr        #
+#    Updated: 2021/07/28 16:26:12 by seung-eun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 OUT		=	minishell
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS	=	-Wall -Werror -Wextra #-fsanitize=address -g
 SRCDIR  =	./srcs/
 SRCNAME	=	gnl/get_next_line.c\
 			gnl/get_next_line_utils.c\
