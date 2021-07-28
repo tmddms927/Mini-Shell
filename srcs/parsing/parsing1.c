@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 22:06:09 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 22:14:37 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,22 @@
 #include <fcntl.h>
 #include "get_next_line.h"
 
-int	main(int argc, char **argv, char **envp)
+static int	parsing_start2(t_list *list, t_words *words)
 {
-	char	*s;
-	t_list	*list;
-
-	list = init_list(argc, argv, envp);
-	if (!list)
-		return (free_list(list, "list malloc failed\n"));
-	write(1, "prompt > ", 9);
-	while (1)
+	if (!set_list(list, words))
 	{
-		set_input_mode(list);
-		if (!get_next_line(0, &s, list, 0))
-			return (0);
-		reset_input_mode(list);
-		his_oadd(list, s);
-		if (!parsing_start(s, list))
-			continue ;
-		exec(list);
-		error_list_free("", list);
-		write(1, "prompt > ", 10);
+		free_list(list, "");
+		return (0);
 	}
-	return (free_list(list, ""));
+	if (!check_list_error(list))
+	{
+		free_words(words, "");
+		write(1, "prompt > ", 10);
+		return (error_list_free("", list));
+	}
+	set_path_in_com(list);
+	free_words(words, "");
+	return (1);
 }
 
 /*
@@ -57,21 +50,11 @@ int	parsing_start(char *s, t_list *list)
 		write(1, "prompt > ", 10);
 		return (0);
 	}
+	his_oadd(list, s);
 	if (!ft_split(words, s, list))
 		return (0);
-	if (!set_list(list, words))
-	{
-		free_list(list, "");
+	if (!parsing_start2(list, words))
 		return (0);
-	}
-	if (!check_list_error(list))
-	{
-		free_words(words, "");
-		write(1, "prompt > ", 10);
-		return (error_list_free("", list));
-	}
-	set_path_in_com(list);
-	free_words(words, "");
 	return (1);
 }
 
