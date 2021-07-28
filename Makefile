@@ -6,7 +6,7 @@
 #    By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 11:48:13 by hwan              #+#    #+#              #
-#    Updated: 2021/07/27 11:48:28 by hwan             ###   ########.fr        #
+#    Updated: 2021/07/27 16:59:31 by hwan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ SRCNAME	=	object/set_object.c\
 			builtin/builtin.c\
 			builtin/echo.c\
 			builtin/pwd.c\
-			builtin/cd.c\
+			builtin/cd/cd.c\
+			builtin/cd/cd_utils.c\
 			builtin/export.c\
 			builtin/export2.c\
 			builtin/env.c\
@@ -69,10 +70,12 @@ test	:	re
 			./${OUT}
 
 .c.o	:
-	@${CC} ${CFLAGS} -I ${INCDIR} -c ${<} -o ${<:.c=.o}
+	@${CC} ${CFLAGS} -I ${INCDIR} -c ${<} -o ${<:.c=.o} 
+# -I/usr/local/opt/readline/include
 
 ${OUT}: ${OBJS}
-	@${CC} ${CFLAGS} ${CLIB} -o ${OUT} ${OBJS} -lreadline
+	@${CC} ${CFLAGS} ${CLIB} -o ${OUT} ${OBJS} -lreadline 
+# -L/usr/local/opt/readline/lib -I/usr/local/opt/readline/include
 
 fclean	: clean
 	@rm -rf	${OUT}

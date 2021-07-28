@@ -1,6 +1,6 @@
 #include "exec.h"
 
-int echo(char **argv)
+int	echo(char **argv)
 {
 	int		i;
 	t_bool	no_nl;
@@ -30,8 +30,8 @@ int echo(char **argv)
 
 t_bool	check_flag(char *argv, char c)
 {
-	int i;
-	t_bool ret;
+	int		i;
+	t_bool	ret;
 
 	i = 1;
 	ret = FALSE;

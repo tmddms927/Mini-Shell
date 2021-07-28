@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 23:00:22 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/27 11:45:19 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/27 14:33:00 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	do_builtin(t_list *list, t_com *com)
 	if (!ft_strcmp("/echo\0", com->c))
 		return (echo(com->argv));
 	else if (!ft_strcmp("/cd\0", com->c))
-		;
+		return (cd(list, com->argv));
 	else if (!ft_strcmp("/pwd\0", com->c))
 		return (pwd());
 	else if (!ft_strcmp("/export\0", com->c))

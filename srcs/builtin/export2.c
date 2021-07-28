@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 14:49:36 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/26 18:03:24 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/27 16:56:51 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ static int	s_check(char *s)
 	{
 		if (s[i] == '=' && check == 1)
 			check = 2;
-		else if (!(s[i] >= 'a' && s[i] <= 'z') && !(s[i] >= 'A' && s[i] <= 'Z') && check == 0)
+		else if (!(s[i] >= 'a' && s[i] <= 'z') && !(s[i] >= 'A'
+				&& s[i] <= 'Z') && check == 0)
 		{
 			printf("minishell: export: '%s': not a valid identifier\n", s);
 			return (0);
@@ -96,10 +97,10 @@ static int	s_check(char *s)
 
 int	export_argv(t_list *list, t_com *com)
 {
-	int t;
+	int		t;
 	t_set	*temp;
 	t_set	*temp2;
-	
+
 	t = 0;
 	while (com->argv[++t])
 	{

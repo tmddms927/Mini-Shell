@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/27 11:44:47 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/27 17:02:22 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define ARGV 6
 # define NOT 7
 # define RE 8
+# define TRUE 1
+# define FALSE 0
 
 typedef struct	s_com t_com;
 typedef struct	s_re t_re;
@@ -180,7 +182,14 @@ int echo(char **argv);
 t_bool	check_flag(char *argv, char c);
 int	putstr(char *str, int fd);
 int pwd(void);
-
+int	cd(t_list *list, char **argv);
+int	mv_home(t_list *list);
+t_bool	get_home(char *path, t_list *list);
+int	set_curpath(char *curpath, char *dir);
+t_bool not_need_sl(char *curpath);
+t_bool	dot_handler(char *curpath);
+t_bool	dot_dot_handler(char *curpath);
+void	ft_bzero(char *s, unsigned int size);
 
 int		init_signal(void);
 void	ctrl_c(int signo);

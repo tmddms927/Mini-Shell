@@ -19,10 +19,8 @@ char	*ft_strjoin(char *cont, char *s)
 		if (!tmp)
 			return (0);
 		ft_memset(tmp, dest_len + src_len + 1);
-		ft_memmove(tmp, cont);
-		ft_memmove(tmp + ft_strlen(cont), s);
-		free(cont);
-		free(s);
+		ft_memmove(tmp, cont, ft_strlen(cont));
+		ft_memmove(tmp + dest_len, s, ft_strlen(s));
 	}
 	return (tmp);
 }
@@ -41,49 +39,32 @@ void	ft_memset(char *p, unsigned int size)
 	}
 }
 
-// int	ft_memmove(char *dest, char *src)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (!dest || !src)
-// 		return (0);
-// 	while (src[i])
-// 	{
-// 		dest[i] = src[i];
-// 		i++;
-// 	}
-// 	return (i);
-// }
-
-
-int	ft_memmove(char *dest, char *src)
+void	*ft_memmove(void *dest, const void *src, size_t num)
 {
-	int	i;
-	int size;
+	unsigned char	*tmp_dest;
+	unsigned char	*tmp_src;
+	size_t			i;
 
-	size = ft_strlen(src) + 1;
-	if (dest == src)
-		return (0);
-	else if (dest < src)
+	i = 0;
+	tmp_dest = (unsigned char *)dest;
+	tmp_src = (unsigned char *)src;
+	if (dest < src && !(dest == 0 && src == 0))
 	{
-		i = 0;
-		while (i < size)
+		while (i < num)
 		{
-			dest[i] = src[i];
-			i++;
+			tmp_dest[i] = tmp_src[i];
+			++i;
 		}
 	}
-	else
+	else if (dest >= src && !(dest == 0 && src == 0))
 	{
-		i = size;
-		while (i > -1)
+		while (i < num)
 		{
-			dest[i] = src[i];
-			i--;
+			tmp_dest[num - i - 1] = tmp_src[num - i - 1];
+			++i;
 		}
 	}
-	return (size);
+	return (dest);
 }
 
 void	read_endl(int fd, char *code)
@@ -106,4 +87,13 @@ void	read_endl(int fd, char *code)
 		write(fd, "\n", 1);
 		free(s);
 	}
+}
+
+void	ft_bzero(char *s, unsigned int size)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < size)
+		s[i++] = 0;
 }
