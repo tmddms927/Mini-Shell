@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:54:42 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 15:54:13 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 17:40:26 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
-#include "header.h"
+# include "header.h"
 
 int		get_next_line(int fd, char **line, t_list *list);
-int		check_line(char *backup);
+int		check_line(char *backup, int *end_index);
 int		split_line(char **backup, char **line, int end_index);
 int		check_return(char **backup, char **line, int read_size);
 
@@ -34,9 +34,9 @@ char	*gnl_ft_strjoin(char *s1, char *s2);
 char	*single_str(char *s);
 char	*single_str2(char *s);
 
-int	buf_check(int c, int *idx, char **s, t_list *list);
-void save_input_mode(t_list *list);
-void set_input_mode(t_list *list);
-void reset_input_mode(t_list *list);
+int		buf_check(int c, int *idx, char **s, t_list *list);
+void	save_input_mode(t_list *list);
+void	set_input_mode(t_list *list);
+void	reset_input_mode(t_list *list);
 
 #endif

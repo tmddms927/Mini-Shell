@@ -19,7 +19,7 @@ int	stdout_init(char *tty)
 
 	if (!isatty(STDOUT_FILENO))
 	{
-		fd = open(tty, O_WRONLY);
+		fd = open(tty, O_RDWR);
 		if (fd < 0)
 			return (return_error("minishell", "stdout", errno, 1));
 		if (dup2(fd, STDOUT_FILENO) < 0)
@@ -35,7 +35,7 @@ int	stdin_init(char *tty)
 
 	if (!isatty(STDIN_FILENO))
 	{
-		fd = open(tty, O_RDONLY);
+		fd = open(tty, O_RDWR);
 		if (fd < 0)
 			return (return_error("minishell", "stdin", errno, 1));
 		if (dup2(fd, STDIN_FILENO) < 0)
@@ -51,7 +51,7 @@ int	stderr_init(char *tty)
 
 	if (!isatty(STDERR_FILENO))
 	{
-		fd = open(tty, O_WRONLY);
+		fd = open(tty, O_RDWR);
 		if (fd < 0)
 			return (return_error("minishell", "stderr", errno, 1));
 		if (dup2(fd, STDERR_FILENO) < 0)

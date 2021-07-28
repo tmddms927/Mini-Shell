@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 16:47:53 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 17:31:32 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,70 +32,70 @@
 # define TRUE 1
 # define FALSE 0
 
-typedef struct	s_com t_com;
-typedef struct	s_re t_re;
-typedef struct	s_word t_word;
-typedef struct	s_set t_set;
+typedef struct s_com	t_com;
+typedef struct s_re		t_re;
+typedef struct s_word	t_word;
+typedef struct s_set	t_set;
 typedef unsigned int	t_bool;
-typedef struct	s_addenv t_addenv;
-typedef struct	s_his t_his;
+typedef struct s_addenv	t_addenv;
+typedef struct s_his	t_his;
 
-struct			s_set
+struct				s_set
 {
-	char		*name;
-	char		*value;
-	t_set		*next;
+	char			*name;
+	char			*value;
+	t_set			*next;
 };
 
-struct			s_addenv
+struct				s_addenv
 {
-	char		*name;
-	char		*s;
-	t_addenv	*next;
+	char			*name;
+	char			*s;
+	t_addenv		*next;
 };
 
-typedef struct	s_his_stack
+typedef struct s_his_stack
 {
-	t_his		*head;
-}				t_his_stack;
+	t_his			*head;
+}					t_his_stack;
 
-struct			s_his
+struct				s_his
 {
-	t_his	*before;
-	char		*s;
-	t_his	*next;
+	t_his			*before;
+	char			*s;
+	t_his			*next;
 };
 
-typedef struct	s_list
+typedef struct s_list
 {
-	t_com		*head;
-	char		**envp;
-	char		**path;
-	t_set		*set;
-	char		*tty;
-	t_addenv	*addenv;
-	t_his_stack	*his;
-	t_his		*his_here;
-	int			his_check;
+	t_com			*head;
+	char			**envp;
+	char			**path;
+	t_set			*set;
+	char			*tty;
+	t_addenv		*addenv;
+	t_his_stack		*his;
+	t_his			*his_here;
+	int				his_check;
 	struct termios	org_term;
 	struct termios	new_term;
-}				t_list;
+}					t_list;
 
-struct			s_re
+struct				s_re
 {
-	int			type;
-	char		*file;
-	t_re		*next;
+	int				type;
+	char			*file;
+	t_re			*next;
 };
 
-struct			s_com
+struct				s_com
 {
-	char		*c;
-	char		**path;
-	char		**argv;
-	t_re		*re_head;
-	int			type;
-	t_com		*next;
+	char			*c;
+	char			**path;
+	char			**argv;
+	t_re			*re_head;
+	int				type;
+	t_com			*next;
 };
 
 /*
@@ -109,12 +109,12 @@ struct			s_word
 	t_word		*next;
 };
 
-typedef struct	s_words
+typedef struct s_words
 {
 	t_word		*head;
 }				t_words;
 
-typedef struct	s_pars
+typedef struct s_pars
 {
 	int			type;
 	int			i;
@@ -144,7 +144,7 @@ int				put_re(t_list *list, char *s);
 /*
 ** set parsing
 */
-int	variable_in_set(t_pars *pars, t_list *list, char **s);
+int				variable_in_set(t_pars *pars, t_list *list, char **s);
 
 /*
 ** environment.c
@@ -171,7 +171,7 @@ void			print_list(t_list *list);
 */
 
 int				ft_strcmp(const char *s1, const char *s2);
-int ft_strncmp(const char *s1, const char *s2, unsigned int size);
+int				ft_strncmp(const char *s1, const char *s2, unsigned int size);
 size_t			ft_strlen(char *s);
 int				ft_strcat_s(char **s1, char **s2);
 
@@ -179,37 +179,39 @@ int				ft_strcat_s(char **s1, char **s2);
 ** set.c
 */
 
-int	set_set(t_list *list);
-int	add_set_error_code(t_list *list);
-int	check_variable(char *s);
-int	save_set(t_list *list, char *s);
-void	print_set(t_list *list);
+int				set_set(t_list *list);
+int				add_set_error_code(t_list *list);
+int				check_variable(char *s);
+int				save_set(t_list *list, char *s);
+void			print_set(t_list *list);
 
 /*
 ** builtin function
 */
 
-int		do_builtin(t_list *list, t_com *com);
-int		export(t_list *list, t_com *com);
-int	export_argv(t_list *list, t_com *com);
-int	input_addenv(t_list *list, char *s, char *name);
-int	update_addenv(t_list *list, char *s, char *name);
-int	unset(t_list *list, t_com *com);
-int	env(t_list *list);
-int	ft_exit(void);
-int echo(char **argv);
-t_bool	check_flag(char *argv, char c);
-int	putstr(char *str, int fd);
-int pwd(void);
-int	cd(t_list *list, char **argv);
-int	mv_home(t_list *list);
-t_bool	get_home(char *path, t_list *list);
-int	set_curpath(char *curpath, char *dir);
-t_bool not_need_sl(char *curpath);
-t_bool	dot_handler(char *curpath);
-t_bool	dot_dot_handler(char *curpath);
-void	ft_bzero(char *s, unsigned int size);
+int				do_builtin(t_list *list, t_com *com);
+int				export(t_list *list, t_com *com);
+int				export_argv(t_list *list, t_com *com);
+int				set_s_check(char *s);
+int				input_addenv(t_list *list, char *s, char *name);
+int				update_addenv(t_list *list, char *s, char *name);
+int				unset(t_list *list, t_com *com);
+int				env(t_list *list);
+int				ft_exit(void);
+int				echo(char **argv);
+t_bool			check_flag(char *argv, char c);
+int				putstr(char *str, int fd);
+int				pwd(void);
+int				cd(t_list *list, char **argv);
+int				mv_home(t_list *list);
+t_bool			get_home(char *path, t_list *list);
+int				set_curpath(char *curpath, char *dir);
+t_bool			not_need_sl(char *curpath);
+t_bool			dot_handler(char *curpath);
+t_bool			dot_dot_handler(char *curpath);
+void			ft_bzero(char *s, unsigned int size);
 
-int		init_signal(void);
-void	ctrl_c(int signo);
+int				init_signal(void);
+void			ctrl_c(int signo);
+
 #endif

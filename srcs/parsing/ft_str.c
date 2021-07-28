@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:37:18 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/25 21:36:36 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/28 17:55:31 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
-int ft_strncmp(const char *s1, const char *s2, unsigned int size)
+int	ft_strncmp(const char *s1, const char *s2, unsigned int size)
 {
 	while (size-- > 0 && (*s1 || *s2))
 	{
