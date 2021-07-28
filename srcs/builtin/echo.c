@@ -1,6 +1,6 @@
 #include "exec.h"
 
-int	echo(char **argv)
+int	echo(char **argv, int check)
 {
 	int		i;
 	t_bool	no_nl;
@@ -9,7 +9,7 @@ int	echo(char **argv)
 	no_nl = FALSE;
 	while (argv[i])
 	{
-		if (i == 1 && *(argv[i]) == '-')
+		if (check == 0 && *(argv[i]) == '-')
 		{
 			no_nl = check_flag(argv[i], 'n');
 			if (no_nl)
@@ -18,9 +18,10 @@ int	echo(char **argv)
 				continue ;
 			}
 		}
+		check = 1;
 		putstr(argv[i], 1);
 		if (argv[i + 1])
-			printf(" ");
+			write(1, " ", 1);
 		i++;
 	}
 	if (!no_nl)

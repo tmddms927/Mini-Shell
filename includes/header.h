@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 20:58:20 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 21:29:32 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int				update_addenv(t_list *list, char *s, char *name);
 int				unset(t_list *list, t_com *com);
 int				env(t_list *list);
 int				ft_exit(void);
-int				echo(char **argv);
+int				echo(char **argv, int check);
 t_bool			check_flag(char *argv, char c);
 int				putstr(char *str, int fd);
 int				pwd(void);
