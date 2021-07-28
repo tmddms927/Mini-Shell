@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 21:54:13 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/26 17:52:16 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/27 16:50:26 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	update_addenv(t_list *list, char *s, char *name)
 int	input_addenv(t_list *list, char *s, char *name)
 {
 	t_addenv	*temp;
-	int	i;
+	int			i;
 
 	if (!addenv_oadd(list))
 		return (0);

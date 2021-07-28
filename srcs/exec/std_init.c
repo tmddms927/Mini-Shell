@@ -2,7 +2,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
-int stdio_init(char *tty)
+int	stdio_init(char *tty)
 {
 	if (stdin_init(tty))
 		return (1);
@@ -13,9 +13,9 @@ int stdio_init(char *tty)
 	return (0);
 }
 
-int stdout_init(char *tty)
+int	stdout_init(char *tty)
 {
-	int fd;
+	int	fd;
 
 	if (!isatty(STDOUT_FILENO))
 	{
@@ -29,9 +29,9 @@ int stdout_init(char *tty)
 	return (0);
 }
 
-int stdin_init(char *tty)
+int	stdin_init(char *tty)
 {
-	int fd;
+	int	fd;
 
 	if (!isatty(STDIN_FILENO))
 	{
@@ -45,9 +45,9 @@ int stdin_init(char *tty)
 	return (0);
 }
 
-int stderr_init(char *tty)
+int	stderr_init(char *tty)
 {
-	int fd;
+	int	fd;
 
 	if (!isatty(STDERR_FILENO))
 	{

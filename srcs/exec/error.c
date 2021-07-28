@@ -12,9 +12,9 @@ void	handle_message(char *str)
 
 void	snatch_error(int error_num, t_list *command_list)
 {
-	int i;
-	char s[3];
-	int j;
+	int		i;
+	char	s[3];
+	int		j;
 	t_set	*temp;
 
 	dprintf(2, "%d", error_num);
