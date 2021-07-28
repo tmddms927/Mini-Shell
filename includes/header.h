@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 17:31:32 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 20:58:20 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,10 +140,12 @@ int				input_list(t_list *list, char *s);
 int				put_argument(t_list *list, char *s);
 void			check_redi(t_list *list, char *s);
 int				put_re(t_list *list, char *s);
+int				check_list_error(t_list *list);
 
 /*
 ** set parsing
 */
+
 int				variable_in_set(t_pars *pars, t_list *list, char **s);
 
 /*

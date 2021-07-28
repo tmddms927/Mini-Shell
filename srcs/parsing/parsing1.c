@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 20:12:12 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 21:24:58 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,10 @@ int	main(int argc, char **argv, char **envp)
 		reset_input_mode(list);
 		his_oadd(list, s);
 		if (!parsing_start(s, list))
-		{
-			free(s);
 			continue ;
-		}
-		snatch_error(exec(list), list);
+		exec(list);
 		error_list_free("", list);
-		write(1, "\nprompt > ", 10);
+		write(1, "prompt > ", 10);
 	}
 	return (free_list(list, ""));
 }
@@ -61,6 +58,11 @@ int	parsing_start(char *s, t_list *list)
 	{
 		free_list(list, "");
 		return (0);
+	}
+	if (!check_list_error(list))
+	{
+		write(1, "prompt > ", 10);
+		return (error_list_free("", list));
 	}
 	set_path_in_com(list);
 	free_words(words, "");

@@ -6,7 +6,7 @@
 #    By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 11:48:13 by hwan              #+#    #+#              #
-#    Updated: 2021/07/28 17:59:31 by seung-eun        ###   ########.fr        #
+#    Updated: 2021/07/28 21:10:05 by seung-eun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCNAME	=	gnl/get_next_line.c\
 			parsing/environment.c\
 			parsing/environment2.c\
 			parsing/terminal_set.c\
+			parsing/parsing_error.c\
 			\
 			exec/error.c\
 			exec/std_init.c\

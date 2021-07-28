@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 17:58:15 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 20:12:57 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 21:25:07 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 #include "header.h"
 #include "object.h"
 
-static int	down(int *idx, char **s, t_list *list)
+int	g_i;
+int	g_len;
+
+static int	down(int *idx, char **s, t_list *list, int c)
 {
-	while (--*idx >= 0)
+	if (c == 4479771 || c == 4414235)
+		return (1);
+	g_i = -1;
+	g_len = ft_strlen(*s);
+	while (++g_i < g_len)
 		write(0, "\b \b", 3);
 	free(*s);
 	*s = 0;
@@ -39,11 +46,11 @@ static int	down(int *idx, char **s, t_list *list)
 
 static int	up_down(int c, int *idx, char **s, t_list *list)
 {
-	if (c == 4479771 || c == 4414235 || c == -314287333 || c == -314352869)
-		return (1);
-	if (c == 4283163 || c == -314483941)
+	if (c == 4283163)
 	{
-		while (--*idx >= 0)
+		g_i = -1;
+		g_len = ft_strlen(*s);
+		while (++g_i < g_len)
 			write(0, "\b \b", 3);
 		free(*s);
 		*s = 0;
@@ -62,7 +69,7 @@ static int	up_down(int c, int *idx, char **s, t_list *list)
 		}
 	}
 	else
-		down(idx, s, list);
+		down(idx, s, list, c);
 	return (1);
 }
 
@@ -75,9 +82,10 @@ static int	buf_check2(int c, int *idx, char **s, t_list *list)
 
 int	buf_check(int c, int *idx, char **s, t_list *list)
 {
-	if ((c == 4) && !*idx)
+	if (c == 4 && !*idx)
 	{
-		write(0, "exit\n", 5);
+		printf("exit\n");
+		reset_input_mode(list);
 		return (0);
 	}
 	else if (c == 127)
@@ -85,8 +93,8 @@ int	buf_check(int c, int *idx, char **s, t_list *list)
 		if (*idx > 0)
 		{
 			write(0, "\b \b", 3);
-			(*idx)--;
-			(*s)[*idx] = 0;
+			(*s)[--(*idx)] = 0;
+			return (2);
 		}
 	}
 	else if (buf_check2(c, idx, s, list))
