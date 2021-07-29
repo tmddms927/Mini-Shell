@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 18:09:46 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 23:38:07 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 16:40:17 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	check2(t_com *com)
 {
-	int	check;
+	int		check;
 	t_re	*re;
 
 	check = 0;

@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 21:54:13 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/29 15:58:12 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 16:41:52 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	update_env(t_list *list, char *s, char *name)
 int	input_env(t_list *list, char *s, char *name)
 {
 	t_env	*temp;
-	int			i;
+	int		i;
 
 	if (!env_oadd(list))
 		return (0);

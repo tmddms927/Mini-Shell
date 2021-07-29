@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:57:34 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/29 15:58:46 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 16:41:09 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static t_set	*set(char *s)
 	int		i;
 	t_set	*temp;
 	int		j;
-
 
 	i = 0;
 	temp = (t_set *)malloc(sizeof(t_set));
