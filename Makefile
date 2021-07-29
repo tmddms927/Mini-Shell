@@ -6,7 +6,7 @@
 #    By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 11:48:13 by hwan              #+#    #+#              #
-#    Updated: 2021/07/28 22:13:14 by seung-eun        ###   ########.fr        #
+#    Updated: 2021/07/29 15:54:52 by seung-eun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCNAME	=	main.c\
 			object/com_object.c\
 			object/word_object.c\
 			object/list_object.c\
-			object/addenv_object.c\
+			object/env_object.c\
 			object/his_object.c\
 			\
 			parsing/ft_split1.c\

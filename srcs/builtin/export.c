@@ -6,19 +6,19 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 21:54:13 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 23:12:20 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 15:58:12 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include "object.h"
 
-int	update_addenv(t_list *list, char *s, char *name)
+int	update_env(t_list *list, char *s, char *name)
 {
-	t_addenv	*temp;
+	t_env		*temp;
 	int			i;
 
-	temp = find_addenv(list, name);
+	temp = find_env(list, name);
 	free(temp->s);
 	temp->s = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
 	if (!temp->s)
@@ -30,14 +30,14 @@ int	update_addenv(t_list *list, char *s, char *name)
 	return (1);
 }
 
-int	input_addenv(t_list *list, char *s, char *name)
+int	input_env(t_list *list, char *s, char *name)
 {
-	t_addenv	*temp;
+	t_env	*temp;
 	int			i;
 
-	if (!addenv_oadd(list))
+	if (!env_oadd(list))
 		return (0);
-	temp = addenv_olast(list);
+	temp = env_olast(list);
 	temp->name = (char *)malloc(sizeof(char) * ft_strlen(name) + 1);
 	if (!temp->name)
 		return (error_print("Error : failed malloc\n"));
@@ -114,5 +114,5 @@ int	export(t_list *list, t_com *com)
 			printf("\n");
 		temp = temp->next;
 	}
-	return (1);
+	return (0);
 }

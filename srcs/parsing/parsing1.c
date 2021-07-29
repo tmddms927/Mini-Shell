@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 22:27:14 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/28 23:38:42 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	parsing_start2(t_list *list, t_words *words)
 	if (!check_list_error(list))
 	{
 		free_words(words, "");
-		write(1, "prompt > ", 10);
 		return (error_list_free("", list));
 	}
 	set_path_in_com(list);

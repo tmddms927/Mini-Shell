@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 14:49:36 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 17:07:01 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 13:47:26 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ static int	s_check2(int i, int *check, char *s)
 	return (1);
 }
 
-int	set_s_check(char *s)
-{
+int	set_s_check(char *s){
 	int	i;
 	int	check;
 

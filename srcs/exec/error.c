@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 21:19:47 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 21:19:48 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 13:58:17 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	snatch_error(int error_num, t_list *command_list)
 	int		j;
 	t_set	*temp;
 
-	dprintf(2, "%d", error_num);
-	return ;
 	temp = find_set(command_list, "?\0");
 	i = -1;
 	j = 0;

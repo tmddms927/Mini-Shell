@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 16:03:43 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 21:58:31 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 13:22:20 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*g_backup[OPEN_MAX];
 
-void	ctrl_c(int signo)
+void	ctrl_c_non(int signo)
 {
 	(void)signo;
 	free(g_backup[0]);

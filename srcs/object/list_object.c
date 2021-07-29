@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 16:00:23 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 20:05:15 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 16:12:49 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_list	*init_list(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	init_signal();
 	temp = (t_list *)malloc(sizeof(t_list) * 1);
 	if (!temp)
 		return (temp);
@@ -33,12 +32,10 @@ t_list	*init_list(int argc, char **argv, char **envp)
 	temp->path = 0;
 	temp->set = 0;
 	temp->tty = ttyname(1);
-	temp->addenv = 0;
+	temp->env = 0;
 	if (!his_stack_oadd(temp))
 		return (0);
 	save_input_mode(temp);
-	if (!set_path(temp, envp))
-		return (0);
 	if (!set_set(temp))
 		return (0);
 	return (temp);

@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 14:45:54 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 17:57:06 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 13:22:33 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	set_input_mode(t_list *list)
 	list->new_term.c_cc[VMIN] = 1;
 	list->new_term.c_cc[VTIME] = 0;
 	tcsetattr(STDIN_FILENO, TCSANOW, &(list->new_term));
+	init_signal_non();
 }
 
 /*
@@ -41,4 +42,5 @@ void	set_input_mode(t_list *list)
 void	reset_input_mode(t_list *list)
 {
 	tcsetattr(STDIN_FILENO, TCSANOW, &(list->org_term));
+	init_signal_can();
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 22:07:52 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/27 16:56:20 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/29 16:11:09 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 int	env(t_list *list)
 {
-	int			i;
-	t_addenv	*temp;
+	t_env	*temp;
 
-	i = -1;
-	while (list->envp[++i])
-		printf("%s\n", list->envp[i]);
-	temp = list->addenv;
+	temp = list->env;
 	while (temp)
 	{
 		printf("%s\n", temp->s);
 		temp = temp->next;
 	}
-	return (1);
+	return (0);
 }

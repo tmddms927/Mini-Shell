@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:57:34 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 23:01:44 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 15:58:46 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int	sub2(t_list *list, t_set *temp, t_set *temp2, t_com *com)
 {
 	if (temp2)
 	{
-		if (!update_addenv(list, com->argv[g_t], temp->name))
+		if (!update_env(list, com->argv[g_t], temp->name))
 			return (0);
 		free(temp2->value);
 		temp2->value = temp->value;
@@ -90,7 +90,7 @@ static int	sub2(t_list *list, t_set *temp, t_set *temp2, t_com *com)
 			list->set = temp;
 		else
 			temp2->next = temp;
-		if (!input_addenv(list, com->argv[g_t], temp->name))
+		if (!input_env(list, com->argv[g_t], temp->name))
 			return (0);
 	}
 	return (1);
@@ -105,14 +105,11 @@ int	export_argv(t_list *list, t_com *com)
 	while (com->argv[++g_t])
 	{
 		if (!set_s_check(com->argv[g_t]))
-		{
-			snatch_error(1, list);
-			return (0);
-		}
+			return (1);
 		temp = set(com->argv[g_t]);
 		temp2 = find_set(list, temp->name);
 		if (!sub2(list, temp, temp2, com))
-			return (0);
+			return (1);
 	}
-	return (1);
+	return (0);
 }

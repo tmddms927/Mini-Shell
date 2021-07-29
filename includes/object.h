@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:45:06 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 17:26:27 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 15:58:37 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ t_re		*re_olast(t_list *list);
 t_list		*init_list(int argc, char **argv, char **envp);
 
 /*
-** addenv object
+** env object
 */
 
-int			addenv_oadd(t_list *list);
-t_addenv	*addenv_olast(t_list *list);
-t_addenv	*find_addenv(t_list *list, char *s);
-void		remove_addenv(t_list *list, char *s);
+int			env_oadd(t_list *list);
+t_env		*env_olast(t_list *list);
+t_env		*find_env(t_list *list, char *s);
+void		remove_env(t_list *list, char *s);
 
 /*
 ** his object

@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 21:29:32 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 16:19:03 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_re		t_re;
 typedef struct s_word	t_word;
 typedef struct s_set	t_set;
 typedef unsigned int	t_bool;
-typedef struct s_addenv	t_addenv;
+typedef struct s_env	t_env;
 typedef struct s_his	t_his;
 
 struct				s_set
@@ -47,11 +47,11 @@ struct				s_set
 	t_set			*next;
 };
 
-struct				s_addenv
+struct				s_env
 {
 	char			*name;
 	char			*s;
-	t_addenv		*next;
+	t_env			*next;
 };
 
 typedef struct s_his_stack
@@ -73,7 +73,7 @@ typedef struct s_list
 	char			**path;
 	t_set			*set;
 	char			*tty;
-	t_addenv		*addenv;
+	t_env			*env;
 	t_his_stack		*his;
 	t_his			*his_here;
 	int				his_check;
@@ -131,7 +131,6 @@ typedef struct s_pars
 int				ft_split(t_words *words, char *s, t_list *list);
 int				parsing_start(char *s, t_list *list);
 int				set_list(t_list *list, t_words *words);
-int				set_path(t_list *list, char **envp);
 
 int				set_command(t_list *list, char *s);
 int				set_command2(t_list *list, char *s, t_com *temp);
@@ -152,10 +151,11 @@ int				variable_in_set(t_pars *pars, t_list *list, char **s);
 ** environment.c
 */
 
-int				set_path(t_list *list, char **envp);
+int				set_path(t_list *list);
 char			**ft_split_envp(char *s);
 int				set_path_in_com(t_list *list);
 int				set_path_in_com2(t_com *temp, int i, t_list *list);
+void			free_path(t_list *list);
 
 /*
 ** utils.c
@@ -195,11 +195,11 @@ int				do_builtin(t_list *list, t_com *com);
 int				export(t_list *list, t_com *com);
 int				export_argv(t_list *list, t_com *com);
 int				set_s_check(char *s);
-int				input_addenv(t_list *list, char *s, char *name);
-int				update_addenv(t_list *list, char *s, char *name);
+int				input_env(t_list *list, char *s, char *name);
+int				update_env(t_list *list, char *s, char *name);
 int				unset(t_list *list, t_com *com);
 int				env(t_list *list);
-int				ft_exit(void);
+int				ft_exit(t_com *com);
 int				echo(char **argv, int check);
 t_bool			check_flag(char *argv, char c);
 int				putstr(char *str, int fd);
@@ -213,7 +213,8 @@ t_bool			dot_handler(char *curpath);
 t_bool			dot_dot_handler(char *curpath);
 void			ft_bzero(char *s, unsigned int size);
 
-int				init_signal(void);
-void			ctrl_c(int signo);
+int				init_signal_can(void);
+int				init_signal_non(void);
+void			ctrl_c_non(int signo);
 
 #endif

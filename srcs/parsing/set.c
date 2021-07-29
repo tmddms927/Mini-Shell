@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:25:45 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/26 00:02:28 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 16:10:55 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "object.h"
 
 /*
-** 프로그램 시작시 set 저장
+** 프로그램 시작시 set, env 저장
 */
 
 int	set_set(t_list *list)
@@ -29,6 +29,8 @@ int	set_set(t_list *list)
 			if (!set_oadd(list))
 				return (0);
 			if (!save_set(list, list->envp[i]))
+				return (0);
+			if (!input_env(list, list->envp[i], set_olast(list)->name))
 				return (0);
 		}
 	}
