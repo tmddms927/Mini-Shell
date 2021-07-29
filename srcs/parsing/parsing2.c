@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:40:28 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/24 17:25:34 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 17:04:09 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	set_command(t_list *list, char *s)
 
 int	set_command2(t_list *list, char *s, t_com *temp)
 {
-	char		*c;
-
-	c = "/\0";
 	if (temp->type == COM)
 	{
-		if (!ft_strcat_s(&temp->c, &c))
-			return (error_list_free("Error : failed malloc\n", list));
+		// if (s && s[0] != '/')
+		// {
+		// 	if (!ft_strcat_s(&temp->c, &c))
+		// 		return (error_list_free("Error : failed malloc\n", list));
+		// }
 		if (!ft_strcat_s(&temp->c, &s))
 			return (error_list_free("Error : failed malloc\n", list));
 		if (!put_argument(list, s))

@@ -6,7 +6,7 @@
 #    By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 11:48:13 by hwan              #+#    #+#              #
-#    Updated: 2021/07/29 16:31:17 by seung-eun        ###   ########.fr        #
+#    Updated: 2021/07/29 16:56:59 by seung-eun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCNAME	=	main.c\
 			parsing/utils2.c\
 			parsing/environment.c\
 			parsing/environment2.c\
+			parsing/environment3.c\
 			parsing/terminal_set.c\
 			parsing/parsing_error.c\
 			\
