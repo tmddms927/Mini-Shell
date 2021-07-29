@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 21:19:51 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/29 13:42:25 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 22:08:10 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	do_non_builtin(t_list *list, t_com *com)
 			}
 			exit_safe("minishell", com->argv[0], 127, 127);
 		}
+		exit(0);
 	}
 	waitpid(pid, &statloc, 0);
 	return (WEXITSTATUS(statloc));

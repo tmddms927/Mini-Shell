@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:40:28 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/29 17:06:42 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/29 22:06:27 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	set_command2(t_list *list, char *s, t_com *temp)
 	{
 		if (!put_re(list, s))
 			return (0);
+		
 	}
 	return (1);
 }
@@ -96,7 +97,10 @@ int	put_re(t_list *list, char *s)
 	com = com_olast(list);
 	if (!ft_strcat_s(&temp->file, &s))
 		return (error_list_free("Error : failed malloc\n", list));
-	com->type = ARGV;
+	if (!com->c)
+		com->type = COM;
+	else
+		com->type = ARGV;
 	return (1);
 }
 
