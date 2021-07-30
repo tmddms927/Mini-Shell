@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:57:34 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/29 16:41:09 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 15:06:18 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,11 @@ static int	sub2(t_list *list, t_set *temp, t_set *temp2, t_com *com)
 			list->set = temp;
 		else
 			temp2->next = temp;
-		if (!input_env(list, com->argv[g_t], temp->name))
-			return (0);
+		if (set_olast(list)->value)
+		{
+			if (!input_env(list, com->argv[g_t], temp->name))
+				return (0);
+		}
 	}
 	return (1);
 }
