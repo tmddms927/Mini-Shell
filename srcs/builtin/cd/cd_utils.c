@@ -13,22 +13,32 @@ t_bool	get_home(char *path, t_list *list)
 		ft_memmove(path, p->value, ft_strlen(p->value));
 		return (TRUE);
 	}
+	printf("minishell: cd: HOME not set");
 	return (FALSE);
 }
 
-int	set_curpath(char *curpath, char *dir)
+int	set_curpath(char *curpath, char *dir, t_list *list)
 {
 	char	path[PATH_MAX];
 	int		len;
+	char	tmp_path[PATH_MAX];
 
 	if (!getcwd(path, PATH_MAX))
 		return (return_error("minishell", "cd", errno, 1));
+	if (!ft_strncmp(dir, "~/", 2) || !ft_strncmp(dir, "~\0", 2))
+	{
+		ft_bzero(path, PATH_MAX);
+		if (!get_home(path, list))
+			return (1);
+	}
 	if (*dir == '/')
 		ft_memmove(curpath, dir, ft_strlen(dir));
 	else
 	{
 		len = ft_strlen(path) + ft_strlen(dir) + 1;
-		ft_memmove(curpath, ft_strjoin(ft_strjoin(path, "/"), dir), len);
+		if (!ft_pathjoin(tmp_path, path, dir))
+			return (1);
+		ft_memmove(curpath, tmp_path, len);
 	}
 	return (0);
 }
@@ -60,6 +70,8 @@ t_bool	dot_handler(char *curpath)
 	while (curpath[i])
 	{
 		if (!ft_strncmp(&curpath[i], "/./", 3)
+			|| !ft_strncmp(&curpath[i], "/~/", 3)
+			|| !ft_strncmp(&curpath[i], "/~\0", 3)
 			|| !ft_strncmp(&curpath[i], "/.\0", 3))
 		{
 			ft_memmove(&curpath[i + 1], &curpath[i + 2],

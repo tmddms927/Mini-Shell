@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/29 17:04:16 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 15:23:06 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,11 +207,12 @@ int				pwd(void);
 int				cd(t_list *list, char **argv);
 int				mv_home(t_list *list);
 t_bool			get_home(char *path, t_list *list);
-int				set_curpath(char *curpath, char *dir);
+int				set_curpath(char *curpath, char *dir, t_list *list);
 t_bool			not_need_sl(char *curpath);
 t_bool			dot_handler(char *curpath);
 t_bool			dot_dot_handler(char *curpath);
 void			ft_bzero(char *s, unsigned int size);
+int				ft_pathjoin(char *dest, char *path, char *dir);
 
 int				init_signal_can(void);
 int				init_signal_non(void);
