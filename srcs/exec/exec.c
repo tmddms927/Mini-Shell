@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 21:19:51 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/29 22:08:10 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 15:59:31 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	exec(t_list *list)
 	t_com	*c;
 	int		pipefd[2];
 	int		statloc;
+	int		s;
 
 	c = list->head;
 	while (c)
@@ -28,13 +29,10 @@ int	exec(t_list *list)
 			statloc = exec_to(list, c, NULL);
 		else
 			statloc = exec_to(list, c, pipefd);
-		if (statloc)
-		{
-			stdio_init(list->tty);
-			return (statloc);
-		}
 		c = c->next;
 	}
+	while (wait(&s) != -1)
+		;
 	stdio_init(list->tty);
 	return (statloc);
 }
@@ -71,7 +69,7 @@ int	exec_to(t_list *list, t_com *com, int *to)
 				exit(1);
 			exit(command(list, com));
 		}
-		waitpid(pid, &statloc, 0);
+		waitpid(pid, &statloc, WNOWAIT);
 		if (from_pipe(to))
 			return (1);
 		return (WEXITSTATUS(statloc));
