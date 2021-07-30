@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/30 14:37:02 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 17:06:15 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <fcntl.h>
 #include "get_next_line.h"
 
-static int	parsing_start2(t_list *list, t_words *words)
+static int	parsing_start2(t_list *list, t_words **words)
 {
-	if (!set_list(list, words))
+	if (!set_list(list, *words))
 	{
 		free_list(list, "");
 		return (0);
@@ -40,17 +40,20 @@ int	parsing_start(char *s, t_list *list)
 {
 	t_words	*words;
 
+	if (!*s)
+		return (error_list_free("", list));
 	words = (t_words *)malloc(sizeof(t_words));
 	if (!words)
 		return (error_print("Error : failed malloc\n"));
 	words->head = 0;
-	if (!*s)
-		return (0);
 	his_oadd(list, s);
 	if (!ft_split(words, s, list))
 		return (0);
-	if (!parsing_start2(list, words))
+	if (!parsing_start2(list, &words))
+	{
+		free(words);
 		return (0);
+	}
 	return (1);
 }
 

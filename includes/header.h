@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 23:37:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/30 15:23:06 by hwan             ###   ########.fr       */
+/*   Updated: 2021/07/30 16:28:35 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void			free_path(t_list *list);
 
 int				error_list_free(char *s, t_list *list);
 void			error_list_free2(t_com *temp);
-int				free_words(t_words *words, char *s);
+int				free_words(t_words **words, char *s);
 int				error_print(char *s);
 int				free_list(t_list *list, char *s);
 void			print_list(t_list *list);

@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:43:48 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/29 16:19:21 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 16:36:06 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ void	error_list_free2(t_com *temp)
 	}
 }
 
-int	free_words(t_words *words, char *s)
+int	free_words(t_words **words, char *s)
 {
 	t_word			*temp;
 	t_word			*next;
 
 	printf("%s", s);
-	temp = words->head;
+	temp = (*words)->head;
 	while (temp)
 	{
 		next = temp->next;
@@ -81,7 +81,8 @@ int	free_words(t_words *words, char *s)
 		free(temp);
 		temp = next;
 	}
-	free(words);
+	free(*words);
+	*words = 0;
 	return (0);
 }
 
