@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 21:19:47 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/29 13:58:17 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 15:35:21 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ void	snatch_error(int error_num, t_list *command_list)
 	i = -1;
 	j = 0;
 	if (error_num == 0)
-	{
 		temp->value[++i] = '0';
-		i++;
-	}
 	while (error_num > 0)
 	{
 		s[j++] = error_num % 10 + '0';
@@ -44,7 +41,8 @@ void	snatch_error(int error_num, t_list *command_list)
 	}
 	while (++i < j)
 		temp->value[i] = s[j - i - 1];
-	temp->value[i] = 0;
+	while (i < 3)
+		temp->value[i++] = 0;
 }
 
 void	exit_safe(char *func_name, char *obj, int err_num, int exit_num)
