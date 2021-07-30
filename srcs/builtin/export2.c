@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 14:49:36 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/29 16:42:03 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 17:56:56 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,10 @@ int	set_s_check(char *s)
 		i++;
 	}
 	return (1);
+}
+
+t_set	*export_error(char *s)
+{
+	printf("%s", s);
+	return (0);
 }

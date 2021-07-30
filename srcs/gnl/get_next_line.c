@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 16:03:43 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/29 13:22:20 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 17:36:40 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ctrl_c_non(int signo)
 	(void)signo;
 	free(g_backup[0]);
 	g_backup[0] = 0;
-	write(0, "\nprompt > ", 10);
+	write(1, "\nprompt > ", 10);
 	return ;
 }
 

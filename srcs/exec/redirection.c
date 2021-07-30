@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 21:19:59 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 21:20:00 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 17:34:18 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,29 @@
 
 int	redirect(char *tty, t_re *redir_list)
 {
-	int	ret;
+	int		ret;
+	t_re	*re;
 
-	while (redir_list)
+	ret = 0;
+	re = redir_list;
+	while (re)
 	{
-		if (redir_list->type == RE_OUT)
-			ret = re_out(redir_list->file);
-		else if (redir_list->type == RE_IN)
-			ret = re_in(redir_list->file);
-		else if (redir_list->type == H_DOC)
-			ret = h_doc(tty, redir_list->file);
-		else if (redir_list->type == APPEND)
-			ret = append(redir_list->file);
-		if (ret)
-			return (ret);
-		redir_list = redir_list->next;
+		if (re->type == H_DOC)
+			ret = h_doc(tty, re->file);
+		re = re->next;
 	}
-	return (0);
+	re = redir_list;
+	while (!ret && re)
+	{
+		if (re->type == RE_OUT)
+			ret = re_out(re->file);
+		else if (re->type == RE_IN)
+			ret = re_in(re->file);
+		else if (re->type == APPEND)
+			ret = append(re->file);
+		re = re->next;
+	}
+	return (ret);
 }
 
 int	re_out(char *file)

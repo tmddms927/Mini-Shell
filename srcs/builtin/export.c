@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 21:54:13 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/30 15:07:31 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 17:49:00 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	update_env(t_list *list, char *s, char *name)
 	int			i;
 
 	temp = find_env(list, name);
-	free(temp->s);
+	if (temp && temp->s)
+		free(temp->s);
 	temp->s = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
 	if (!temp->s)
 		return (error_print("Error : failed malloc\n"));

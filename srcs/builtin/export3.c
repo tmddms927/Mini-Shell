@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:57:34 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/30 15:06:18 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 17:56:40 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 #include "exec.h"
 
 static int	g_t;
-
-static t_set	*error(char *s)
-{
-	printf("%s", s);
-	return (0);
-}
 
 static t_set	*set2(char *s, t_set **temp, int i, int j)
 {
@@ -33,7 +27,7 @@ static t_set	*set2(char *s, t_set **temp, int i, int j)
 		i++;
 	(*temp)->value = (char *)malloc(sizeof(char) * (i - j + 1));
 	if (!(*temp)->value)
-		return (error("Error : failed malloc\n"));
+		return (export_error("Error : failed malloc\n"));
 	i = 0;
 	if (!s[j])
 	{
@@ -55,12 +49,12 @@ static t_set	*set(char *s)
 	i = 0;
 	temp = (t_set *)malloc(sizeof(t_set));
 	if (!temp)
-		return (error("Error : failed malloc\n"));
+		return (export_error("Error : failed malloc\n"));
 	while (s[i] && s[i] != '=')
 		i++;
 	temp->name = (char *)malloc(sizeof(char) * (i + 1));
 	if (!temp->name)
-		return (error("Error : failed malloc\n"));
+		return (export_error("Error : failed malloc\n"));
 	j = -1;
 	while (++j < i)
 		temp->name[j] = s[j];
@@ -71,30 +65,42 @@ static t_set	*set(char *s)
 	return (temp);
 }
 
+static int	sub3(t_list *list, t_set *temp, t_set *temp2, t_com *com)
+{
+	temp2 = set_olast(list);
+	if (!temp2)
+		list->set = temp;
+	else
+		temp2->next = temp;
+	if (set_olast(list)->value)
+	{
+		if (!input_env(list, com->argv[g_t], temp->name))
+			return (0);
+	}
+	return (1);
+}
+
 static int	sub2(t_list *list, t_set *temp, t_set *temp2, t_com *com)
 {
 	if (temp2)
 	{
-		if (!update_env(list, com->argv[g_t], temp->name))
-			return (0);
+		if (temp->value && temp2->value)
+		{
+			if (!update_env(list, com->argv[g_t], temp->name))
+				return (0);
+		}
+		else if (temp->value)
+		{
+			if (!input_env(list, com->argv[g_t], temp->name))
+				return (0);
+		}
 		free(temp2->value);
 		temp2->value = temp->value;
 		free(temp->name);
 		free(temp);
 	}
 	else
-	{
-		temp2 = set_olast(list);
-		if (!temp2)
-			list->set = temp;
-		else
-			temp2->next = temp;
-		if (set_olast(list)->value)
-		{
-			if (!input_env(list, com->argv[g_t], temp->name))
-				return (0);
-		}
-	}
+		return (sub3(list, temp, temp2, com));
 	return (1);
 }
 
