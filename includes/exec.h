@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 21:20:21 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 21:20:22 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 15:37:04 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 int		lst_len(t_com *command);
 
 //error
-void	handle_message(char *str);
+void	print_err(char *s1, char *s2, char *s3);
 void	snatch_error(int error_num, t_list *command_list);
 void	exit_safe(char *func_name, char *obj, int err_num, int exit_num);
 void	command_not_found(char *func_name, char *obj);
