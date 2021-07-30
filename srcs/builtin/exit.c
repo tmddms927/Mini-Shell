@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hwan <hwan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 23:43:02 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/30 14:58:28 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 16:19:23 by hwan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_exit2(t_com *com)
 		{
 			printf("minishell: exit: ");
 			printf("%s: numeric argument required\n", com->argv[1]);
-			return (255);
+			exit (255);
 		}
 		num = num * 10 + com->argv[1][i] - '0';
 	}
