@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 21:20:06 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/28 21:20:07 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 18:09:21 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	read_endl(int fd, char *code)
 	while (1)
 	{
 		s = readline(prompt);
+		if (!s)
+			return ;
 		if (!ft_strcmp(s, code))
 		{
 			free(s);
