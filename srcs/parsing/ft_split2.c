@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:47:06 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 22:52:30 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 16:31:14 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	put_words4(t_pars *pars, char *s)
 		if (pars->i > 0)
 		{
 			if (!input_words(pars->words, s - pars->i, pars->i, pars->type))
-				return (free_words(pars->words, ""));
+				return (free_words(&(pars->words), ""));
 		}
 		if (!input_words(pars->words, s, 1, pars->type))
-			return (free_words(pars->words, ""));
+			return (free_words(&(pars->words), ""));
 		pars->i = 0;
 		pars->type = 0;
 		return (1);
@@ -38,19 +38,19 @@ int	put_words5(t_pars *pars, char **s)
 		if (pars->i > 0)
 		{
 			if (!input_words(pars->words, *s - pars->i, pars->i, pars->type))
-				return (free_words(pars->words, ""));
+				return (free_words(&(pars->words), ""));
 		}
 		if (*s + 1 && *((*s) + 1) == '>')
 		{
 			if (!input_words(pars->words, *s, 2, pars->type))
-				return (free_words(pars->words, ""));
+				return (free_words(&(pars->words), ""));
 			(*s)++;
 			pars->pos++;
 		}
 		else
 		{
 			if (!input_words(pars->words, *s, 1, pars->type))
-				return (free_words(pars->words, ""));
+				return (free_words(&(pars->words), ""));
 		}
 		pars->i = 0;
 		pars->type = 0;
@@ -66,19 +66,19 @@ int	put_words6(t_pars *pars, char **s)
 		if (pars->i > 0)
 		{
 			if (!input_words(pars->words, *s - pars->i, pars->i, pars->type))
-				return (free_words(pars->words, ""));
+				return (free_words(&(pars->words), ""));
 		}
 		if (*s + 1 && *((*s) + 1) == '<')
 		{
 			if (!input_words(pars->words, *s, 2, pars->type))
-				return (free_words(pars->words, ""));
+				return (free_words(&(pars->words), ""));
 			(*s)++;
 			pars->pos++;
 		}
 		else
 		{
 			if (!input_words(pars->words, *s, 1, pars->type))
-				return (free_words(pars->words, ""));
+				return (free_words(&(pars->words), ""));
 		}
 		pars->i = 0;
 		pars->type = 0;
@@ -107,7 +107,7 @@ int	put_words7(t_pars *pars, char **s)
 		&& ((**s > 8 && **s < 14) || **s == 32))
 	{
 		if (!input_words(pars->words, *s - pars->i, pars->i, pars->type))
-			return (free_words(pars->words, ""));
+			return (free_words(&(pars->words), ""));
 		pars->i = 0;
 		pars->type = 0;
 		return (1);

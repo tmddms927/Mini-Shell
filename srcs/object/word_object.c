@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 15:50:27 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/21 16:29:54 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 16:31:32 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	words_oadd(t_words *words)
 
 	word = (t_word *)malloc(sizeof(t_word));
 	if (!word)
-		return (free_words(words, "Error : failed malloc\n"));
+		return (free_words(&words, "Error : failed malloc\n"));
 	temp = words_olast(words);
 	if (!temp)
 		words->head = word;

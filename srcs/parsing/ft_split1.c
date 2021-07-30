@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 03:04:25 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/28 22:48:05 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 16:31:50 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ static int	put_words(t_words *words, char *s, t_list *list, t_pars	*pars)
 		pars->pos++;
 	}
 	if (pars->i > 0 && (pars->type == 1 || pars->type == 2))
-		return (free_words(words, "Error : unclosed quotes\n"));
+		return (free_words(&words, "Error : unclosed quotes\n"));
 	if (pars->i > 0)
 	{
 		if (!input_words(words, s - pars->i, pars->i, pars->type))
-			return (free_words(words, ""));
+			return (free_words(&words, ""));
 	}
 	free(pars->orig_s);
 	return (1);
@@ -113,7 +113,7 @@ int	ft_split(t_words *words, char *s, t_list *list)
 	t_pars	*pars;
 
 	if (!s)
-		return (free_words(words, ""));
+		return (free_words(&words, ""));
 	pars = (t_pars *)malloc(sizeof(t_pars));
 	if (!pars)
 		return (error_print("Error : failed malloc\n"));
