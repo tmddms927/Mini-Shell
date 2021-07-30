@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:12:14 by seungoh           #+#    #+#             */
-/*   Updated: 2021/07/30 17:06:15 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 17:18:32 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	parsing_start2(t_list *list, t_words **words)
 	if (!set_list(list, *words))
 	{
 		free_list(list, "");
-		return (0);
+		return (error_list_free("", list));
 	}
 	if (!check_list_error(list))
 	{
@@ -41,7 +41,10 @@ int	parsing_start(char *s, t_list *list)
 	t_words	*words;
 
 	if (!*s)
+	{
+		free(s);
 		return (error_list_free("", list));
+	}
 	words = (t_words *)malloc(sizeof(t_words));
 	if (!words)
 		return (error_print("Error : failed malloc\n"));
@@ -50,10 +53,7 @@ int	parsing_start(char *s, t_list *list)
 	if (!ft_split(words, s, list))
 		return (0);
 	if (!parsing_start2(list, &words))
-	{
-		free(words);
 		return (0);
-	}
 	return (1);
 }
 
