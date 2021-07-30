@@ -6,7 +6,7 @@
 /*   By: seung-eun <seung-eun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 21:54:13 by seung-eun         #+#    #+#             */
-/*   Updated: 2021/07/29 16:41:52 by seung-eun        ###   ########.fr       */
+/*   Updated: 2021/07/30 15:07:31 by seung-eun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ int	export(t_list *list, t_com *com)
 			continue ;
 		}
 		printf("declare -x ");
-		printf("%s=", temp->name);
+		printf("%s", temp->name);
 		if (temp->value)
-			printf("\"%s\"\n", temp->value);
+			printf("=\"%s\"\n", temp->value);
 		else
 			printf("\n");
 		temp = temp->next;
